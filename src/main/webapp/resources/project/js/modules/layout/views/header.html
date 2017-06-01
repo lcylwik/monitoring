@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container img100">
+        <div class="navbar-header">
+
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Branding Image -->
+            <a class="navbar-brand pointer" ui-sref="home.search">
+                <img class="pull-left header-logo" src="/images/logo.png" width="100"/>
+                <p class="pull-left navbar-text header-title">{[{ header.title }]}</p>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="nav navbar-nav">
+                &nbsp;
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <!-- Authentication Links -->
+                <li uib-dropdown>
+                    <a uib-dropdown-toggle class="pointer">
+                        {[{ user.name }]} <span class="caret"></span>
+                    </a>
+
+                    <ul uib-dropdown-menu>
+                        <li>
+                            <a ui-sref="home.usersEdit({id: user.id, action: 'edit'})">
+                                Mi Perfil
+                            </a>
+                        </li><li>
+                            <a href="javascript:void(0);" ng-click="ctrl.logout()">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

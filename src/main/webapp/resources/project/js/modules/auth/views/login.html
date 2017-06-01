@@ -1,0 +1,29 @@
+<div class="col-md-12 col-xs-12 col-lg-12 login">
+    <div class="row">
+        <div class="col-md-4 col-xs-4 col-lg-4 col-lg-offset-4 col-md-offset-4 col-xs-offset-4 login-container">
+            <div class="row">
+                <img src="/images/logo.png" class="img100">
+            </div>
+            <div class="row form">
+                <form role="form" ng-submit="ctrl.login()" novalidate>
+                    <div class="row form-group">
+                        <div class="login-form-img"><img src="/images/usu.png" class="img100"/> </div>
+                        <input type="text" name="name" ng-model="name" class="form-control" ng-required=""/>
+                    </div>
+                    <div class="row form-group">
+                        <div class="login-form-img"> <img src="/images/Pass.png" class="img100"/> </div>
+                        <input type="password" name="password" ng-model="password" class="form-control" ng-required=""/>
+                    </div>
+                    <span ng-if="message" class="alert-{[{ message.type }]} padding10 width100 fade in">{[{message.title}]}</span>
+                    <div class="row form-group hidden">
+                        <button type="submit" class="btn btn-success"/>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login-footer-banner">
+    <img src="/images/Banner.png" class="img100">
+</div>

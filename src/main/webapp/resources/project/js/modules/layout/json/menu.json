@@ -1,0 +1,64 @@
+{
+  "inicio": {
+    "id": 1,
+    "nombre": "Mi Dashboard",
+    "icono": "menu__icon--mainIcon icon-home ",
+    "link": null,
+    "permiso": "bitacoras.my"
+  },
+  "busqueda": {
+    "id": 2,
+    "nombre": "Búsqueda",
+    "icono": "menu__icon--mainIcon fa fa-search ",
+    "link": null,
+    "permiso": [
+      "prosa.monitoring"
+     ],
+    "submenu": {
+      "mdm.search": {
+        "nombre": "Individual",
+        "icono": null,
+        "link": "home.search",
+        "permiso": "prosa.monitoring"
+      }
+    }
+  },
+  "seguridad": {
+    "id": 200,
+    "nombre": "Seguridad",
+    "icono": "menu__icon--mainIcon fa fa-lock ",
+    "link": null,
+    "permiso": "users.manage",
+    "submenu": {
+      "users": {
+        "nombre": "Usuarios",
+        "icono": null,
+        "link": "home.users"
+      },
+      "roles": {
+        "nombre": "Roles",
+        "icono": null,
+        "link": "home.roles"
+      },
+      "permisos": {
+        "nombre": "Permisos",
+        "icono": null,
+        "link": "home.permissions"
+      }
+    }
+  },
+  "reportes": {
+    "id": 200,
+    "nombre": "Reportes",
+    "icono": "menu__icon--mainIcon fa fa-th",
+    "link": null,
+    "permiso": "bitacoras.admin",
+    "submenu": {
+      "users": {
+        "nombre": "Bitácoras",
+        "icono": null,
+        "link": "home.adminBitacoras"
+      }
+    }
+  }
+}
