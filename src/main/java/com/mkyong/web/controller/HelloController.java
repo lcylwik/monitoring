@@ -22,25 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 //api rest LastTest
-
 @RestController
 public class HelloController {
-    
+
     @Autowired
     private UserService userservice;
-    
+
     @Autowired
     private RolService rolservice;
-    
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getData() {
         System.out.println("entro al controlador");
         ModelAndView model = new ModelAndView("index.html");
-        
         return model;
-        
     }
-    
 
     /**
      *
@@ -65,18 +61,15 @@ public class HelloController {
                 .claim("permissions", userservice.findPermissionByUserName(user.getName()))
                 .signWith(SignatureAlgorithm.HS256, "secretkey").compact());
     }
-    
+
     @SuppressWarnings("unused")
     private static class LoginResponse {
-        
+
         public String token;
-        
+
         public LoginResponse(final String token) {
             this.token = token;
         }
     }
-    
-   
-    
-}
 
+}
