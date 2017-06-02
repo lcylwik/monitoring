@@ -8,6 +8,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
+        <!-- interesante -->
         <property name="name" type="string">
             <column name="name" not-null="true" />
         </property>
