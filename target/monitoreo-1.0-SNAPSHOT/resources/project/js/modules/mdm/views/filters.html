@@ -1,0 +1,147 @@
+<div class="panel">
+    <div class="panel-heading pointer" ng-click="showFilters = !showFilters" ng-init="showFilters = true">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <p style="margin-bottom:0;">
+                <strong>Filtros</strong>
+            </p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <p style="margin-bottom:0;">
+                <span class="fa fa-cog pull-right filter-icon" ng-class="showFilters ? 'open' :''"></span>
+            </p>
+        </div>
+
+    </div>
+    <div class="panel-body" ng-if="showFilters">
+        <form role="form" ng-submit="ctrl.filter()">
+            <div class="col-md-3 col-xs-4 col-lg-3">
+                <div class="form-group">
+                    <label>Nombre</label></br>
+                    <input type="text" name="filters.NOMBRE" ng-model="filters.NOMBRE" placeholder="Nombre a buscar"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3">
+                <div class="form-group">
+                    <label>Apellido Paterno</label></br>
+                    <input type="text" name="filters.APE_PAT" ng-model="filters.APE_PAT"
+                           placeholder="Apellido paterno a buscar"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3">
+                <div class="form-group">
+                    <label>Apellido Materno</label></br>
+                    <input type="text" name="filters.APE_MAT" ng-model="filters.APE_MAT"
+                           placeholder="Apellido paterno a buscar"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div ng-class="filters.age_operator ? 'form-group' : ''">
+                    <label>Edad</label></br>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 form-group">
+                            <select name="filters.age_operator" ng-model="filters.age_operator" class="form-control">
+                                <option value="">Operador</option>
+                                <option value="=">Igual</option>
+                                <option value=">">Mayor</option>
+                                <option value="<">Menor</option>
+                                <option value=">=">Mayor o igual</option>
+                                <option value="<=">Menor o igual</option>
+                                <option value="between">Entre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12">
+                            <input type="text" name="filters.age" ng-model="filters.age" placeholder="Años"
+                                   class="form-control"
+                                   ng-if="filters.age_operator && filters.age_operator !== 'between'"/>
+
+                            <div class="" ng-if="filters.age_operator && filters.age_operator === 'between'">
+                                <input type="text" name="filters.age" ng-model="filters.age" placeholder="Desde"
+                                       class="form-control age-field"/>
+                                <input type="text" name="filters.ageTo" ng-model="filters.ageTo" placeholder="Hasta"
+                                       class="form-control age-field pull-right"/>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>Lugar de Nacimiento</label></br>
+                    <input type="text" name="filters.NACIMIENTO" ng-model="filters.NACIMIENTO"
+                           placeholder="Lugar de nacimiento"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>RFC</label></br>
+                    <input type="text" name="filters.RFC" ng-model="filters.RFC"
+                           placeholder="RFC"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>CURP</label></br>
+                    <input type="text" name="filters.CURP" ng-model="filters.CURP"
+                           placeholder="CURP"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>Alias</label></br>
+                    <input type="text" name="filters.ALIAS" ng-model="filters.ALIAS"
+                           placeholder="Alias"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>Municipio</label></br>
+                    <input type="text" name="filters.MUNICIPIO" ng-model="filters.MUNICIPIO"
+                           placeholder="Municipio"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>Colonia</label></br>
+                    <input type="text" name="filters.COLONIA" ng-model="filters.COLONIA"
+                           placeholder="Colonia"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>CP</label></br>
+                    <input type="text" name="filters.CP" ng-model="filters.CP"
+                           placeholder="Código Postal"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3" ng-if="showAdvanced">
+                <div class="form-group">
+                    <label>Delegación</label></br>
+                    <input type="text" name="filters.DELEGACION" ng-model="filters.DELEGACION"
+                           placeholder="Delegación"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-4 col-lg-3 pull-right filter-buttons">
+                <div class="form-group">
+                    <button class="btn btn-success pull-right search" type="submit">Buscar</button>
+                    <button class="btn btn-default pull-right search showAdvancedFilters" ng-click="showAdvanced = !showAdvanced" type="button">Avanzados</button>
+                </div>
+            </div>
+
+    </div>
+</div>

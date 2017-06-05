@@ -1,0 +1,31 @@
+<div id="mySidenav" class="sidenav"  ng-class="$root.menuOpen ? 'open' : ''">
+    <nav class="menu menu-vertical">
+        <ul class="">
+            <li data-ng-repeat="menu in mainMenu"
+                ng-if="(menu.permiso && hasPermission(menu.permiso)) || !menu.permiso" class="level"
+                ng-class="ctrl.stateInclude(menu.submenu) ? 'active':''">
+                <a href="#" urllink id="{[{menu.nombre}]}">
+                    <i class="{[{menu.icono}]}"></i>
+                    <span class="hidden-collapsed">
+                    {[{menu.nombre}]}
+            <i ng-if="menu.submenu" class="menu__icon--rotate fa fa-angle-right fa-lg pull-right"></i>
+          </span>
+                </a>
+                <ul data-ng-repeat="submenu in menu.submenu"
+                    ng-if="(submenu.permiso && hasPermission(submenu.permiso)) || !submenu.permiso">
+                    <li class="sublevel" ng-class="ctrl.stateInclude(submenu, 'sub') ? 'active':''">
+                        <a href="#" urllink sublevel="true" data-ng-click="ctrl.link($event,submenu.link)" ui-sref-active="active">
+                            <span>{[{submenu.nombre}]}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <a href="javascript:void(0)" class="closebtn" ng-click="$root.menuOpen = false"><i
+                class="fa fa-chevron-circle-left"></i></a>
+        <span class="openbtn pointer" ng-show="!$root.menuOpen" ng-click="$root.menuOpen = true"><i
+                class="fa fa-chevron-circle-right"></i></span>
+    </nav>
+</div>

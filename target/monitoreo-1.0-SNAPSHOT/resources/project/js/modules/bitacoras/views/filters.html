@@ -1,0 +1,59 @@
+<div class="panel">
+    <div class="panel-heading pointer" ng-click="showFilters = !showFilters" ng-init="showFilters = true">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <p style="margin-bottom:0;">
+                <strong>Filtros</strong>
+            </p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <p style="margin-bottom:0;">
+                <span class="fa fa-cog pull-right filter-icon" ng-class="showFilters ? 'open' :''"></span>
+            </p>
+        </div>
+
+    </div>
+    <div class="panel-body" ng-if="showFilters">
+        <form role="form" ng-submit="ctrl.filter()">
+            <div class="col-md-4 col-xs-4 col-lg-4">
+                <div class="form-group">
+                    <label>Fecha de creación</label></br>
+                    <input
+                            name="Fecha de creación"
+                            ng-required="true"
+                            type="text"
+                            class="form-control input-date"
+                            ng-model="filters.created_atDate"
+                            datepicker-popup="dd/MM/yyyy"
+                            is-open="created_atOpen"
+                            show-button-bar="false"
+                            show-weeks="false"
+                            ng-click="created_atOpen = true"
+                            disabled
+                            readonly>
+                    <span class="">
+                        <button type="button" class="btn"
+                                ng-click="created_atOpen = true"><i
+                                class="fa fa-calendar fa-lg"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-4 col-lg-4" ng-if="showUserFilter">
+                <div class="form-group">
+                    <label>Usuario</label></br>
+                    <select name="filters.USER_ID" ng-model="filters.USER_ID" class="form-control">
+                        <option value="-1">Seleccione el Usuario</option>
+                        <option ng-repeat="user in users" value="{[{user.id}]}">{[{user.name}]}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-xs-4 col-lg-3 pull-right">
+                <div class="form-group">
+                    <button class="btn btn-success pull-right search" type="submit">Buscar</button>
+                    <button class="btn btn-default pull-right search showAdvancedFilters" type="reset" ng-click="filters.created_atDate = null;filters.USER_ID = null">Limpiar</button>
+                </div>
+            </div>
+
+    </div>
+</div>

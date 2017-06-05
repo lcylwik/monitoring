@@ -1,0 +1,88 @@
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="row">
+        <div class="panel panel-flow">
+            <div class="panel-heading" ng-if="item.id">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <p style="margin-bottom:0;">
+                            <strong ng-if="item.id">Editar</strong>
+                            <strong ng-if="!item.id">Registrar</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form" ng-submit="item.id ? ctrl.edit(item) :  ctrl.register()">
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label for="name" class="col-md-4 col-sm-4 col-xs-12 control-label">Name</label>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12  ">
+                            <input id="name" type="text" class="form-control" name="name" ng-model="item.name" required
+                                   autofocus>
+
+
+                            <!--<span class="help-block">-->
+                            <!--<strong>{{ $errors->first('name') }}</strong>-->
+                            <!--</span>-->
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label for="display_name" class="col-md-4 col-sm-4 col-xs-12 control-label">Nombre
+                            visual</label>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="display_name" type="text" class="form-control" name="displayName"
+                                   ng-model="item.displayName"
+                                   required>
+
+
+                            <!--<span class="help-block">-->
+                            <!--<strong>{{ $errors->first('email') }}</strong>-->
+                            <!--</span>-->
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label for="description" class="col-md-4 col-sm-4 col-xs-12 control-label">Descripcion</label>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea id="description" name="description" placeholder="Descripción" class="form-control"
+                                      ng-model="item.description" required rows="5"></textarea>
+
+
+                            <!--<span class="help-block">-->
+                            <!--<strong>{{ $errors->first('email') }}</strong>-->
+                            <!--</span>-->
+                        </div>
+                    </div>
+
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-10  col-sm-offset-1 col-md-10 col-md-offset-1"
+                         style="margin: 10px 0;">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <b>Permisos disponibles</b>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left: 5.5%;">
+                                <b>Permisos adicionados</b>
+                            </div>
+                        </div>
+                        <picklist name="pktest" size="20" picklist="" pick-model="item.addedPerms"
+                                  pick-options="v.displayName for v in permissions"/>
+                    </div>
+
+
+                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-md-offset-4 col-sm-offset-4 col-xs-12">
+                            <button type="submit" class="btn btn-primary" ng-if="item.id">Guardar</button>
+                            <button type="submit" class="btn btn-primary" ng-if="!item.id">Register</button>
+
+                            <a class="btn btn-default" ui-sref="home.roles">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
