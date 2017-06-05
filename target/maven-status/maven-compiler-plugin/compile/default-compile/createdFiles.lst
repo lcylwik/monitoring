@@ -29,6 +29,7 @@ com\mkyong\web\controller\UserController$Paswords.class
 com\mkyong\web\dao\SessionUtil1.class
 com\mkyong\web\controller\PermissionsController.class
 com\mkyong\web\model\Estadistico.class
+com\mkyong\web\controller\TransControler.class
 com\mkyong\web\services\CalculoEstadistico.class
 com\mkyong\web\services\UserServiceImpl.class
 com\mkyong\web\services\PermissionsService.class

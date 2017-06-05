@@ -5,7 +5,6 @@
                 var ctrl = this;
                 $http.get('js/modules/layout/json/menu.json').success(function (data) {
                     $scope.mainMenu = data;
-                    console.log($scope.mainMenu);
                 });
 
                 ctrl.stateInclude = function (submenus, level) {

@@ -39,7 +39,6 @@
                             $rootScope.showLoader = true;
                         }
                         config.headers = config.headers || {};
-                        //console.log($sessionStorage.Auth);
                         if ($sessionStorage.Auth && $sessionStorage.Auth.token) {
                             config.headers.Authorization = 'Bearer ' + $sessionStorage.Auth.token;
                         }
