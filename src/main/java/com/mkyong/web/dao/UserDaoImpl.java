@@ -110,11 +110,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUsers(int pid) {
+        Users userDB = findById(pid);
         Session session = SessionUtil1.getSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            Users userDB = findById(pid);
             session.delete(userDB);
             tx.commit();
         } catch (HibernateException e) {

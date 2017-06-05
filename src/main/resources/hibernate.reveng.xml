@@ -40,6 +40,7 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-    <schema-selection match-catalog="transacciones"/>
-    <table-filter match-name="prsa_rejected_txn"/>
+  <schema-selection match-catalog="transacciones"/>
+  <table-filter match-name="prsa_rejected_txn"/>
+  <table-filter match-name="prsa_txn_aceptadas"/>
 </hibernate-reverse-engineering>

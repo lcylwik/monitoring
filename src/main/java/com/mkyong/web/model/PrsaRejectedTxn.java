@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 28-may-2017 15:58:48 by Hibernate Tools 4.3.1
+// Generated 5/06/2017 12:34:18 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -46,9 +46,7 @@ public class PrsaRejectedTxn  implements java.io.Serializable {
     }
    
      @Id 
-
-    
-    @Column(name="ID", nullable=false)
+  @Column(name="ID", unique=true, nullable=false)
     public int getId() {
         return this.id;
     }
