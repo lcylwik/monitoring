@@ -4,8 +4,6 @@
             .controller('UsersController', function (API, Auth, Util, $http, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert, Crud, item) {
                 var ctrl = this;
 
-                console.log('sdfsdfsdf');
-
                 ctrl.register = function () {
                     //cleaning picklist data
                     $scope.item.roleses = $scope.item.addedRoles;
