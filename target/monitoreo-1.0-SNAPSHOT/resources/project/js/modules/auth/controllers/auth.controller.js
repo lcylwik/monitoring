@@ -1,6 +1,4 @@
-/**
- * Created by PLANET MEDIA on 5/3/2017.
- */
+
 (function () {
     angular.module('MDM.controllers')
         .controller('AuthController', function (API, Auth, Util, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert) {

@@ -1,6 +1,4 @@
-/**
- * Created by PLANET MEDIA on 5/3/2017.
- */
+
 (function () {
     angular.module('MDM.controllers')
         .controller('BitacorasController', function ($scope, Bitacora, Util, SweetAlert, ngTableParams, $state, Auth, $filter) {
