@@ -1,6 +1,6 @@
 
 (function () {
-    angular.module('MDM.controllers')
+    angular.module('EST.controllers')
         .controller('AuthController', function (API, Auth, Util, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert) {
             var ctrl = this;
 

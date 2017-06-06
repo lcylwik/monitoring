@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module("MDM")
+    angular.module("EST")
         .config(function ($stateProvider) {
             $stateProvider
                 .state('home.myBitacoras', {
@@ -16,10 +16,10 @@
                     resolve: {
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.services',
+                                name: 'EST.services',
                                 files: ['js/modules/bitacoras/services/bitacoras.services.js']
                             }), $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/bitacoras/controllers/bitacoras.controller.js'
                                 ]
@@ -44,7 +44,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.services',
+                                name: 'EST.services',
                                 files: [
                                     'js/modules/bitacoras/services/bitacoras.services.js',
                                     'js/modules/bitacoras/controllers/bitacoras.controller.js'

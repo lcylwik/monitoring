@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('MDM.controllers')
+    angular.module('EST.controllers')
         .controller('PermissionsController', function (API, Crud, Util, $state, $scope, $stateParams, SweetAlert) {
 
             var ctrl = this;

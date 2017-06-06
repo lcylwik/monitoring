@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM.services", [])
+    angular.module("EST.services", [])
         .service('Bitacora', function (API, $rootScope, $sessionStorage, $state, $http) {
             return {
                 getMyBitacoras: function () {

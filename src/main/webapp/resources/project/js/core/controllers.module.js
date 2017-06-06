@@ -1,3 +1,3 @@
 (function () {
-    angular.module("MDM.controllers", [])
+    angular.module("EST.controllers", [])
 })();

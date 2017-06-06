@@ -1,6 +1,6 @@
 
 (function () {
-    angular.module('MDM.controllers')
+    angular.module('EST.controllers')
         .controller('HeaderController', function($scope, $sessionStorage, Auth, growlService){
             var ctrl = this;
 

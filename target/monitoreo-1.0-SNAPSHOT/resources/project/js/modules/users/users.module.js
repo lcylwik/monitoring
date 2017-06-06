@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module("MDM")
+    angular.module("EST")
         .config(function ($stateProvider) {
             $stateProvider
                 .state('home.users', {
@@ -27,7 +27,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/users/controllers/users.controller.js'
                                 ]
@@ -60,7 +60,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/users/controllers/users.controller.js'
                                 ]
@@ -91,7 +91,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/roles/controllers/roles.controller.js'
                                 ]
@@ -124,7 +124,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/roles/controllers/roles.controller.js'
                                 ]
@@ -152,7 +152,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/permissions/controllers/permissions.controller.js'
                                 ]
@@ -184,7 +184,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/permissions/controllers/permissions.controller.js'
                                 ]

@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM.directives", [])
+    angular.module("EST.directives", [])
         .directive("fileread", [
             function () {
                 return {

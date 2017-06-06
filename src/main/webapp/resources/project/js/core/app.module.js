@@ -1,6 +1,6 @@
 
 (function () {
-    angular.module("MDM", [
+    angular.module("EST", [
         "ui.router",
         "oc.lazyLoad",
         "ngStorage",
@@ -10,9 +10,9 @@
         "ngCsvImport",
         "oitozero.ngSweetAlert",
         "fxpicklist",
-        "MDM.services",
-        "MDM.controllers",
-        "MDM.directives"
+        "EST.services",
+        "EST.controllers",
+        "EST.directives"
     ])
         .constant('API', 'http://localhost:8084/api')
         .config(function ($urlRouterProvider, $interpolateProvider, $ocLazyLoadProvider, $stateProvider, $httpProvider) {

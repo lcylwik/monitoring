@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('MDM.controllers')
+    angular.module('EST.controllers')
         .controller('RolesController', function (API, Crud, $http, Util, $state, $scope, $stateParams, SweetAlert, item) {
 
             var ctrl = this;

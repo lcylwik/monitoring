@@ -1,6 +1,6 @@
 
 (function () {
-    angular.module('MDM.controllers')
+    angular.module('EST.controllers')
         .controller('BitacorasController', function ($scope, Bitacora, Util, SweetAlert, ngTableParams, $state, Auth, $filter) {
             var ctrl = this;
             $scope.filters = {};

@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('MDM.controllers')
+    angular.module('EST.controllers')
         .controller('MenuController', function ($scope, $state, $http) {
                 var ctrl = this;
                 $http.get('js/modules/layout/json/menu.json').success(function (data) {

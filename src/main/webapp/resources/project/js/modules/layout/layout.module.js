@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM")
+    angular.module("EST")
         .config(function ($stateProvider) {
             $stateProvider
                 .state('home', {
@@ -12,7 +12,7 @@
                             resolve: {
                                 loadMyFiles: function ($ocLazyLoad) {
                                     return $ocLazyLoad.load({
-                                        name: 'MDM.controllers',
+                                        name: 'EST.controllers',
                                         files: [
                                             '/js/modules/layout/controllers/menu.controller.js'
                                         ]
@@ -28,7 +28,7 @@
                             resolve: {
                                 loadMyFiles: function ($ocLazyLoad) {
                                     return $ocLazyLoad.load({
-                                        name: 'MDM.controllers',
+                                        name: 'EST.controllers',
                                         files: [
                                             '/js/modules/layout/controllers/header.controller.js'
                                         ]
@@ -55,7 +55,7 @@
                     },
                     loadMyFiles: function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'MDM.controllers',
+                            name: 'EST.controllers',
                             files: [
                                 '/js/modules/layout/controllers/error.controller.js'
                             ]

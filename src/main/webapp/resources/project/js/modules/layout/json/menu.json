@@ -15,7 +15,7 @@
       "prosa.monitoring"
      ],
     "submenu": {
-      "mdm.search": {
+      "est.search": {
         "nombre": "Individual",
         "icono": null,
         "link": "home.search",
