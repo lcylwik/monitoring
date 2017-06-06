@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM.services", [])
+    angular.module("EST.services", [])
             .service('Auth', function (API, $rootScope, $sessionStorage, $state, $http) {
                 function urlBase64Decode(str) {
                     var output = str.replace('-', '+').replace('_', '/');
@@ -122,25 +122,25 @@
                     }
                 };
             })
-            .service('MDM', function (API, $rootScope, $sessionStorage, $state, $http) {
+            .service('EST', function (API, $rootScope, $sessionStorage, $state, $http) {
                 return {
                     getAll: function () {
-                        return $http.get(API + '/mdm/all');
+                        return $http.get(API + '/est/all');
                     },
                     filter: function (query) {
-                        return $http.post(API + '/mdm/filter', query, {headers: {'Content-Type': 'application/json'}});
+                        return $http.post(API + '/est/filter', query, {headers: {'Content-Type': 'application/json'}});
                     },
                     exportToWord: function (data) {
-                        return $http.post(API + '/mdm/exportToWord', data, {headers: {'Content-Type': 'application/json'}});
+                        return $http.post(API + '/est/exportToWord', data, {headers: {'Content-Type': 'application/json'}});
                     },
                     searchMultiplePeople: function (data) {
-                        return $http.post(API + '/mdm/searchMultiplePeople', data, {headers: {'Content-Type': 'application/json', 'noLoader': true}});
+                        return $http.post(API + '/est/searchMultiplePeople', data, {headers: {'Content-Type': 'application/json', 'noLoader': true}});
                     },
                     generateZip: function (data) {
-                        return $http.post(API + '/mdm/generateZip', data, {headers: {'Content-Type': 'application/json', 'noLoader': true}});
+                        return $http.post(API + '/est/generateZip', data, {headers: {'Content-Type': 'application/json', 'noLoader': true}});
                     },
                     multipleLoad: function (formData) {
-                        return $http.post(API + '/mdm/multipleLoad', formData, {
+                        return $http.post(API + '/est/multipleLoad', formData, {
                             transformRequest: angular.identity,
                             headers: {
                                 'Content-Type': undefined
@@ -152,7 +152,7 @@
 
 
             /*Boostrap-growl Notificaciones */
-            
+
             .service('growlService', function () {
                 var gs = {};
                 gs.growl = function (message, type) {

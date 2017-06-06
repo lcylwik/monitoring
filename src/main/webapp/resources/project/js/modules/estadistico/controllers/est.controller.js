@@ -1,7 +1,7 @@
 
 (function () {
-    angular.module('MDM.controllers')
-        .controller('MdmController', function($scope, MDM, Util, SweetAlert, ngTableParams, $state, $sessionStorage){
+    angular.module('EST.controllers')
+        .controller('ESTController', function($scope, EST, Util, SweetAlert, ngTableParams, $state, $sessionStorage){
             var ctrl = this;
 
             $scope.selectAllCheck= [];
@@ -42,7 +42,7 @@
                         }
                     }
                 }
-                MDM.filter($scope.filters).then(function(data){
+                EST.filter($scope.filters).then(function(data){
                     $scope.resultCount = data.data.data.length;
                     $scope.sendedFilters = $scope.filters;
                     if(data.data.data.length > 0){
@@ -102,7 +102,7 @@
                     }
                 }
 
-                MDM.exportToWord({data: data, filters: $scope.sendedFilters}).then(function(response){
+                EST.exportToWord({data: data, filters: $scope.sendedFilters}).then(function(response){
                     ctrl.clearData();
                     SweetAlert.swal({
                         title: "Completado",

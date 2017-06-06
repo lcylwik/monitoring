@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM")
+    angular.module("EST")
         .config(function($stateProvider){
             $stateProvider
                 .state('home.search', {
@@ -11,22 +11,22 @@
                         //     controllerAs: "ctrl"
                         // },
                         'container@': {
-                            templateUrl: 'js/modules/mdm/views/search.html',
-                            controller: 'MdmController',
+                            templateUrl: 'js/modules/estadistico/views/search.html',
+                            controller: 'ESTController',
                             controllerAs: "ctrl"
                         }
                     },
                     resolve: {
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
-                                    'js/modules/mdm/controllers/mdm.controller.js'
+                                    'js/modules/estadistico/controllers/est.controller.js'
                                 ]
                             }), $ocLazyLoad.load({
-                                name: 'MDM.directives',
+                                name: 'EST.directives',
                                 files: [
-                                    'js/modules/mdm/filters/mdm.filters.js'
+                                    'js/modules/estadistico/filters/est.filters.js'
                                 ]
                             });
                         }
@@ -40,17 +40,17 @@
                         //     controllerAs: "ctrl"
                         // },
                         'container@': {
-                            templateUrl: 'js/modules/mdm/views/multiple.load.html',
-                            controller: 'MdmMultipleLoadController',
+                            templateUrl: 'js/modules/estadistico/views/multiple.load.html',
+                            controller: 'ESTMultipleLoadController',
                             controllerAs: "ctrl"
                         }
                     },
                     resolve: {
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
-                                    'js/modules/mdm/controllers/mdm.multiple.load.controller.js'
+                                    'js/modules/estadistico/controllers/est.multiple.load.controller.js'
                                 ]
                             });
                         }

@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM.directives", [])
+    angular.module("EST.directives", [])
         .filter('mongoDate', function (API, $rootScope, $sessionStorage, $state, $http) {
             return function(input){
                 if(input !== null && typeof input === 'object' && input['$date'] !== undefined && typeof input['$date'] === 'object' && input['$date']['$numberLong'] !== undefined ){

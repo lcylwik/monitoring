@@ -1,7 +1,7 @@
 
 (function () {
-    angular.module('MDM.controllers')
-        .controller('MdmMultipleLoadController', function ($scope, MDM, Util, SweetAlert, ngTableParams, $filter) {
+    angular.module('EST.controllers')
+        .controller('ESTMultipleLoadController', function ($scope, EST, Util, SweetAlert, ngTableParams, $filter) {
             var ctrl = this;
 
             ctrl.recursiveMaxSearchs = 5;
@@ -29,7 +29,7 @@
                 fd.append('csv', fileBlob);
                 fd.append('csvName', $scope.csvName);
 
-                MDM.multipleLoad(fd).then(
+                EST.multipleLoad(fd).then(
                     function (response) {
                         ctrl.clearData();
                         SweetAlert.swal({
@@ -91,7 +91,7 @@
             };
 
             ctrl.searchRecursiveData = function (filters, index) {
-                MDM.searchMultiplePeople({filters: filters, index: index}).then(function (response) {
+                EST.searchMultiplePeople({filters: filters, index: index}).then(function (response) {
                     $scope.rows[response.data.index].status = response.data.status;
                     $scope.rows[response.data.index].path = response.data.path ? response.data.path : '';
                     if ($scope.rows[response.data.index].status === 'Error' &&
@@ -128,7 +128,7 @@
                     total: $scope.rows.length
 
                 };
-                MDM.generateZip({paths: paths}).then(function(response){
+                EST.generateZip({paths: paths}).then(function(response){
                     $scope.header.text = "Completado";
                     $scope.header.loading = false;
                     var text = response.data.status === 'error' ? response.data.message :
