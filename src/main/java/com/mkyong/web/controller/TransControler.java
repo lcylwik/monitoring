@@ -10,8 +10,10 @@ import com.mkyong.web.model.PrsaRejectedTxn;
 import com.mkyong.web.model.PrsaTxnAceptadas;
 import com.mkyong.web.model.txn_json;
 import com.mkyong.web.services.TransService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Lianet
  */
-/*@RestController
+@RestController
+@RequestMapping("api")
 public class TransControler {
 
     @Autowired
@@ -37,15 +40,16 @@ public class TransControler {
         List<PrsaRejectedTxn> txns = transservice.getTransaccionesReject();
         return txns;
     }
-
+    
+    @RequestMapping(value = "/rest/txnByDate/{from}/{to}", method = RequestMethod.GET)
+    public List<PrsaRejectedTxn> findAllByDate(@PathVariable("from") Date from, @PathVariable("to") Date to) {
+        List<PrsaRejectedTxn> txns = transservice.getTxnByDate(from, to);
+        return txns;
+    }
+    
     @RequestMapping(value = "/rest/txn", method = RequestMethod.GET)
     public List<txn_json> findAll() {
         List<txn_json> txns = transservice.getAllTxn();
-        return txns;
-    }
-      @RequestMapping(value = "/rest/rej", method = RequestMethod.GET)
-    public List<PrsaRejectedTxn> rej() {
-        List<PrsaRejectedTxn> txns = transservice.getTransaccionesReject();
         return txns;
     }
 
@@ -54,12 +58,4 @@ public class TransControler {
         List<Object> estadistico = transservice.getEstadistico();
         return estadistico;
     }
-
-//    @RequestMapping(value = "/rest/add", method = RequestMethod.GET)
-//    public Integer addEstadistico() {
-//        Estadistico estadistico = new Estadistico(2.5, 6.0, new Date(), "001");
-//        return transservice.addEstadistico(estadistico);
-//
-//    }
-
-}*/
+}

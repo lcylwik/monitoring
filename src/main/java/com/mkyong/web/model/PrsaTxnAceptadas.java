@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 5/06/2017 12:34:18 PM by Hibernate Tools 4.3.1
+// Generated 6/06/2017 01:03:39 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

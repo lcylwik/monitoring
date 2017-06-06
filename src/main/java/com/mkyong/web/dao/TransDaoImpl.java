@@ -38,13 +38,20 @@ public class TransDaoImpl implements TransDao {
         return (List<PrsaRejectedTxn>) criteria.list();
     }
 
+    @Override
+    public List<PrsaRejectedTxn> getTxnByDate(Date from, Date to) {
+        Criteria criteria = SessionUtil.getSession().createCriteria(PrsaRejectedTxn.class)
+                .add(Restrictions.between("prtProcDte", from, to));
+        return (List<PrsaRejectedTxn>) criteria.list();
+    }
+
     // Metodos Rest para obtener y adicionar las estadisticas
     @Override
     public List<Object> getEstadistico() {
         Session session = SessionUtil1.getSession();
-       // List<Object> list1 = SessionUtil1.getSession().createQuery("from Clave as cl join fetch cl.estadisticos as est").list();
-       
-     List<Object> list1 = SessionUtil1.getSession().createSQLQuery("Select cl.type,cl.elemento,est.media,est.desviacion,est.fecha from estadistico as est inner join clave as cl where est.idClave=cl.idC").list();
+        // List<Object> list1 = SessionUtil1.getSession().createQuery("from Clave as cl join fetch cl.estadisticos as est").list();
+
+        List<Object> list1 = SessionUtil1.getSession().createSQLQuery("Select cl.type,cl.elemento,est.media,est.desviacion,est.fecha from estadistico as est inner join clave as cl where est.idClave=cl.idC").list();
 
         return list1;
     }

@@ -36,5 +36,7 @@ public interface TransService {
     public List<String> getCodigo();
 
     public Iterator getCantFechaByCode(String code,Date fromDate, Date toDate);
-
+    
+     public List<PrsaRejectedTxn> getTxnByDate(Date from, Date to);
+    
 }

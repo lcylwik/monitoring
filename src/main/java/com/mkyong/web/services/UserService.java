@@ -40,5 +40,5 @@ public interface UserService {
     boolean userExists(String username);
 
     void updatePassword(int iduser, String newPass,String oldPass);
-
+    
 }

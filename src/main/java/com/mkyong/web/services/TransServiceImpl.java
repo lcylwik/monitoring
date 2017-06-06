@@ -46,14 +46,14 @@ public class TransServiceImpl implements TransService {
     public Integer addEstadistico(Estadistico estadistico) {
         return trasdao.addEstadistico(estadistico);
     }
-    
+
     @Override
     public Boolean checkMonthIsCalculated(Date date) {
         return trasdao.checkMonthIsCalculated(date);
     }
-    
+
     @Override
-    public Date getFirstTransaction(){
+    public Date getFirstTransaction() {
         return trasdao.getFirstTransaction();
     }
 
@@ -67,7 +67,7 @@ public class TransServiceImpl implements TransService {
             txns.add(new txn_json(txn.getNombreArchivo(), txn.getFechaProcesoTransac(), txn.getNumeroPrsaAdquiriente(), txn.getNumeroPrsaEmisor(), txn.getFiidAdquiriente(), txn.getFiidEmisor(), txn.getRedLogica(), txn.getCodigoRespuestaAut()));
         }
 
-       for (PrsaRejectedTxn txn : txnsRej) {
+        for (PrsaRejectedTxn txn : txnsRej) {
             txns.add(new txn_json(txn.getPrtFilename(), txn.getPrtProcDte(), txn.getNumeroPrsaAdquiriente(), txn.getNumeroPrsaEmisor(), txn.getFiidAdquiriente(), txn.getFiidEmisor(), txn.getRedLogica(), txn.getCodigoRespuesta()));
         }
 
@@ -82,5 +82,10 @@ public class TransServiceImpl implements TransService {
     @Override
     public Iterator getCantFechaByCode(String code, Date fromDate, Date toDate) {
         return trasdao.getCantFechaByCode(code, fromDate, toDate);
+    }
+
+    @Override
+    public List<PrsaRejectedTxn> getTxnByDate(Date from, Date to) {
+        return trasdao.getTxnByDate(from, to);
     }
 }
