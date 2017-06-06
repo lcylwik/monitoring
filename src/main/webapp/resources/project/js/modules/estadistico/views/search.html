@@ -1,7 +1,13 @@
 <div class="col-md-12 col-xs-12 col-lg-12">
     <div class="row">
 
-        <ng-include src="'js/modules/estadistico/views/filters.html'"></ng-include>
+      <!--  <ng-include src="'js/modules/estadistico/views/filters.html'"></ng-include>-->
+
+        
+            <ng-include src="'js/modules/estadistico/views/partials/table-filters-date.html'"></ng-include>
+            <button class="btn filtrar btn-link codR" ng-class="advanced ? 'open' : ''" title="Filtros avanzados" ng-click="advanced = !advanced"><i class="tm-icon zmdi zmdi-filter-list"></i></button>
+            <ng-include ng-if="advanced" src="'js/modules/estadistico/views/partials/table-filters-all.html'"></ng-include>
+       
 
         <div class="panel panel-default" ng-if="resultCount > 0">
             <div class="panel-tabs">

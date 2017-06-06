@@ -86,6 +86,17 @@
                     }
                 }
             })
+            // =========================================================================
+            // Transacciones y estadistico
+            // =========================================================================
+            .service('TXN', function (API, $http) {
+                return {
+                    getService: function (from,to) {
+                        return $http.get(API + '/rest/txnByDate/' + from + '/' + to);
+                    },
+                }
+            })
+
             .factory('Util', function (ngTableParams) {
                 return {
                     generateTableParams: function (data, $scope) {

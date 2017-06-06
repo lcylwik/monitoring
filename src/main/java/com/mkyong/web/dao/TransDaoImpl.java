@@ -40,8 +40,8 @@ public class TransDaoImpl implements TransDao {
 
     @Override
     public List<PrsaRejectedTxn> getTxnByDate(Date from, Date to) {
-        Criteria criteria = SessionUtil.getSession().createCriteria(PrsaRejectedTxn.class)
-                .add(Restrictions.between("prtProcDte", from, to));
+        Criteria criteria = SessionUtil.getSession().createCriteria(PrsaRejectedTxn.class);
+               // .add(Restrictions.between("prtProcDte", from, to));
         return (List<PrsaRejectedTxn>) criteria.list();
     }
 
