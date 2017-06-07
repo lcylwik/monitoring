@@ -523,4 +523,11 @@ div[data-picklist-form] > div > div.btn-group-vertical > div button.btn-info .gl
 .growl-animated.alert-danger {
     box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
 }
+.datetimepicker{
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    box-shadow: 0 0 4px;
+    padding: 10px;
+}
 

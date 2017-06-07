@@ -11,9 +11,9 @@
                 }, true);
 
                 $scope.filters = {
-                    firstDate: new Date(), lastDate: new Date(),
-                    // firstDate: moment().subtract(15, 'days').format('YYYY-MM-DD').toDate(),
-                    //  lastDate: moment().format('YYYY-MM-DD')
+                   // firstDate: new Date(), lastDate: new Date(),
+                     firstDate: moment().subtract(15, 'days').toDate(),
+                      lastDate: moment().toDate()
                 };
                 /*     $scope.selectAllCheck = [];
                  
@@ -159,6 +159,10 @@
                     //  tctrl.generateChart();
                     console.log($scope.catalogo);
                 });
+                
+                $scope.onTimeSet = function (newDate, oldDate, field) {
+                    ctrl[field] = false;
+                }
 
                 ctrl.initCatalogo = function () {
                     var obj = $scope.datos[0];

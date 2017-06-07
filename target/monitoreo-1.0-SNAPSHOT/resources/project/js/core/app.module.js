@@ -10,6 +10,7 @@
         "ngCsvImport",
         "oitozero.ngSweetAlert",
         "fxpicklist",
+        "ui.bootstrap.datetimepicker",
         "EST.services",
         "EST.controllers",
         "EST.directives"

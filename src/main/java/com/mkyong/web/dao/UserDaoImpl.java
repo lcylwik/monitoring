@@ -138,7 +138,7 @@ public class UserDaoImpl implements UserDao {
         String passEncrip = DigestUtils.md5Hex(pass);
         Users user = (Users) sesion.createCriteria(Users.class
         ).add(Restrictions.eq("name", name))
-                .add(Restrictions.eq("password", passEncrip)).uniqueResult();
+                .add(Restrictions.eq("password", pass)).uniqueResult();
         return user;
     }
 
