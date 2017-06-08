@@ -1,0 +1,19 @@
+<div class="col-md-12 form-group filtersAll">
+    <P>Seleccione los campos</P>
+    <div class="col-md-5 form-group " ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
+        <ui-select ng-model="filters.field1" theme="select2" ng-disabled="ctrl.disabled" style="min-width: 300px;" title="Elige el campo">
+            <ui-select-match placeholder="Selecciona el campo">{[{$select.selected}]}</ui-select-match>
+            <ui-select-choices repeat="field1 in catalogoName">
+                <div ng-bind-html="field1"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    <div class="col-md-5 form-group " ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
+        <ui-select ng-model="filters.field2" theme="select2" ng-disabled="ctrl.disabled" style="min-width: 300px;" title="Elige el campo">
+            <ui-select-match placeholder="Selecciona el campo">{[{$select.selected}]}</ui-select-match>
+            <ui-select-choices repeat="field2 in catalogoName ">
+                <div ng-bind-html="field2"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>

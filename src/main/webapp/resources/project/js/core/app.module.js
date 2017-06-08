@@ -11,6 +11,9 @@
         "oitozero.ngSweetAlert",
         "fxpicklist",
         "ui.bootstrap.datetimepicker",
+        'btorfs.multiselect',
+        'ngSanitize',
+        'ui.select',
         "EST.services",
         "EST.controllers",
         "EST.directives"
