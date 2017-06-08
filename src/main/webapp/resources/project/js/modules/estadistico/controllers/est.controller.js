@@ -1,8 +1,23 @@
 
 (function () {
     angular.module('EST.controllers')
-            .controller('ESTController', function ($scope, EST, Util, TXN, SweetAlert, ngTableParams, $state, $sessionStorage) {
+            .controller('ESTController', function ($scope, EST, Util, TXN, SweetAlert, ngTableParams, $state,$filter, $sessionStorage) {
                 var ctrl = this;
+                
+                ctrl.visibleNames = {
+                    id: "Identificador",
+                    prtFilename: "Archivo",
+                    prtProcDte: "Fecha",
+                    fiidEmisor: "FIID Emisor",
+                    fiidAdquiriente: "FIID Adquiriente",
+                    redLogica: "Red Logica",
+                    codigoRespuesta: "Codigo de Respuesta",
+                    numeroPrsaAdquiriente: "Numero Prosa Adquiriente",
+                    numeroPrsaEmisor: "Numero Prosa Emisor"
+                }
+                $scope.onTimeSet = function(newDate, oldDate, field){
+                    ctrl[field] = false;
+                }
 
                 $scope.filters = {
                     // firstDate: new Date(), lastDate: new Date(),
@@ -11,21 +26,15 @@
                 };
 
                 $scope.$watch('filters', function () {
-                    $scope.tableParams = ctrl.generateTableParams();
                     ctrl.generateData();
-                    console.log($scope.tableData);
-
                     //  tctrl.generateChart();
-
                 }, true);
 
 
                 //obtener las transacciones
                 $scope.datos = TXN.getService($scope.filters.firstDate, $scope.filters.lastDate).then(function (trans) {
                     $scope.datos = trans.data;
-
                     ctrl.initCatalogo();
-                    $scope.tableParams = ctrl.generateTableParams();
                     ctrl.generateData();
                     //  tctrl.generateChart();
                 });
@@ -33,38 +42,10 @@
 
                // ctrl.estadisticos = TXN.getServiceEstadistico().then(function (data) {
                //     ctrl.estadisticos = data.data;
-                    $scope.dataReady = true;
 
               //  });
 
-                //generar tabla dinámica
-                ctrl.generateTableParams = function () {
-                    return new ngTableParams({
-                        page: 1,
-                        count: 10
-                    }, {
-                        total: $scope.catalogo ? $scope.catalogo[$scope.filters.field1].length : 0,
-                        //Funcion para el paginador
-                        getData: function ($defer, params) {
-                            var data = [];
-                            $scope.arrayTotal = {};
-                            angular.forEach($scope.catalogo[$scope.filters.field1], function (field) {
-                                var obj = {
-                                    ejeY: field,
-                                    ejeX: ctrl.getColumnas(field)
-                                }
-                                data.push(obj);
-                            })
-                            data = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-
-                            $scope.tableData = data;
-                            params.total(data.length); // set total for recalc pagination
-                            data = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
-                            $defer.resolve(data);
-                        }
-                    });
-                };
-
+                //generar datos dinámicos
                 ctrl.generateData = function () {
                     var data = [];
                     $scope.arrayTotal = {};

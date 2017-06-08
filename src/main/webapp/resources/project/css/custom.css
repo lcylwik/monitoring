@@ -534,3 +534,7 @@ div[data-picklist-form] > div > div.btn-group-vertical > div button.btn-info .gl
 .filtersAll{
     margin-top: 20px;
 }
+
+.ui-select-choices-row.select2-disabled{
+    display: none;
+}
