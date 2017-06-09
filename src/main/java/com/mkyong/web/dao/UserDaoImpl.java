@@ -5,6 +5,7 @@
  */
 package com.mkyong.web.dao;
 
+import com.mkyong.web.model.Bitacoras;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -138,7 +139,7 @@ public class UserDaoImpl implements UserDao {
         String passEncrip = DigestUtils.md5Hex(pass);
         Users user = (Users) sesion.createCriteria(Users.class
         ).add(Restrictions.eq("name", name))
-                .add(Restrictions.eq("password", pass)).uniqueResult();
+                .add(Restrictions.eq("password", passEncrip)).uniqueResult();
         return user;
     }
 
@@ -207,4 +208,26 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    @Override
+    public Integer addBitacora(Bitacoras bit) {
+        Session session = SessionUtil1.getSession();
+        Transaction tx = null;
+        Integer idBit = 0;
+
+        try {
+            tx = session.beginTransaction();
+            idBit = (Integer) session.save(bit);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return idBit;
+    }
+
+   
 }

@@ -6,9 +6,11 @@
 package com.mkyong.web.services;
 
 import com.mkyong.web.dao.UserDao;
+import com.mkyong.web.model.Bitacoras;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 
@@ -85,5 +87,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePassword(int iduser, String newPass, String oldPass) {
         userDao.updatePassword(iduser, newPass, oldPass);
+    }
+
+    @Override
+    public Integer addBitacora(String username) {
+        Users user = findByName(username);
+        System.out.println("akiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+        Bitacoras bit = new Bitacoras(user, new Date(), "Lastlogin", "logueo en el sistema");
+        return userDao.addBitacora(bit);
     }
 }

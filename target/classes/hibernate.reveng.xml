@@ -40,7 +40,12 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="transacciones"/>
-  <table-filter match-name="prsa_txn_aceptadas"/>
-  <table-filter match-name="prsa_rejected_txn"/>
+  <schema-selection match-catalog="monitoreo"/>
+  <table-filter match-name="role_user"/>
+  <table-filter match-name="permissions"/>
+  <table-filter match-name="permission_role"/>
+  <table-filter match-name="users"/>
+  <table-filter match-name="configuracion"/>
+  <table-filter match-name="roles"/>
+  <table-filter match-name="bitacoras"/>
 </hibernate-reverse-engineering>

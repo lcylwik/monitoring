@@ -1,5 +1,6 @@
 package com.mkyong.web.controller;
 
+import com.mkyong.web.model.Bitacoras;
 import com.mkyong.web.model.Users;
 import com.mkyong.web.model.userLogin;
 import com.mkyong.web.services.RolService;
@@ -54,7 +55,7 @@ public class HelloController {
         } else if (userservice.findUserByPass(user.getName(), user.getPassword()) == null) {
             throw new ServletException("Pass incorrecto");
         }
-        System.out.println("Entro al controller loginnnnnnnnnnn");
+        userservice.addBitacora(user.getName());
         return new LoginResponse(Jwts.builder().setSubject(user.getName())
                 .claim("roles", userservice.findRoleByUserName(user.getName())).setIssuedAt(new Date())
                 .claim("user", userservice.findByName(user.getName()))
