@@ -10,12 +10,12 @@
 
         
         
-        <div class="panel" ng-if="filters.field1 && filters.field2">
+        <div class="panel" ng-if="filters.field1 && filters.field2 && catalogo.prtFilename.length >0">
             <div class="table-responsive" >
                 <table ng-table="tableParams" class="table table-striped table-vmiddle" show-filter="true">
                     <thead>
                         <tr>
-                            <th>{[{ctrl.visibleNames[filters.field1]}]}/{[{ctrl.visibleNames[filters.field2]}]}</th>
+                            <th>{[{ctrl.visibleNames[filters.field1.name]}]}/{[{ctrl.visibleNames[filters.field2.name]}]}</th>
                             <th ng-repeat="column in columnas"
                                 class="text-center sortable" ng-class="{
                                     'sort-asc': tableParams.isSortBy(column.field, 'asc'),
@@ -28,16 +28,16 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="y in tableData">
-                            <td>
+                            <td align="center">
                                 {[{ y.ejeY}]}
                             </td>
-                            <td ng-repeat="x in y.ejeX" >
+                            <td align="center" ng-repeat="x in y.ejeX" >
                                 {[{x.cantidad}]}
                             </td>
                         </tr>
                         <tr>
                             <td>TOTAL</td>
-                            <td ng-repeat="d in columnas" >
+                            <td  align="center" ng-repeat="d in columnas" >
                                 {[{d.field=="Total" ? arrayTotal["TotalDeTotal"]: arrayTotal[d.field]}]}
                             </td>
                         </tr>

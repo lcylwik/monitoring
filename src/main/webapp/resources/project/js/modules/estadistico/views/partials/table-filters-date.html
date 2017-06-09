@@ -1,22 +1,22 @@
 <div class="col-md-5">
     <label>Seleccione la fecha de Inicio</label>
     <input type="text" ng-click="ctrl.firstDate = !ctrl.firstDate"
-           value="{[{filters.firstDate| date: 'MMM dd, yyyy'}]}" readonly
+           value="{[{filtersDate.firstDate| date: 'MMM dd, yyyy'}]}" readonly
            class="form-control pointer fc-alt"/>
 
     <datetimepicker ng-if="ctrl.firstDate" data-datetimepicker-config="{ minView:'day'}"
                     class="datetimePicker"
                     data-on-set-time="onTimeSet(newDate, oldDate, 'firstDate');"
-                    data-ng-model="filters.firstDate"></datetimepicker>
+                    data-ng-model="filtersDate.firstDate"></datetimepicker>
 </div>
 <div class="col-md-5">
     <label>Seleccione la fecha de Fin</label>
     <input type="text" ng-click="ctrl.lastDate = !ctrl.lastDate"
-           value="{[{filters.lastDate| date: 'MMM dd, yyyy'}]}" readonly
+           value="{[{filtersDate.lastDate| date: 'MMM dd, yyyy'}]}" readonly
            class="form-control pointer fc-alt"/>
 
     <datetimepicker ng-if="ctrl.lastDate" data-datetimepicker-config="{ minView:'day' }"
                     class="datetimePicker"
                     data-on-set-time="onTimeSet(newDate, oldDate, 'lastDate')"
-                    data-ng-model="filters.lastDate"></datetimepicker>
+                    data-ng-model="filtersDate.lastDate"></datetimepicker>
 </div>   

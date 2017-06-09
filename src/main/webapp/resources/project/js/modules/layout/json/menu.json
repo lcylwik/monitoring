@@ -8,7 +8,7 @@
   },
   "busqueda": {
     "id": 2,
-    "nombre": "Búsqueda",
+    "nombre": "Monitoreo",
     "icono": "menu__icon--mainIcon fa fa-search ",
     "link": null,
     "permiso": [
@@ -16,7 +16,7 @@
      ],
     "submenu": {
       "est.search": {
-        "nombre": "Individual",
+        "nombre": "Estadisticas",
         "icono": null,
         "link": "home.search",
         "permiso": "prosa.monitoring"

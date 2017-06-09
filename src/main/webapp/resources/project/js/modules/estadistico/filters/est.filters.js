@@ -1,12 +1,34 @@
 (function () {
     angular.module("EST.directives", [])
-        .filter('mongoDate', function (API, $rootScope, $sessionStorage, $state, $http) {
-            return function(input){
-                if(input !== null && typeof input === 'object' && input['$date'] !== undefined && typeof input['$date'] === 'object' && input['$date']['$numberLong'] !== undefined ){
-                        return moment(input['$date']['$numberLong'], "x").format('YYYY-MM-D');
-                }else{
-                    return input;
-                }
+            .filter('propsFilter', function () {
+        return function (items, props) {
+            var out = [];
+
+            if (angular.isArray(items)) {
+                var keys = Object.keys(props);
+
+                items.forEach(function (item) {
+                    var itemMatches = false;
+
+                    for (var i = 0; i < keys.length; i++) {
+                        var prop = keys[i];
+                        var text = props[prop].toLowerCase();
+                        if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                            itemMatches = true;
+                            break;
+                        }
+                    }
+
+                    if (itemMatches) {
+                        out.push(item);
+                    }
+                });
+            } else {
+                // Let the output be the input untouched
+                out = items;
             }
-        })
+
+            return out;
+        };
+    });
 })();

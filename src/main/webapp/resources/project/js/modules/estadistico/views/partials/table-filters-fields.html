@@ -1,18 +1,18 @@
-<div class="col-md-12 form-group filtersAll">
+<div class="col-md-12 form-group filtersAll" ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
     <P>Seleccione los campos</P>
-    <div class="col-md-5 form-group " ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
-        <ui-select ng-model="filters.field1" theme="select2" ng-disabled="ctrl.disabled" style="min-width: 300px;" title="Elige el campo">
-            <ui-select-match placeholder="Selecciona el campo">{[{ctrl.visibleNames[$select.selected]}]}</ui-select-match>
-            <ui-select-choices repeat="field1 in catalogoName" ui-disable-choice="filters.field2 === field1">
-                <div ng-bind-html="ctrl.visibleNames[field1]"></div>
+    <div class="col-md-5 form-group ">
+        <ui-select ng-model="filters.field1" theme="select2"  style="min-width: 300px;" title="Elige el campo">
+            <ui-select-match placeholder="Selecciona el campo">{[{ctrl.visibleNames[$select.selected.name]}]}</ui-select-match>
+            <ui-select-choices repeat="field1 in catalogoName | propsFilter: {name: $select.search}" ui-disable-choice="filters.field2 === field1">
+                <div ng-bind-html="ctrl.visibleNames[field1.name] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
     </div>
-    <div class="col-md-5 form-group " ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
-        <ui-select ng-model="filters.field2" theme="select2" ng-disabled="ctrl.disabled" style="min-width: 300px;" title="Elige el campo">
-            <ui-select-match placeholder="Selecciona el campo">{[{ctrl.visibleNames[$select.selected]}]}</ui-select-match>
-            <ui-select-choices repeat="field2 in catalogoName" ui-disable-choice="filters.field1 === field2">
-                <div ng-bind-html="ctrl.visibleNames[field2]"></div>
+    <div class="col-md-5 form-group ">
+        <ui-select ng-model="filters.field2" theme="select2"  style="min-width: 300px;" title="Elige el campo">
+            <ui-select-match placeholder="Selecciona el campo">{[{ctrl.visibleNames[$select.selected.name]}]}</ui-select-match>
+            <ui-select-choices repeat="field2 in catalogoName | propsFilter: {name: $select.search}" ui-disable-choice="filters.field1 === field2">
+                <div ng-bind-html="ctrl.visibleNames[field2.name] | highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
     </div>
