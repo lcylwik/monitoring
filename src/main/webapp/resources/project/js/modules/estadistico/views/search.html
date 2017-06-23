@@ -8,51 +8,14 @@
         <button class="btn filtrar btn-link codR" ng-class="advanced ? 'open' : ''" title="Filtros avanzados" ng-click="advanced = !advanced"><i class="tm-icon zmdi zmdi-filter-list"></i></button>
         <ng-include ng-if="advanced" src="'js/modules/estadistico/views/partials/table-filters-all.html'"></ng-include>
 
-        
-        
-        <div class="panel" ng-if="filters.field1 && filters.field2 && catalogo.prtFilename.length >0">
-            <div class="table-responsive" >
-                <table ng-table="tableParams" class="table table-striped table-vmiddle" show-filter="true">
-                    <thead>
-                        <tr>
-                            <th>{[{ctrl.visibleNames[filters.field1.name]}]}/{[{ctrl.visibleNames[filters.field2.name]}]}</th>
-                            <th ng-repeat="column in columnas"
-                                class="text-center sortable" ng-class="{
-                                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
-                                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
-                                  }"
-                                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')"
-                                >{[{column.title}]}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="y in tableData">
-                            <td align="center">
-                                {[{ y.ejeY}]}
-                            </td>
-                            <td align="center" ng-repeat="x in y.ejeX" >
-                                {[{x.cantidad}]}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>TOTAL</td>
-                            <td  align="center" ng-repeat="d in columnas" >
-                                {[{d.field=="Total" ? arrayTotal["TotalDeTotal"]: arrayTotal[d.field]}]}
-                            </td>
-                        </tr>
-                    </tbody>
 
-                </table>
-            </div>
+        <div class="panel" ng-if="filters.field1 && filters.field2 && catalogo.prtFilename.length > 0">
+            <ul class="nav nav-tabs">
+                <li ui-sref-active="active"><a ui-sref="home.search.table">Tabla</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.search.grafica">Grafica</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.search.porcentX">% {[{ctrl.visibleNames[filters.field1.name]}]} </a></li>
+                <li ui-sref-active="active"><a ui-sref="home.search.porcentY">% {[{ctrl.visibleNames[filters.field2.name]}]} </a></li>
+            </ul>
+
+            <div ui-view></div>
         </div>
-
-
-
-
-        <!--<div class="preunified pointer " ng-if="!ctrl.isEmpty(selected)" ng-click="ctrl.preunific()">
-            <div class="row text-center">
-                <span ng-if="exporting" class="fa fa-spin fa-spinner fa-4x text-primary" aria-hidden="true" uib-tooltip="Unificar"></span>
-                <span ng-hide="exporting" class="fa fa-check fa-4x text-primary" aria-hidden="true" uib-tooltip="Unificar"></span>
-            </div>
-        </div>-->

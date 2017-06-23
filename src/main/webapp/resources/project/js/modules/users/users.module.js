@@ -192,6 +192,34 @@
                         }
                     }
                 })
+                .state('home.admin', {
+                    url: 'admin',
+                    views: {
+                        'container@': {
+                            templateUrl: 'js/modules/users/admin/views/admin.html',
+                            controller: 'AdminController',
+                            controllerAs: 'ctrl'
+                        }
+                    },
+                    resolve: {
+                        authorize: function ($rootScope, $sessionStorage, $state, $stateParams, $q) {
+                            if (!$rootScope.hasPermission("users.manage")) {
+                                return $q.reject({
+                                    code: 403,
+                                    message: "No tiene permisos suficientes para acceder al recurso"
+                                });
+                            }
+                        },
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'EST.controllers',
+                                files: [
+                                    'js/modules/users/admin/controllers/admin.controller.js'
+                                ]
+                            });
+                        }
+                    }
+                })
         })
 
 })();

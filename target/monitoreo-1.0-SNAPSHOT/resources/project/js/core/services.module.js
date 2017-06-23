@@ -30,7 +30,7 @@
 
                 return {
                     login: function (credentials) {
-                        return $http.post('http://localhost:8081/auth/authenticate', credentials, {headers: {'Content-Type': 'application/json'}});
+                        return $http.post('http://localhost:8084/auth/authenticate', credentials, {headers: {'Content-Type': 'application/json'}});
                     },
                     logout: function () {
                         // return $http.post('http://localhost:8081/auth/logout').then(function (data) {

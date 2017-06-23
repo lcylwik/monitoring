@@ -44,6 +44,11 @@
         "nombre": "Permisos",
         "icono": null,
         "link": "home.permissions"
+      },
+      "admin": {
+        "nombre": "Administrar",
+        "icono": null,
+        "link": "home.admin"
       }
     }
   },

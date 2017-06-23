@@ -12,13 +12,14 @@
         "fxpicklist",
         "ui.bootstrap.datetimepicker",
         'btorfs.multiselect',
+        'googlechart',
         'ngSanitize',
         'ui.select',
         "EST.services",
         "EST.controllers",
         "EST.directives"
     ])
-        .constant('API', 'http://localhost:8081/api')
+        .constant('API', 'http://localhost:8084/api')
         .config(function ($urlRouterProvider, $interpolateProvider, $ocLazyLoadProvider, $stateProvider, $httpProvider) {
             $urlRouterProvider.otherwise('/search');
             //$urlRouterProvider.when('/', '/search');

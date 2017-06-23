@@ -29,12 +29,12 @@
                     ctrl.getTXN();
                     ctrl.initCatalogo();
                     ctrl.generateData();
-                    //  tctrl.generateChart();
+
                 }, true);
 
                 $scope.$watch('filters', function () {
                     ctrl.generateData();
-                    //  tctrl.generateChart();
+                    ctrl.generateChart();
                 }, true);
 
 
@@ -44,7 +44,7 @@
                         $scope.datos = trans.data;
                         ctrl.initCatalogo();
                         ctrl.generateData();
-                        //  tctrl.generateChart();
+                        ctrl.generateChart();
                     });
                 }
 
@@ -72,7 +72,7 @@
                 //Columnas de la tabla
                 ctrl.getColumnas = function (valorX) {
 
-                    var  columnas = [], totalValorX = 0, total = "TotalDeTotal";
+                    var columnas = [], totalValorX = 0, total = "TotalDeTotal";
                     var data = $scope.datos.filter(ctrl.filterFunction);
                     if ($scope.filters.field2) {
                         angular.forEach($scope.catalogo[$scope.filters.field2.name], function (valorY) {
@@ -161,6 +161,85 @@
 
                     return rtn;
                 }
+                //Metodos de la Grafica
+
+                ctrl.getXByY = function (array, y) {
+                    for (var i = 0; i < array.length; i++) {
+                        if (array[i].ejeY == y) {
+                            return array[i].ejeX;
+                        }
+                    }
+                    return 0;
+                }
+
+                ctrl.findCantByX = function (array, x) {
+                    for (var i = 0; i < array.length; i++) {
+                        if (array[i].title == x && array[i].title != "Total") {
+                            return array[i].cantidad;
+                        }
+                    }
+                    return 0;
+                }
+
+                // Gráfica Line Chart
+
+                ctrl.generateChart = function () {
+                    $scope.myChartObject = {};
+
+                    $scope.myChartObject.type = "LineChart";
+                    $scope.myChartObject.data = {cols: [], rows: []};
+
+
+                    $scope.myChartObject.data.cols.push({
+                        "id": "x",
+                        "label": $scope.filters.field1.name,
+                        "type": "string",
+                        "p": {}
+                    });
+                    if ($scope.catalogo) {
+                        angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
+
+                            $scope.myChartObject.data.cols.push({
+                                "id": value,
+                                "label": value,
+                                "type": "number",
+                                "p": {}
+                            });
+
+                        });
+                    }
+                    angular.forEach($scope.columnas, function (object) {
+                        if (object.title != "Total") {
+                            var objRows = [{v: object.title}];
+                            angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
+                                var x = ctrl.getXByY($scope.tableData, value);
+                                objRows.push({
+                                    v: ctrl.findCantByX(x, object.title)
+                                })
+                            });
+                            $scope.myChartObject.data.rows.push({
+                                c: objRows
+                            });
+                        }
+                    });
+                    $scope.myChartObject.options = {
+                        "title": " ",
+                        "isStacked": "true",
+                        "fill": 20,
+                        'is3D': 'true',
+                        "displayExactValues": true,
+                        "vAxis": {
+                            "title": "Cant. Transacciones",
+                            "gridlines": {
+                                "count": 10
+                            }
+                        },
+                        "hAxis": {
+                            "title": $scope.filters.field1.name
+                        }
+                    }
+                }
+
 
             });
 })();
