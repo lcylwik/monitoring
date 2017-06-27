@@ -5,6 +5,7 @@
  */
 package com.mkyong.web.controller;
 
+import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -117,5 +118,17 @@ public class UserController {
             this.password_confirmation = password_confirmation;
         }
 
+    }
+    
+    //add config
+    @RequestMapping(value = "/rest/timeD/{id}", method = RequestMethod.PUT)
+    public void addConfig(@RequestBody Configuracion config,@PathVariable("id") Integer id) {
+        userservice.addConfiguration(config, id);
+    }
+    
+    @RequestMapping(value = "/rest/timeD/{id}", method = RequestMethod.GET)
+    public Configuracion findConfig(@PathVariable("id") Integer id) {
+        Configuracion config = userservice.getConfigurationByID(id);
+        return config;
     }
 }

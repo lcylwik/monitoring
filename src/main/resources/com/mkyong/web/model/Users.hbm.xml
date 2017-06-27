@@ -24,6 +24,9 @@
         <property name="updatedAt" type="timestamp">
             <column name="updated_at" length="19" />
         </property>
+         <property name="status" type="tinyint">
+            <column name="status" not-null="true"  />
+        </property>
         <set name="roleses" table="role_user" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="user_id" not-null="true" />

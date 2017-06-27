@@ -2,7 +2,7 @@
     <div class="panel-heading pointer" ng-click="showFilters = !showFilters" ng-init="showFilters = true">
         <div class="col-md-6 col-sm-6 col-xs-6">
             <p style="margin-bottom:0;">
-                <strong>Filtros</strong>
+                <strong>Configuraciones</strong>
             </p>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -12,17 +12,26 @@
         </div>
 
     </div>
-    <div class="panel-body" ng-if="showFilters">
-        <form role="form" ng-submit="ctrl.filter()">
+    <div class="panel-body " ng-if="showFilters">
+        <form class=" adminTime" role="form" ng-submit="ctrl.editConfig()">
 
-            <div class="col-md-3 col-xs-4 col-lg-3 pull-right filter-buttons">
-                <div class="form-group">
-                    
-                    
-                    
-                    
+            <div class="col-md-3 col-xs-4 col-lg-3  " >
+                <div class="form-group ">
+                    <div class="row form-group ">
+                        <label>Tiempo habilitado (Dias)</label>
+                        <input type="text" name="timeD" ng-model="ctrl.timeD" class="form-control" />
+                    </div>
                 </div>
             </div>
 
+            <div class="col-md-12 col-xs-4 col-lg-3  " >
+                <div class="form-group ">
+                    <div class="row form-group ">
+                        <button type="submit" class="btn btn-primary">Salvar Cambios</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
     </div>
 </div>

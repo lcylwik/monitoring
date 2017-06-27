@@ -36,10 +36,11 @@ public class Users implements java.io.Serializable {
     private String password;
     private Date createdAt;
     private Date updatedAt;
+    private int status;
     private Set<Roles> roleses = new HashSet<Roles>(0);
     private Set<Bitacoras> bitacorases = new HashSet<Bitacoras>(0);
 
-    public Users(Integer id, String name, String email, Date createdAt, Date updatedAt, Set<Roles> roleses, Set<Bitacoras> bitacorases) {
+    public Users(Integer id, String name, String email, Date createdAt, Date updatedAt, Set<Roles> roleses, Set<Bitacoras> bitacorases,int status) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -47,6 +48,7 @@ public class Users implements java.io.Serializable {
         this.updatedAt = updatedAt;
         this.roleses = roleses;
         this.bitacorases = bitacorases;
+        this.status=status;
     }
 
     public Users() {
@@ -85,6 +87,15 @@ public class Users implements java.io.Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    @Column(name = "status", nullable = false)
+    public int getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Column(name = "email", unique = true, nullable = false)

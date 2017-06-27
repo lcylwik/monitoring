@@ -7,6 +7,7 @@ package com.mkyong.web.services;
 
 import com.mkyong.web.dao.UserDao;
 import com.mkyong.web.model.Bitacoras;
+import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -92,8 +93,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer addBitacora(String username) {
         Users user = findByName(username);
-        System.out.println("akiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
         Bitacoras bit = new Bitacoras(user, new Date(), "Lastlogin", "logueo en el sistema");
         return userDao.addBitacora(bit);
+    }
+
+    @Override
+    public void addConfiguration(Configuracion config, int id) {
+     userDao.addConfiguration(config,id);
+    }
+
+    @Override
+    public Configuracion getConfigurationByID(int id) {
+    return userDao.getConfigurationByID(id);
+    }
+
+    @Override
+    public int findStatusByName(String name) {
+     return userDao.findStatusByName(name);
+    }
+
+    @Override
+    public Bitacoras findBitacorasByIDUserAndAction(int userID,String action){
+      return userDao.findBitacorasByIDUserAndAction(userID,action);
     }
 }

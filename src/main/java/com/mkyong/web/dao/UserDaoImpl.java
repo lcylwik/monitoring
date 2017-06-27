@@ -6,6 +6,7 @@
 package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Bitacoras;
+import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -25,6 +26,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.Order;
 
 /**
  *
@@ -40,7 +42,27 @@ public class UserDaoImpl implements UserDao {
         sesion.close();
         return user;
     }
+    
+    @Override
+    public int findStatusByName(String name) {
+        Session sesion = SessionUtil1.getSession();
+        Users user = (Users) sesion.createCriteria(Users.class).add(Restrictions.eq("name", name)).uniqueResult();
+        sesion.close();
+        return user.getStatus();
+    }
+    
+     @Override
+    public Bitacoras findBitacorasByIDUserAndAction(int userID,String action) {
 
+        Session sesion = SessionUtil1.getSession();
+        Criteria crit = sesion.createCriteria(Bitacoras.class).add(Restrictions.eq("userID", userID)).add(Restrictions.eq("action", action))
+                .addOrder(Order.desc("userID")).setMaxResults(1);
+        Bitacoras bit = (Bitacoras) crit.uniqueResult();
+        sesion.close();
+
+        return bit;
+    }
+    
     @Override
     public List<Users> findAll() {
 
@@ -55,14 +77,17 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Users findById(int id) {
         Session sesion = SessionUtil1.getSession();
+        sesion.beginTransaction();
         Users user = (Users) sesion.createCriteria(Users.class
         ).add(Restrictions.eq("id", id)).uniqueResult();
+        sesion.getTransaction().commit();
         sesion.close();
         return user;
     }
 
     @Override
     public Integer addUsers(Users user) {
+        user.setStatus(1);
         Session session = SessionUtil1.getSession();
         Transaction tx = null;
         Integer idUser = 0;
@@ -229,5 +254,38 @@ public class UserDaoImpl implements UserDao {
         return idBit;
     }
 
-   
+    @Override
+    public void addConfiguration(Configuracion config, int id) {
+
+        Configuracion configDB = getConfigurationByID(id);
+        configDB.setCampo(config.getCampo());
+        configDB.setValor(config.getValor());
+
+        Session session = SessionUtil1.getSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.saveOrUpdate(configDB);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Configuracion getConfigurationByID(int id) {
+        Session sesion = SessionUtil1.getSession();
+        sesion.beginTransaction();
+        Configuracion config = (Configuracion) sesion.createCriteria(Configuracion.class
+        ).add(Restrictions.eq("idC", id)).uniqueResult();
+        sesion.getTransaction().commit();
+        sesion.close();
+        return config;
+    }
+
 }

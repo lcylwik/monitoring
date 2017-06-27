@@ -54,6 +54,8 @@ public class HelloController {
             throw new ServletException("El usuario no esta en el BD");
         } else if (userservice.findUserByPass(user.getName(), user.getPassword()) == null) {
             throw new ServletException("Pass incorrecto");
+        } else if (userservice.findStatusByName(user.getName()) == 0) {
+            throw new ServletException("Usuario Desabilitado");
         }
         userservice.addBitacora(user.getName());
         return new LoginResponse(Jwts.builder().setSubject(user.getName())

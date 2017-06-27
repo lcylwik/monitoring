@@ -538,3 +538,8 @@ div[data-picklist-form] > div > div.btn-group-vertical > div button.btn-info .gl
 .ui-select-choices-row.select2-disabled{
     display: none;
 }
+
+.adminTime{
+    margin-left: 10px;
+        
+}

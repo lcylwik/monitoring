@@ -96,6 +96,21 @@
                     },
                 }
             })
+            
+             // =========================================================================
+            //  add and get Config
+            // =========================================================================
+            .service('Config', function (API, $http) {
+                return {
+                    updateOrCreate: function (data,id) {
+                        console.log(API + '/rest/timeD/'+ id,data);
+                        return $http.put(API + '/rest/timeD/'+ id,data);
+                    },
+                    getConfig: function (id) {
+                        return $http.get(API +'/rest/timeD/'+ id);
+                    }
+                }
+            })
 
             .factory('Util', function (ngTableParams) {
                 return {
