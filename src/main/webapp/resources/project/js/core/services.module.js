@@ -103,7 +103,6 @@
             .service('Config', function (API, $http) {
                 return {
                     updateOrCreate: function (data,id) {
-                        console.log(API + '/rest/timeD/'+ id,data);
                         return $http.put(API + '/rest/timeD/'+ id,data);
                     },
                     getConfig: function (id) {

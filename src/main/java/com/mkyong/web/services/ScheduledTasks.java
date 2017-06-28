@@ -33,34 +33,11 @@ import org.springframework.stereotype.Service;
  * @author Lianet
  */
 @Service
-public class ScheduledTasks {
-
-    private static final Logger LOG = Logger.getLogger(ScheduledTasks.class);
-
-    @Autowired
-    private UserService userService;
-
-    @Scheduled(initialDelay = 30000, fixedDelay = 10500)
-    public void task1() {
-        List<Users> users = userService.findAll();
-        Configuracion config = userService.getConfigurationByID(1);
-        int valor = Integer.parseInt(config.getValor());
-        Date now = new Date();
-      
-        for (Users user : users) {
-            Bitacoras bit = userService.findBitacorasByIDUserAndAction(user.getId(), "LastLogin");
-            int difSegundos = restarFechas(bit.getFecha(), now);
-            if (difSegundos > (valor * 24 * 60)) {
-          
-            }
-        }
-    }
-
-    public static int restarFechas(Date fechaIn, Date fechaFinal) {
-        long in = fechaIn.getTime();
-        long fin = fechaFinal.getTime();
-        Long diff = (fin - in) / 1000;
-        return diff.intValue();
-    }
-
+public interface ScheduledTasks {
+    
+    void task1();
+    void task2();
+    ArrayList<Integer> GetArrayByCodeAndDate(String code, Date fromDate, Date toDate);
+    ArrayList<Date> getFirstAndLastDayFromLastMonth(Date date);
+    void insertCalculesForMonth(Date fromDate, Date toDate);
 }

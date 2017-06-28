@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 8/06/2017 06:20:27 PM by Hibernate Tools 4.3.1
+// Generated 27/06/2017 05:46:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -44,7 +44,7 @@ public class Bitacoras  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="idB", unique=true, nullable=false)
+    @Column(name="idB", nullable=false)
     public Integer getIdB() {
         return this.idB;
     }

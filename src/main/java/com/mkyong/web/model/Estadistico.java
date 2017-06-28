@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 28-may-2017 15:58:48 by Hibernate Tools 4.3.1
+// Generated 27/06/2017 05:46:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="estadistico"
-    ,catalog="transaccionesprosa"
+    ,catalog="monitoreo"
 )
 public class Estadistico  implements java.io.Serializable {
 
@@ -50,7 +50,7 @@ public class Estadistico  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="id", nullable=false)
+    @Column(name="id", unique=true, nullable=false)
     public Integer getId() {
         return this.id;
     }

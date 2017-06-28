@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 28-may-2017 15:58:48 by Hibernate Tools 4.3.1
+// Generated 27/06/2017 05:46:13 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="clave"
-    ,catalog="transaccionesprosa"
+    ,catalog="monitoreo"
 )
 public class Clave  implements java.io.Serializable {
 
@@ -45,7 +45,7 @@ public class Clave  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="idC", nullable=false)
+    @Column(name="idC", unique=true, nullable=false)
     public Integer getIdC() {
         return this.idC;
     }

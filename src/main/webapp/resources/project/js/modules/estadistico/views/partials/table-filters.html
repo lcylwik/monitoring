@@ -17,10 +17,9 @@
 
             <ng-include src="'js/modules/estadistico/views/partials/table-filters-date.html'"></ng-include>
             <ng-include src="'js/modules/estadistico/views/partials/table-filters-fields.html'"></ng-include>
-
             <ng-include ng-if="showAdvanced" src="'js/modules/estadistico/views/partials/table-filters-all.html'"></ng-include>
 
-            <div class="col-md-3 col-xs-4 col-lg-3 pull-right filter-buttons">
+            <div class="col-md-12 col-xs-4 col-lg-3 pull-right filter-buttons">
                 <div class="form-group">
                     <button class="btn btn-success pull-right search" type="submit">Buscar</button>
                     <button class="btn btn-default pull-right search showAdvancedFilters" ng-click="showAdvanced = !showAdvanced" type="button">Avanzados</button>

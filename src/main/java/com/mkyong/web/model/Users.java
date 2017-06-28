@@ -30,26 +30,15 @@ import javax.persistence.UniqueConstraint;
 )
 public class Users implements java.io.Serializable {
 
-    private Integer id;
-    private String name;
-    private String email;
-    private String password;
-    private Date createdAt;
-    private Date updatedAt;
-    private int status;
-    private Set<Roles> roleses = new HashSet<Roles>(0);
-    private Set<Bitacoras> bitacorases = new HashSet<Bitacoras>(0);
-
-    public Users(Integer id, String name, String email, Date createdAt, Date updatedAt, Set<Roles> roleses, Set<Bitacoras> bitacorases,int status) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.roleses = roleses;
-        this.bitacorases = bitacorases;
-        this.status=status;
-    }
+     private Integer id;
+     private String name;
+     private String email;
+     private String password;
+     private Date createdAt;
+     private Date updatedAt;
+     private int status;
+     private Set<Roles> roleses = new HashSet<Roles>(0);
+     private Set<Bitacoras> bitacorases = new HashSet<Bitacoras>(0);
 
     public Users() {
     }
@@ -61,21 +50,22 @@ public class Users implements java.io.Serializable {
     }
 
     public Users(String name, String email, String password, Date createdAt, Date updatedAt, Set<Roles> roleses) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.roleses = roleses;
+       this.name = name;
+       this.email = email;
+       this.password = password;
+       this.createdAt = createdAt;
+       this.updatedAt = updatedAt;
+       this.roleses = roleses;
     }
+   
+     @Id @GeneratedValue(strategy=IDENTITY)
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    
+    @Column(name="id", nullable=false)
     public Integer getId() {
         return this.id;
     }
-
+    
     public void setId(Integer id) {
         this.id = id;
     }
@@ -84,16 +74,16 @@ public class Users implements java.io.Serializable {
     public String getName() {
         return this.name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Column(name = "status", nullable = false)
     public int getStatus() {
         return this.status;
     }
-
+    
     public void setStatus(int status) {
         this.status = status;
     }
@@ -102,7 +92,7 @@ public class Users implements java.io.Serializable {
     public String getEmail() {
         return this.email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }
@@ -111,7 +101,7 @@ public class Users implements java.io.Serializable {
     public String getPassword() {
         return this.password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
@@ -121,7 +111,7 @@ public class Users implements java.io.Serializable {
     public Date getCreatedAt() {
         return this.createdAt;
     }
-
+    
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
@@ -131,7 +121,7 @@ public class Users implements java.io.Serializable {
     public Date getUpdatedAt() {
         return this.updatedAt;
     }
-
+    
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
@@ -140,11 +130,11 @@ public class Users implements java.io.Serializable {
     @JoinTable(name = "role_user", catalog = "monitoreo", joinColumns = {
         @JoinColumn(name = "user_id", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "role_id", nullable = false, updatable = false)})
-
+    
     public Set<Roles> getRoleses() {
         return this.roleses;
     }
-
+    
     public void setRoleses(Set<Roles> roleses) {
         this.roleses = roleses;
     }
@@ -154,7 +144,7 @@ public class Users implements java.io.Serializable {
     public Set<Bitacoras> getBitacorases() {
         return this.bitacorases;
     }
-
+    
     public void setBitacorases(Set<Bitacoras> bitacorases) {
         this.bitacorases = bitacorases;
     }

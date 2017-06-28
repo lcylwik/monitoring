@@ -52,5 +52,7 @@ Contributor(s):
     <mapping resource="com/mkyong/web/model/Roles.hbm.xml"/>
     <mapping resource="com/mkyong/web/model/Users.hbm.xml"/>
     <mapping resource="com/mkyong/web/model/PrsaRejectedTxn.hbm.xml"/>
+    <mapping resource="com/mkyong/web/model/Estadistico.hbm.xml"/>
+    <mapping resource="com/mkyong/web/model/Clave.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

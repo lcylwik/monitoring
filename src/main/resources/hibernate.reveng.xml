@@ -41,11 +41,6 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="monitoreo"/>
-  <table-filter match-name="role_user"/>
-  <table-filter match-name="permissions"/>
-  <table-filter match-name="permission_role"/>
-  <table-filter match-name="users"/>
-  <table-filter match-name="configuracion"/>
-  <table-filter match-name="roles"/>
-  <table-filter match-name="bitacoras"/>
+  <table-filter match-name="estadistico"/>
+  <table-filter match-name="clave"/>
 </hibernate-reverse-engineering>

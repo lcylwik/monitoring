@@ -42,6 +42,9 @@
                 ctrl.getTXN = function () {
                     $scope.datos = TXN.getService($scope.filtersDate.firstDate, $scope.filtersDate.lastDate).then(function (trans) {
                         $scope.datos = trans.data;
+                        angular.forEach($scope.datos, function (field) {
+                            field.prtProcDte = moment(field.prtProcDte, "x").format("DD/MM/YYYY");
+                        })
                         ctrl.initCatalogo();
                         ctrl.generateData();
                         ctrl.generateChart();
@@ -71,7 +74,7 @@
 
                 //Columnas de la tabla
                 ctrl.getColumnas = function (valorX) {
-
+                   
                     var columnas = [], totalValorX = 0, total = "TotalDeTotal";
                     var data = $scope.datos.filter(ctrl.filterFunction);
                     if ($scope.filters.field2) {
@@ -198,7 +201,6 @@
                     });
                     if ($scope.catalogo) {
                         angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
-
                             $scope.myChartObject.data.cols.push({
                                 "id": value,
                                 "label": value,

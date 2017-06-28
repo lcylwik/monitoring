@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 8/06/2017 06:20:27 PM by Hibernate Tools 4.3.1
+// Generated 27/06/2017 05:46:13 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -118,7 +118,7 @@ public class Permissions  implements java.io.Serializable {
         this.updatedAt = updatedAt;
     }
 
-    @ManyToMany(fetch=FetchType.EAGER)
+@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "permission_role", catalog = "monitoreo", joinColumns = {
         @JoinColumn(name = "permission_id", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "role_id", nullable = false, updatable = false)})

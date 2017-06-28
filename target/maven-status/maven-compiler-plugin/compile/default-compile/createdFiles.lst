@@ -36,3 +36,4 @@ com\mkyong\web\controller\UserController$Paswords.class
 com\mkyong\web\controller\PermissionsController.class
 com\mkyong\web\controller\TransControler.class
 com\mkyong\web\services\CalculoEstadistico.class
+com\mkyong\web\services\ScheduledTasks.class

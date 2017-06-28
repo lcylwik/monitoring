@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 6/06/2017 01:03:40 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 27/06/2017 05:46:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.mkyong.web.model.PrsaTxnAceptadas" table="prsa_txn_aceptadas" catalog="transacciones" optimistic-lock="version">
+    <class name="com.mkyong.web.model.PrsaTxnAceptadas" table="prsa_txn_aceptadas" catalog="transacciones">
         <id name="id" type="int">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="assigned"></generator>
         </id>
         <property name="nombreArchivo" type="string">
             <column name="NOMBRE_ARCHIVO" length="20" not-null="true" />

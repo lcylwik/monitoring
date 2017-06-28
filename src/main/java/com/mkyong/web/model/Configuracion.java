@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 8/06/2017 06:20:27 PM by Hibernate Tools 4.3.1
+// Generated 27/06/2017 05:46:13 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ public class Configuracion  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="idC", unique=true, nullable=false)
+    @Column(name="idC", nullable=false)
     public Integer getIdC() {
         return this.idC;
     }
