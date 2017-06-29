@@ -11,11 +11,11 @@ D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mky
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\dao\RolesDaoImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\RolService.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\Estadistico.java
-D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\txn_json.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\userLogin.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\RolServiceImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\PermissionsServiceImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\UserService.java
+D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\Txn.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\controller\HelloController.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\dao\PermissionsDaoImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\Permissions.java
@@ -25,6 +25,7 @@ D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mky
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\TransServiceImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\Roles.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\model\Configuracion.java
+D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\ScheduledTasksImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\UserServiceImpl.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\services\TransService.java
 D:\workLianet\Proyecto Monitoreo\TestGitMonitoro\Monitoreo\src\main\java\com\mkyong\web\dao\SessionUtil1.java

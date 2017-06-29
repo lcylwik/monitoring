@@ -1,10 +1,11 @@
-com\mkyong\web\model\txn_json.class
 com\mkyong\web\controller\HelloController.class
 com\mkyong\web\dao\RolesDao.class
 com\mkyong\web\controller\UserController.class
 com\mkyong\web\dao\TransDaoImpl.class
+com\mkyong\web\model\Txn.class
 com\mkyong\web\services\UserService.class
 com\mkyong\web\model\Roles.class
+com\mkyong\web\services\ScheduledTasksImpl.class
 com\mkyong\web\controller\HelloController$LoginResponse.class
 com\mkyong\web\model\Clave.class
 com\mkyong\web\services\RolService.class

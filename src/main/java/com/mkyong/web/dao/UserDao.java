@@ -50,6 +50,8 @@ public interface UserDao {
     Configuracion getConfigurationByID(int id);
 
     int findStatusByName(String name);
-    
-   Bitacoras findBitacorasByIDUserAndAction(int userID,String action);
+
+    Bitacoras findBitacorasByIDUserAndAction(int userID, String action);
+
+    List<Configuracion> getConfiguration();
 }

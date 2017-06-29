@@ -121,14 +121,20 @@ public class UserController {
     }
     
     //add config
-    @RequestMapping(value = "/rest/timeD/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.PUT)
     public void addConfig(@RequestBody Configuracion config,@PathVariable("id") Integer id) {
         userservice.addConfiguration(config, id);
     }
     
-    @RequestMapping(value = "/rest/timeD/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.GET)
     public Configuracion findConfig(@PathVariable("id") Integer id) {
         Configuracion config = userservice.getConfigurationByID(id);
+        return config;
+    }
+    
+    @RequestMapping(value = "/rest/config", method = RequestMethod.GET)
+    public List<Configuracion> findAllConfig() {
+        List<Configuracion> config = userservice.getConfiguration();
         return config;
     }
 }

@@ -10,7 +10,6 @@ import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Estadistico;
 import com.mkyong.web.model.PrsaRejectedTxn;
 import com.mkyong.web.model.Users;
-import com.mkyong.web.model.txn_json;
 import com.sun.javafx.image.impl.IntArgb;
 import java.math.BigInteger;
 import java.sql.Timestamp;

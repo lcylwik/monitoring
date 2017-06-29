@@ -116,4 +116,9 @@ public class UserServiceImpl implements UserService {
     public Bitacoras findBitacorasByIDUserAndAction(int userID,String action){
       return userDao.findBitacorasByIDUserAndAction(userID,action);
     }
+
+    @Override
+    public List<Configuracion> getConfiguration() {
+      return userDao.getConfiguration();
+    }
 }

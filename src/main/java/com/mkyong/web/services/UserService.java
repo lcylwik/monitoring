@@ -52,4 +52,6 @@ public interface UserService {
     int findStatusByName(String name);
 
     Bitacoras findBitacorasByIDUserAndAction(int userID, String action);
+    
+    List<Configuracion> getConfiguration();
 }

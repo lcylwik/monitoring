@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('EST.controllers')
-            .controller('UsersController', function (API, Auth, Util, $http, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert, Crud, item) {
+            .controller('UsersController', function (Config, API, Auth, Util, $http, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert, Crud, item) {
                 var ctrl = this;
 
                 ctrl.register = function () {
@@ -9,11 +9,29 @@
                     $scope.item.roleses = $scope.item.addedRoles;
                     delete $scope.item.addedRoles;
                     delete $scope.item.password_confirmation;
+                    if (ctrl.check($scope.item.password)) {
+                        Auth.registerUser($scope.item).then(function (data) {
+                            $state.go('home.users', {}, {reload: true});
+                        });
+                    } else {
+                        SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
+                    }
 
-                    Auth.registerUser($scope.item).then(function (data) {
-                        $state.go('home.users', {}, {reload: true});
-                    });
                 };
+
+
+                ctrl.check = function checkPassword(str)
+                {
+                    Config.getConfigID(2).then(function (data) {
+                        ctrl.minPass = data.data.valor;
+                    });
+                    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+                    return re.test(str);
+                };
+
+
+
+
                 ctrl.edit = function () {
                     //cleaning picklist data
                     $scope.item.roleses = $scope.item.addedRoles;

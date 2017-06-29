@@ -287,5 +287,15 @@ public class UserDaoImpl implements UserDao {
         sesion.close();
         return config;
     }
-
+    
+   @Override
+    public List<Configuracion> getConfiguration() {
+        Session sesion = SessionUtil1.getSession();
+        sesion.beginTransaction();
+        List<Configuracion> config =  sesion.createCriteria(Configuracion.class).list();
+        sesion.getTransaction().commit();
+        sesion.close();
+        return config;
+    }
+    
 }

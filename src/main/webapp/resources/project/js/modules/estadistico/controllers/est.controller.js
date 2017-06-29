@@ -10,10 +10,20 @@
                     prtProcDte: "Fecha",
                     fiidEmisor: "FIID Emisor",
                     fiidAdquiriente: "FIID Adquiriente",
-                    redLogica: "Red Logica",
+                    redLogicaAdq: "LN Adquiriente",
                     codigoRespuesta: "Codigo de Respuesta",
-                    numeroPrsaAdquiriente: "Numero Prosa Adquiriente",
-                    numeroPrsaEmisor: "Numero Prosa Emisor"
+                    redLogicaEmi: "LN Emisor",
+                    producto: "Producto",
+                    ambiente: "Codigo de Respuesta",
+                    tipoTransaccion: "LN Emisor",
+                    tipoMensaje: "Tipo de Mensaje",
+                    tipoTerminal: "Tipo de Terminal",
+                    tipoCuenta: "Tipo de Cuenta",
+                    responder: "Responder",
+                    entryMode: "Modo de Entrada",
+                    medioAcceso: "Medio Acceso",
+                    tokenB4: "Token B4",
+                    tokenB0: "Token B0"
                 }
                 $scope.onTimeSet = function (newDate, oldDate, field) {
                     ctrl[field] = false;
@@ -29,7 +39,6 @@
                     ctrl.getTXN();
                     ctrl.initCatalogo();
                     ctrl.generateData();
-
                 }, true);
 
                 $scope.$watch('filters', function () {
@@ -74,7 +83,7 @@
 
                 //Columnas de la tabla
                 ctrl.getColumnas = function (valorX) {
-                   
+
                     var columnas = [], totalValorX = 0, total = "TotalDeTotal";
                     var data = $scope.datos.filter(ctrl.filterFunction);
                     if ($scope.filters.field2) {
@@ -192,56 +201,58 @@
                     $scope.myChartObject.type = "LineChart";
                     $scope.myChartObject.data = {cols: [], rows: []};
 
-
-                    $scope.myChartObject.data.cols.push({
-                        "id": "x",
-                        "label": $scope.filters.field1.name,
-                        "type": "string",
-                        "p": {}
-                    });
-                    if ($scope.catalogo) {
-                        angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
-                            $scope.myChartObject.data.cols.push({
-                                "id": value,
-                                "label": value,
-                                "type": "number",
-                                "p": {}
-                            });
-
+                    if ($scope.catalogo && $scope.filters.field1) {
+                        $scope.myChartObject.data.cols.push({
+                            "id": "x",
+                            "label": $scope.filters.field1.name,
+                            "type": "string",
+                            "p": {}
                         });
-                    }
-                    angular.forEach($scope.columnas, function (object) {
-                        if (object.title != "Total") {
-                            var objRows = [{v: object.title}];
+
+
+                        if ($scope.catalogo) {
                             angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
-                                var x = ctrl.getXByY($scope.tableData, value);
-                                objRows.push({
-                                    v: ctrl.findCantByX(x, object.title)
-                                })
-                            });
-                            $scope.myChartObject.data.rows.push({
-                                c: objRows
+                                $scope.myChartObject.data.cols.push({
+                                    "id": value,
+                                    "label": value,
+                                    "type": "number",
+                                    "p": {}
+                                });
+
                             });
                         }
-                    });
-                    $scope.myChartObject.options = {
-                        "title": " ",
-                        "isStacked": "true",
-                        "fill": 20,
-                        'is3D': 'true',
-                        "displayExactValues": true,
-                        "vAxis": {
-                            "title": "Cant. Transacciones",
-                            "gridlines": {
-                                "count": 10
+                        angular.forEach($scope.columnas, function (object) {
+                            if (object.title != "Total") {
+                                var objRows = [{v: object.title}];
+                                angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
+                                    var x = ctrl.getXByY($scope.tableData, value);
+                                    objRows.push({
+                                        v: ctrl.findCantByX(x, object.title)
+                                    })
+                                });
+                                $scope.myChartObject.data.rows.push({
+                                    c: objRows
+                                });
                             }
-                        },
-                        "hAxis": {
-                            "title": $scope.filters.field1.name
+                        });
+                        $scope.myChartObject.options = {
+                            "title": " ",
+                            "isStacked": "true",
+                            "fill": 20,
+                            'is3D': 'true',
+                            "displayExactValues": true,
+                            "vAxis": {
+                                "title": "Cant. Transacciones",
+                                "gridlines": {
+                                    "count": 10
+                                }
+                            },
+                            "hAxis": {
+                                "title": $scope.filters.field1.name
+                            }
                         }
                     }
                 }
-
 
             });
 })();

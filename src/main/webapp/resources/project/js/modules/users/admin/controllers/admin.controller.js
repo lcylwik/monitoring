@@ -6,21 +6,28 @@
 
                 $scope.vari = "lianet";
 
-                ctrl.editConfig = function () {
+                ctrl.editConfig = function (campo, valor, id) {
                     var datos = {
-                        campo: "Deshabilitar",
-                        valor: ctrl.timeD
+                        campo: campo,
+                        valor: valor
                     }
-                    Config.updateOrCreate(datos,1).then(function (data) {
+                    Config.updateOrCreate(datos, id).then(function (data) {
                         $state.go('home.admin', {}, {reload: true});
                     });
                 };
-                
+
                 if ($state.current.name === 'home.admin') {
-                    var id="1"
-                    Config.getConfig(id).then(function (data) {
-                        ctrl.timeD = data.data.valor;
+                    Config.getConfig().then(function (data) {
+                        angular.forEach(data.data, function (element) {
+                            console.log(element.idC);
+                            if (element.idC == 1) {
+                                ctrl.timeD = element.valor;
+                            } else if (element.idC == 2) {
+                                ctrl.minPass = element.valor;
+                            }
+                        });
                     });
                 }
+
             })
 })();

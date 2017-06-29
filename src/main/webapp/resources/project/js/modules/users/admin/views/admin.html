@@ -13,20 +13,40 @@
 
     </div>
     <div class="panel-body " ng-if="showFilters">
-        <form class=" adminTime" role="form" ng-submit="ctrl.editConfig()">
-
-            <div class="col-md-3 col-xs-4 col-lg-3  " >
+        <form class=" adminTime" role="form" ng-submit="ctrl.editConfig('Desabilitar',ctrl.timeD,1)">
+            <div class="col-md-2" >
+                <label>Tiempo habilitado (Dias)</label>
                 <div class="form-group ">
-                    <div class="row form-group ">
-                        <label>Tiempo habilitado (Dias)</label>
-                        <input type="text" name="timeD" ng-model="ctrl.timeD" class="form-control" />
+                    <div class=" form-group ">
+                        <input type="text" name="timeD" placeholder="Tiempo habilitado (Dias)"ng-model="ctrl.timeD" class="form-control" />
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-12 col-xs-4 col-lg-3  " >
+            <div class="col-md-12 " >
                 <div class="form-group ">
-                    <div class="row form-group ">
+                    <div class=" form-group ">
+                        <button type="submit" class="btn btn-primary">Salvar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+     <div class="panel-body " ng-if="showFilters">
+        <form class=" adminTime" role="form" ng-submit="ctrl.editConfig('MinPass',ctrl.minPass,2)">
+            <div class="col-md-2" >
+                <label>Mínimo de caracteres (contraseña)</label>
+                <div class="form-group ">
+                    <div class=" form-group ">
+                        <input type="text" name="timeD" ng-model="ctrl.minPass" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 " >
+                <div class="form-group ">
+                    <div class=" form-group ">
                         <button type="submit" class="btn btn-primary">Salvar Cambios</button>
                     </div>
                 </div>

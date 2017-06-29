@@ -493,15 +493,15 @@ div[data-picklist-form] > div > div.btn-group-vertical > div button.btn-info .gl
     display: none !important;
 }*/
 .alert-inverse {
-  background-color: #5b0206;
-  border-color: transparent;
-  color: #ffffff;
+    background-color: #5b0206;
+    border-color: transparent;
+    color: #ffffff;
 }
 .alert-inverse hr {
-  border-top-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
 }
 .alert-inverse .alert-link {
-  color: #e6e6e6;
+    color: #e6e6e6;
 }
 
 .growl-animated.alert-inverse {
@@ -541,5 +541,16 @@ div[data-picklist-form] > div > div.btn-group-vertical > div button.btn-info .gl
 
 .adminTime{
     margin-left: 10px;
-        
+
+}
+
+.multi ul {
+    width: 75% !important;
+}
+.btn-block {
+    width: 75% !important;
+}
+
+.field{
+    margin-left:  10px;
 }

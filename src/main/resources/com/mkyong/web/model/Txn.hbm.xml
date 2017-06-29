@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/06/2017 12:38:55 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mkyong.web.model.Txn" table="txn" catalog="monitoreo" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="prtFilename" type="string">
+            <column name="prtFilename" length="16" not-null="true" />
+        </property>
+        <property name="prtProcDte" type="timestamp">
+            <column name="prtProcDte" length="19" not-null="true" />
+        </property>
+        <property name="fiidAdquiriente" type="string">
+            <column name="fiidAdquiriente" length="30" not-null="true" />
+        </property>
+        <property name="fiidEmisor" type="string">
+            <column name="fiidEmisor" length="30" not-null="true" />
+        </property>
+        <property name="redLogicaEmi" type="string">
+            <column name="redLogicaEmi" length="30" not-null="true" />
+        </property>
+        <property name="codigoRespuesta" type="string">
+            <column name="codigoRespuesta" length="10" not-null="true" />
+        </property>
+        <property name="producto" type="string">
+            <column name="producto" length="20" not-null="true" />
+        </property>
+        <property name="ambiente" type="string">
+            <column name="ambiente" length="20" not-null="true" />
+        </property>
+        <property name="tipoTransaccion" type="int">
+            <column name="tipoTransaccion" not-null="true" />
+        </property>
+        <property name="tipoMensaje" type="int">
+            <column name="tipoMensaje" not-null="true" />
+        </property>
+        <property name="tipoTerminal" type="string">
+            <column name="tipoTerminal" length="20" not-null="true" />
+        </property>
+        <property name="tipoCuenta" type="int">
+            <column name="tipoCuenta" not-null="true" />
+        </property>
+        <property name="responder" type="string">
+            <column name="responder" length="20" not-null="true" />
+        </property>
+        <property name="redLogicaAdq" type="string">
+            <column name="redLogicaAdq" length="20" not-null="true" />
+        </property>
+        <property name="entryMode" type="string">
+            <column name="entryMode" length="20" not-null="true" />
+        </property>
+        <property name="medioAcceso" type="int">
+            <column name="medioAcceso" not-null="true" />
+        </property>
+        <property name="tokenB4" type="string">
+            <column name="tokenB4" length="20" not-null="true" />
+        </property>
+        <property name="tokenB0" type="string">
+            <column name="TokenB0" length="40" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
