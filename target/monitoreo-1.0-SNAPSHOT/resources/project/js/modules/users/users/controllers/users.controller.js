@@ -9,14 +9,17 @@
                     $scope.item.roleses = $scope.item.addedRoles;
                     delete $scope.item.addedRoles;
                     delete $scope.item.password_confirmation;
-                    if (ctrl.check($scope.item.password)) {
+                    ctrl.checkOnlyUser($scope.item.name);
+
+                    if (!ctrl.check($scope.item.password)) {
+                        SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
+                    } else if (ctrl.checkOnlyUser($scope.item.name) == 1) {
+                        SweetAlert.swal('Error', 'Cambie el usuario, ya hay uno registrado con ese nombre');
+                    } else {
                         Auth.registerUser($scope.item).then(function (data) {
                             $state.go('home.users', {}, {reload: true});
                         });
-                    } else {
-                        SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
                     }
-
                 };
 
 
@@ -29,8 +32,18 @@
                     return re.test(str);
                 };
 
-
-
+                ctrl.checkOnlyUser = function checkUser(user) {
+                    var resp = 0;
+                    Auth.getUsers().then(function (data) {
+                        angular.forEach(data.data, function (value) {
+                            if (value.name == user) {
+                                resp = 1;
+                            }
+                        });
+                        console.log(resp);
+                    });
+                    return resp;
+                };
 
                 ctrl.edit = function () {
                     //cleaning picklist data
