@@ -13,8 +13,12 @@
 
                     if (!ctrl.check($scope.item.password)) {
                         SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
-                    } else if (ctrl.checkOnlyUser($scope.item.name) == 1) {
-                        SweetAlert.swal('Error', 'Cambie el usuario, ya hay uno registrado con ese nombre');
+                    }
+                    if (ctrl.checkOnlyUser($scope.item.name))
+                    {
+                         console.log("error")
+                        SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
+
                     } else {
                         Auth.registerUser($scope.item).then(function (data) {
                             $state.go('home.users', {}, {reload: true});
@@ -32,17 +36,11 @@
                     return re.test(str);
                 };
 
-                ctrl.checkOnlyUser = function checkUser(user) {
-                    var resp = 0;
-                    Auth.getUsers().then(function (data) {
-                        angular.forEach(data.data, function (value) {
-                            if (value.name == user) {
-                                resp = 1;
-                            }
-                        });
-                        console.log(resp);
+                ctrl.checkOnlyUser = function checkUser(name) {
+                    Crud.isRepeat('usersRepeat', name).then(function (data) {
+                        return data;
+                        console.log(data);
                     });
-                    return resp;
                 };
 
                 ctrl.edit = function () {

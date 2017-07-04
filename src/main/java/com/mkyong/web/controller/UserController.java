@@ -93,6 +93,12 @@ public class UserController {
         userservice.deleteUsers(id);
     }
 
+    @RequestMapping(value = "/usersRepeat/{name}", method = RequestMethod.GET)
+    public boolean usersRepeat(@PathVariable("name") String name) {
+        return userservice.NombreRepetido(name);
+
+    }
+
     @RequestMapping(value = "user/updatePassword/{id}", method = RequestMethod.POST)
     public void updatePass(@PathVariable("id") int id, @RequestBody Paswords passwords) throws ServletException {
         if (passwords.password.equals(passwords.password_confirmation)) {
@@ -119,19 +125,19 @@ public class UserController {
         }
 
     }
-    
+
     //add config
     @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.PUT)
-    public void addConfig(@RequestBody Configuracion config,@PathVariable("id") Integer id) {
+    public void addConfig(@RequestBody Configuracion config, @PathVariable("id") Integer id) {
         userservice.addConfiguration(config, id);
     }
-    
+
     @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.GET)
     public Configuracion findConfig(@PathVariable("id") Integer id) {
         Configuracion config = userservice.getConfigurationByID(id);
         return config;
     }
-    
+
     @RequestMapping(value = "/rest/config", method = RequestMethod.GET)
     public List<Configuracion> findAllConfig() {
         List<Configuracion> config = userservice.getConfiguration();

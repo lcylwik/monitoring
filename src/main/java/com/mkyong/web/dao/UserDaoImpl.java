@@ -38,37 +38,45 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Users findByName(String name) {
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         Users user = (Users) sesion.createCriteria(Users.class).add(Restrictions.eq("name", name)).uniqueResult();
+        sesion.getTransaction().commit();
         sesion.close();
         return user;
     }
-    
+
     @Override
     public int findStatusByName(String name) {
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         Users user = (Users) sesion.createCriteria(Users.class).add(Restrictions.eq("name", name)).uniqueResult();
+        sesion.getTransaction().commit();
         sesion.close();
         return user.getStatus();
     }
-    
-     @Override
-    public Bitacoras findBitacorasByIDUserAndAction(int userID,String action) {
+
+    @Override
+    public Bitacoras findBitacorasByIDUserAndAction(int userID, String action) {
 
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         Criteria crit = sesion.createCriteria(Bitacoras.class).add(Restrictions.eq("userID", userID)).add(Restrictions.eq("action", action))
                 .addOrder(Order.desc("userID")).setMaxResults(1);
         Bitacoras bit = (Bitacoras) crit.uniqueResult();
+        sesion.getTransaction().commit();
         sesion.close();
 
         return bit;
     }
-    
+
     @Override
     public List<Users> findAll() {
 
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         Criteria crit = sesion.createCriteria(Users.class);
         List<Users> users = crit.list();
+        sesion.getTransaction().commit();
         sesion.close();
 
         return users;
@@ -287,15 +295,24 @@ public class UserDaoImpl implements UserDao {
         sesion.close();
         return config;
     }
-    
-   @Override
+
+    @Override
     public List<Configuracion> getConfiguration() {
         Session sesion = SessionUtil1.getSession();
         sesion.beginTransaction();
-        List<Configuracion> config =  sesion.createCriteria(Configuracion.class).list();
+        List<Configuracion> config = sesion.createCriteria(Configuracion.class).list();
         sesion.getTransaction().commit();
         sesion.close();
         return config;
     }
-    
+
+    @Override
+    public Boolean NombreRepetido(String name) {
+        List<Users> user=null;
+        Session sesion = SessionUtil1.getSession();
+        user = sesion.createCriteria(Users.class).add(Restrictions.eq("name", name)).list();
+        sesion.close();
+        return user != null;
+    }
+
 }

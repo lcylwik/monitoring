@@ -54,4 +54,6 @@ public interface UserService {
     Bitacoras findBitacorasByIDUserAndAction(int userID, String action);
     
     List<Configuracion> getConfiguration();
+    
+     Boolean NombreRepetido(String name) ;
 }

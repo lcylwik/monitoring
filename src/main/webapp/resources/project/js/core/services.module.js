@@ -83,7 +83,11 @@
                     },
                     delete: function (url, item) {
                         return $http.delete(API + '/resources' + url + '/' + item.id);
+                    },
+                    isRepeat: function (url, name){
+                        return $http.get(API + '/' + url + '/' +name);
                     }
+                            
                 }
             })
             // =========================================================================
@@ -114,7 +118,7 @@
                     }
                 }
             })
-
+            
             .factory('Util', function (ngTableParams) {
                 return {
                     generateTableParams: function (data, $scope) {

@@ -99,26 +99,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addConfiguration(Configuracion config, int id) {
-     userDao.addConfiguration(config,id);
+        userDao.addConfiguration(config, id);
     }
 
     @Override
     public Configuracion getConfigurationByID(int id) {
-    return userDao.getConfigurationByID(id);
+        return userDao.getConfigurationByID(id);
     }
 
     @Override
     public int findStatusByName(String name) {
-     return userDao.findStatusByName(name);
+        return userDao.findStatusByName(name);
     }
 
     @Override
-    public Bitacoras findBitacorasByIDUserAndAction(int userID,String action){
-      return userDao.findBitacorasByIDUserAndAction(userID,action);
+    public Bitacoras findBitacorasByIDUserAndAction(int userID, String action) {
+        return userDao.findBitacorasByIDUserAndAction(userID, action);
     }
 
     @Override
     public List<Configuracion> getConfiguration() {
-      return userDao.getConfiguration();
+        return userDao.getConfiguration();
+    }
+
+    @Override
+    public Boolean NombreRepetido(String name) {
+       return userDao.NombreRepetido(name);
     }
 }
