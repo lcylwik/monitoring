@@ -99,8 +99,6 @@ public class UserDaoImpl implements UserDao {
         Session session = SessionUtil1.getSession();
         Transaction tx = null;
         Integer idUser = 0;
-        String passEncrip = DigestUtils.md5Hex(user.getPassword());
-        user.setPassword(passEncrip);
         try {
             tx = session.beginTransaction();
             idUser = (Integer) session.save(user);
@@ -169,46 +167,57 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Users findUserByPass(String name, String pass) {
         Session sesion = SessionUtil1.getSession();
-        String passEncrip = DigestUtils.md5Hex(pass);
+        sesion.getTransaction().begin();
         Users user = (Users) sesion.createCriteria(Users.class
         ).add(Restrictions.eq("name", name))
-                .add(Restrictions.eq("password", passEncrip)).uniqueResult();
+                .add(Restrictions.eq("password", pass)).uniqueResult();
+        sesion.getTransaction().commit();
+        sesion.close();
         return user;
     }
 
     @Override
     public List<Permissions> findPermissionByUserName(String name) {
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         List<Permissions> perm = sesion.createCriteria(Permissions.class
         )
                 .createAlias("roleses", "r").createAlias("r.userses", "ru")
                 .add(Restrictions.eq("ru.name", name))
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                 .list();
+        sesion.getTransaction().commit();
+        sesion.close();
         return perm;
     }
 
     @Override
     public List<Roles> findRoleByUserName(String name) {
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         List<Roles> roles = sesion.createCriteria(Roles.class
         )
                 .createAlias("userses", "u")
                 .add(Restrictions.eq("u.name", name))
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                 .list();
+        sesion.getTransaction().commit();
+        sesion.close();
         return roles;
     }
 
     @Override
     public List<Roles> findRolByUserId(int id) {
         Session sesion = SessionUtil1.getSession();
+        sesion.getTransaction().begin();
         List<Roles> roles = sesion.createCriteria(Roles.class
         )
                 .createAlias("userses", "u")
                 .add(Restrictions.eq("u.id", id))
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                 .list();
+        sesion.getTransaction().commit();
+        sesion.close();
         return roles;
     }
 
@@ -216,11 +225,9 @@ public class UserDaoImpl implements UserDao {
     public void updatePassword(int iduser, String newPass, String oldPass) {
         Users userDB = findById(iduser);
 
-        String oldPassEncrip = DigestUtils.md5Hex(oldPass);
-        if (userDB.getPassword().equals(oldPassEncrip)) {
+        if (userDB.getPassword().equals(oldPass)) {
 
-            String passEncrip = DigestUtils.md5Hex(newPass);
-            userDB.setPassword(passEncrip);
+            userDB.setPassword(newPass);
 
             Session session = SessionUtil1.getSession();
             Transaction tx = null;
@@ -304,15 +311,6 @@ public class UserDaoImpl implements UserDao {
         sesion.getTransaction().commit();
         sesion.close();
         return config;
-    }
-
-    @Override
-    public Boolean NombreRepetido(String name) {
-        List<Users> user=null;
-        Session sesion = SessionUtil1.getSession();
-        user = sesion.createCriteria(Users.class).add(Restrictions.eq("name", name)).list();
-        sesion.close();
-        return user != null;
     }
 
 }

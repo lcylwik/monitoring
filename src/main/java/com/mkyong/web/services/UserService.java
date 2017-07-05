@@ -55,5 +55,4 @@ public interface UserService {
     
     List<Configuracion> getConfiguration();
     
-     Boolean NombreRepetido(String name) ;
 }

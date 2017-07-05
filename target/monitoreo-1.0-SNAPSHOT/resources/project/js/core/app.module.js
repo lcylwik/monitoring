@@ -17,7 +17,8 @@
         'ui.select',
         "EST.services",
         "EST.controllers",
-        "EST.directives"
+        "EST.directives",
+        "angular-encryption"
     ])
         .constant('API', 'http://localhost:8084/api')
         .config(function ($urlRouterProvider, $interpolateProvider, $ocLazyLoadProvider, $stateProvider, $httpProvider) {

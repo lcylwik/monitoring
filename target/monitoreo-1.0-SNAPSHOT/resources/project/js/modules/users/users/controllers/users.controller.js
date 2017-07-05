@@ -1,45 +1,30 @@
 (function () {
     'use strict';
     angular.module('EST.controllers')
-            .controller('UsersController', function (Config, API, Auth, Util, $http, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert, Crud, item) {
+            .controller('UsersController', function (Config,sha256, API, Auth, Util, $http, $state, $scope, $sessionStorage, $rootScope, $stateParams, SweetAlert, Crud, item) {
                 var ctrl = this;
-
+                
                 ctrl.register = function () {
-                    //cleaning picklist data
+                    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{2,}/;
                     $scope.item.roleses = $scope.item.addedRoles;
                     delete $scope.item.addedRoles;
                     delete $scope.item.password_confirmation;
-                    ctrl.checkOnlyUser($scope.item.name);
-
-                    if (!ctrl.check($scope.item.password)) {
-                        SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
-                    }
-                    if (ctrl.checkOnlyUser($scope.item.name))
-                    {
-                         console.log("error")
-                        SweetAlert.swal('Error', 'La contraseña no cumple con el formato establecido');
-
-                    } else {
-                        Auth.registerUser($scope.item).then(function (data) {
-                            $state.go('home.users', {}, {reload: true});
-                        });
-                    }
-                };
-
-
-                ctrl.check = function checkPassword(str)
-                {
-                    Config.getConfigID(2).then(function (data) {
-                        ctrl.minPass = data.data.valor;
-                    });
-                    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-                    return re.test(str);
-                };
-
-                ctrl.checkOnlyUser = function checkUser(name) {
-                    Crud.isRepeat('usersRepeat', name).then(function (data) {
-                        return data;
-                        console.log(data);
+                    Crud.isRepeat('usersRepeat', $scope.item.name).then(function (data) {
+                        if (data.data) {
+                            SweetAlert.swal('Error', 'Elige otro usuario, ya ese esta registrado');
+                        } else {
+                            Config.getConfigID(2).then(function (datos) {
+                                ctrl.minPass = datos.data.valor;
+                                if ($scope.item.password.length < ctrl.minPass || !re.test($scope.item.password)) {
+                                    SweetAlert.swal('Error', 'La contrasenna no cumple el formato establecido');
+                                } else {
+                                    $scope.item.password=sha256.convertToSHA256($scope.item.password);
+                                    Auth.registerUser($scope.item).then(function (data) {
+                                        $state.go('home.users', {}, {reload: true});
+                                    });
+                                }
+                            });
+                        }
                     });
                 };
 
@@ -61,8 +46,8 @@
                 ctrl.updatePassword = function () {
                     Auth.updatePassword($scope.item.id, {
                         current_password: $scope.item.current_password,
-                        password: $scope.item.password,
-                        password_confirmation: $scope.item.password_confirmation
+                        password:  sha256.convertToSHA256($scope.item.password),
+                        password_confirmation: sha256.convertToSHA256($scope.item.password_confirmation)
                     }).then(function (data) {
                         $state.go('home.users', {}, {reload: true});
                     });

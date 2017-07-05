@@ -55,5 +55,5 @@ public interface UserDao {
 
     List<Configuracion> getConfiguration();
     
-    Boolean NombreRepetido(String name) ;
+ 
 }

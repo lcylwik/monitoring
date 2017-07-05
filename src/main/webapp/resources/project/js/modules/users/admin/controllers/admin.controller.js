@@ -19,7 +19,6 @@
                 if ($state.current.name === 'home.admin') {
                     Config.getConfig().then(function (data) {
                         angular.forEach(data.data, function (element) {
-                            console.log(element.idC);
                             if (element.idC == 1) {
                                 ctrl.timeD = element.valor;
                             } else if (element.idC == 2) {

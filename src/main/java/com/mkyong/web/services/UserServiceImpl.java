@@ -122,8 +122,4 @@ public class UserServiceImpl implements UserService {
         return userDao.getConfiguration();
     }
 
-    @Override
-    public Boolean NombreRepetido(String name) {
-       return userDao.NombreRepetido(name);
-    }
 }

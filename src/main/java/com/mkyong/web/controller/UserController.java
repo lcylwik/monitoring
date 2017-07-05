@@ -95,8 +95,7 @@ public class UserController {
 
     @RequestMapping(value = "/usersRepeat/{name}", method = RequestMethod.GET)
     public boolean usersRepeat(@PathVariable("name") String name) {
-        return userservice.NombreRepetido(name);
-
+       return userservice.userExists(name);
     }
 
     @RequestMapping(value = "user/updatePassword/{id}", method = RequestMethod.POST)
