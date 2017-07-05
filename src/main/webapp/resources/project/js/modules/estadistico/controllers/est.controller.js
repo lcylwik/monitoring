@@ -14,7 +14,7 @@
                     codigoRespuesta: "Codigo de Respuesta",
                     redLogicaEmi: "LN Emisor",
                     producto: "Producto",
-                    ambiente: "Codigo de Respuesta",
+                    ambiente: "Ambiente",
                     tipoTransaccion: "LN Emisor",
                     tipoMensaje: "Tipo de Mensaje",
                     tipoTerminal: "Tipo de Terminal",

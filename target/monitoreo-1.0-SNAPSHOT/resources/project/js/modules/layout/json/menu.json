@@ -20,6 +20,12 @@
         "icono": null,
         "link": "home.search",
         "permiso": "prosa.monitoring"
+      },
+      "est.config": {
+        "nombre": "Configuracion",
+        "icono": null,
+        "link": "home.config",
+        "permiso": "prosa.monitoring"
       }
     }
   },

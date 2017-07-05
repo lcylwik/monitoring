@@ -1,0 +1,31 @@
+<div class="col-md-12 col-xs-12 col-lg-12">
+    <div class="row">
+
+        <div class="panel">
+            <div class="panel-heading pointer" ng-click="showFilters = !showFilters" ng-init="showFilters = true">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p style="margin-bottom:0;">
+                        <strong>Configuraciones del Estad&iacute;stico</strong>
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p style="margin-bottom:0;">
+                        <span class="fa fa-cog pull-right filter-icon" ng-class="showFilters ? 'open' : ''"></span>
+                    </p>
+                </div>
+
+            </div>
+           <div class="panel-body" ng-if="showFilters">
+            <form role="form" ng-submit="ctrl.filter()">
+
+              
+                <div class="col-md-12 col-xs-4 col-lg-3 pull-right filter-buttons">
+                    <div class="form-group">
+                    </div>
+                </div>
+
+        </div>
+
+    </div> 
+</div> 
+</div>

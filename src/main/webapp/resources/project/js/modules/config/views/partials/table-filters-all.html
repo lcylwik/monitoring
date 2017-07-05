@@ -1,0 +1,82 @@
+<div class="col-md-12 form-group filtersAll">
+    <div class="col-md-4 form-group" ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
+        <label>Nombre de Archivo</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.prtFilename" options="catalogo.prtFilename" show-search="true">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.redLogicaAdq.length == 1 && catalogo.redLogicaAdq[0] == '') && catalogo.redLogicaAdq.length > 0">
+        <label>LN Adquiriente</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.redLogicaAdq" options="catalogo.redLogicaAdq">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.redLogicaEmi.length == 1 && catalogo.redLogicaEmi[0] == '') && catalogo.redLogicaEmi.length > 0">
+        <label>LN Emisor</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.redLogicaEmi" options="catalogo.redLogicaEmi">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.codigoRespuesta.length == 1 && catalogo.codigoRespuesta[0] == '') && catalogo.codigoRespuesta.length > 0">
+        <label>Código Respuesta</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.codigoRespuesta" options="catalogo.codigoRespuesta">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.tipoTransaccion.length == 1 && catalogo.tipoTransaccion[0] == '') && catalogo.tipoTransaccion.length > 0">
+        <label>Tipo de Transaccion</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.tipoTransaccion" options="catalogo.tipoTransaccion">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.fiidAdquiriente.length == 1 && catalogo.fiidAdquiriente[0] == '') && catalogo.fiidAdquiriente.length > 0">
+        <label>FIID Adquiriente</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.fiidAdquiriente" options="catalogo.fiidAdquiriente">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.fiidEmisor.length == 1 && catalogo.fiidEmisor[0] == '') && catalogo.fiidEmisor.length > 0">
+        <label>FIID Emisor</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.fiidEmisor" options="catalogo.fiidEmisor">
+        </multiselect>
+    </div>
+    
+     <div class="col-md-4 form-group" ng-if="!(catalogo.tipoMensaje.length == 1 && catalogo.tipoMensaje[0] == '') && catalogo.tipoMensaje.length > 0">
+        <label>Tipo Mensaje</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.tipoMensaje" options="catalogo.tipoMensaje">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.tipoTerminal.length == 1 && catalogo.tipoTerminal[0] == '') && catalogo.tipoTerminal.length > 0">
+        <label>Tipo Terminal</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.tipoTerminal" options="catalogo.tipoTerminal">
+        </multiselect>
+    </div>
+    
+     <div class="col-md-4 form-group" ng-if="!(catalogo.tipoCuenta.length == 1 && catalogo.tipoCuenta[0] == '') && catalogo.tipoCuenta.length > 0">
+        <label>Tipo Cuenta</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.tipoCuenta" options="catalogo.tipoCuenta">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.responder.length == 1 && catalogo.responder[0] == '') && catalogo.responder.length > 0">
+        <label>Responder</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.responder" options="catalogo.responder">
+        </multiselect>
+    </div>
+    
+     <div class="col-md-4 form-group" ng-if="!(catalogo.entryMode.length == 1 && catalogo.entryMode[0] == '') && catalogo.entryMode.length > 0">
+        <label>Modo de entrada</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.entryMode" options="catalogo.entryMode">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.medioAcceso.length == 1 && catalogo.medioAcceso[0] == '') && catalogo.medioAcceso.length > 0">
+        <label>Medio de acceso</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.medioAcceso" options="catalogo.medioAcceso">
+        </multiselect>
+    </div>
+    
+     <div class="col-md-4 form-group" ng-if="!(catalogo.tokenB4.length == 1 && catalogo.tokenB4[0] == '') && catalogo.tokenB4.length > 0">
+        <label>Token B4</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.tokenB4" options="catalogo.tokenB4">
+        </multiselect>
+    </div>
+    <div class="col-md-4 form-group" ng-if="!(catalogo.tokenB0.length == 1 && catalogo.tokenB0[0] == '') && catalogo.tokenB0.length > 0">
+        <label>Token B0</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.tokenB0" options="catalogo.tokenB0">
+        </multiselect>
+    </div>
+
+</div>
