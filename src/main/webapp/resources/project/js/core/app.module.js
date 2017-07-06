@@ -18,7 +18,8 @@
         "EST.services",
         "EST.controllers",
         "EST.directives",
-        "angular-encryption"
+        "angular-encryption",
+        "ui.calendar"
     ])
         .constant('API', 'http://localhost:8084/api')
         .config(function ($urlRouterProvider, $interpolateProvider, $ocLazyLoadProvider, $stateProvider, $httpProvider) {

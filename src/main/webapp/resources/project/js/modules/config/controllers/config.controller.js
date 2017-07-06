@@ -1,67 +1,50 @@
 
 (function () {
     angular.module('EST.controllers')
-            .controller('ConfigController', function ($scope, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
+            .controller('ConfigController', function ($scope, $compile, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
                 var ctrl = this;
 
-                ctrl.visibleNames = {
-                    id: "Identificador",
-                    prtFilename: "Archivo",
-                    prtProcDte: "Fecha",
-                    fiidEmisor: "FIID Emisor",
-                    fiidAdquiriente: "FIID Adquiriente",
-                    redLogicaAdq: "LN Adquiriente",
-                    codigoRespuesta: "Codigo de Respuesta",
-                    redLogicaEmi: "LN Emisor",
-                    producto: "Producto",
-                    ambiente: "Codigo de Respuesta",
-                    tipoTransaccion: "LN Emisor",
-                    tipoMensaje: "Tipo de Mensaje",
-                    tipoTerminal: "Tipo de Terminal",
-                    tipoCuenta: "Tipo de Cuenta",
-                    responder: "Responder",
-                    entryMode: "Modo de Entrada",
-                    medioAcceso: "Medio Acceso",
-                    tokenB4: "Token B4",
-                    tokenB0: "Token B0"
-                }
-
-                $scope.filtersDate = {
-                    firstDate: moment().subtract(15, 'days').toDate(),
-                    lastDate: moment().toDate()
-                };
-                $scope.filters = {};
-
-                $scope.$watch('filtersDate', function () {
-                    ctrl.getTXN();
-                   
-                }, true);
-
-                $scope.$watch('filters', function () {
-                    
-                }, true);
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
 
 
-                //obtener las transacciones
-                ctrl.getTXN = function () {
-                    $scope.datos = TXN.getService($scope.filtersDate.firstDate, $scope.filtersDate.lastDate).then(function (trans) {
-                        $scope.datos = trans.data;
-                        angular.forEach($scope.datos, function (field) {
-                            field.prtProcDte = moment(field.prtProcDte, "x").format("DD/MM/YYYY");
-                        })
-                        
+                /* event source that contains custom events on the scope */
+                $scope.events = [
+                    {title: 'All Day Event', start: new Date(y, m, 1)},
+                    {title: 'Long Event', start: new Date(y, m, d - 5), end: new Date(y, m, d - 2)},
+                    {id: 999, title: 'Repeating Event', start: new Date(y, m, d - 3, 16, 0), allDay: false},
+                    {id: 999, title: 'Repeating Event', start: new Date(y, m, d + 4, 16, 0), allDay: false},
+                    {title: 'Birthday Party', start: new Date(y, m, d + 1, 19, 0), end: new Date(y, m, d + 1, 22, 30), allDay: false},
+                    {title: 'Click for Google', start: new Date(y, m, 28), end: new Date(y, m, 29), url: 'http://google.com/'}
+                ];
+                /* event source that calls a function on every view switch */
+
+
+                /* Render Tooltip */
+                $scope.eventRender = function (event, element, view) {
+                    element.attr({
+                        'tooltip': event.title,
+                        'tooltip-append-to-body': true
                     });
-                }
+                    $compile(element)($scope);
+                };
 
-                
-
-              
-
-
-
-
-
-
-
+                /* config object */
+                $scope.uiConfig = {
+                    calendar: {
+                        height: 450,
+                        editable: true,
+                        header: {
+                            left: 'title',
+                            center: '',
+                            right: 'today prev,next'
+                        },
+                        eventRender: $scope.eventRender
+                    }
+                };
+                /* event sources array*/
+                $scope.eventSources = [$scope.events];
             });
 })();
