@@ -8,93 +8,94 @@
         <title data-ng-bind="title">Monitoreo</title>
         <meta name="description" content="">
         <meta name="csrf" content="{{ csrf_token()}}">
-        <link rel="icon" type="image/ico" href="/favicon.ico" />
 
         <!-- Load CSS -->
         <link href="/css/app.css" rel="stylesheet">
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="/css/calendar.css" rel="stylesheet">
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
         <link href="/css/sweetalert.css" rel="stylesheet">
         <link href="/css/font-awesome.css" rel="stylesheet">
         <link href="/css/ng-table.min.css" rel="stylesheet">
         <link href="/css/select2.css" rel="stylesheet">
         <link href="/bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet" />
         <link href="/bower_components/angular-ui-select/dist/select.css" rel="stylesheet" />
-        <link href="/bower_components/fullcalendar/dist/fullcalendar.min.css"></script>
-        <link href="/css/custom.css" rel="stylesheet">
-    </head>
-    <body class="noScroll">
-        <div class="loader-container" ng-show="$root.showLoader">
-            <img src="images/logo.png" class="loader-logo">
-            <div class="loader "></div>
+        <link href="/bower_components/fullcalendar/dist/fullcalendar.css"></script>
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body class="noScroll">
+    <div class="loader-container" ng-show="$root.showLoader">
+        <img src="images/logo.png" class="loader-logo">
+        <div class="loader "></div>
+    </div>
+    <div ui-view=""></div>
+    <div class="wrapper row row-full">
+        <aside id='sidebarLeft'>
+            <div ui-view="menu"></div>
+        </aside>
+        <div class="wrapper-content row row-full">
+            <section id='header' class="row row-full">
+                <div ui-view="header"></div>
+            </section>
+            <section id='content' class="row row-full" ng-class="$root.menuOpen ? 'open' : ''">
+                <div ui-view="container"></div>
+            </section>
         </div>
-        <div ui-view=""></div>
-        <div class="wrapper row row-full">
-            <aside id='sidebarLeft'>
-                <div ui-view="menu"></div>
-            </aside>
-            <div class="wrapper-content row row-full">
-                <section id='header' class="row row-full">
-                    <div ui-view="header"></div>
-                </section>
-                <section id='content' class="row row-full" ng-class="$root.menuOpen ? 'open' : ''">
-                    <div ui-view="container"></div>
-                </section>
-            </div>
-        </div>
+    </div>
 
 
-        <!-- Load Javascript Libraries (AngularJS, JQuery, Bootstrap) -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
-        <script src="/bower_components/bootstrap.js"></script>
+    <!-- Load Javascript Libraries (AngularJS, JQuery, Bootstrap) -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/bootstrap.js"></script>
         <script src="/bower_components/angular-1.5/angular.js"></script>
         <script src="/bower_components/angular-ui-router.js"></script>
-        <script src="/bower_components/ng-table.min.js"></script>
-        <script src="/bower_components/ocLazyLoad.min.js"></script>
-        <script src="/bower_components/ngStorage.js"></script>
-        <script src="/bower_components/ui-bootstrap-tpls.js"></script>
-        <script src="/bower_components/sweetalert.min.js"></script>
-        <script src="/bower_components/angular-swal.js"></script>
-        <script src="/bower_components/moment.js"></script>
+    <script src="/bower_components/ng-table.min.js"></script>
+    <script src="/bower_components/ocLazyLoad.min.js"></script>
+    <script src="/bower_components/ngStorage.js"></script>
+    <script src="/bower_components/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/sweetalert.min.js"></script>
+    <script src="/bower_components/angular-swal.js"></script>
+    <script src="/bower_components/moment.js"></script>
         <script src="/bower_components/angular-1.5/angular-animate.min.js"></script>
-        <script src="/bower_components/lodash.js"></script>
-        <script src="/bower_components/picklist.js"></script>
-        <script src="/bower_components/angular-csv-import.js"></script>
+    <script src="/bower_components/lodash.js"></script>
+    <script src="/bower_components/picklist.js"></script>
+    <script src="/bower_components/angular-csv-import.js"></script>
 
-        <script src="/bower_components/angular-1.5/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-1.5/angular-sanitize.js"></script>
 
-        <script src="/bower_components/angular-bootstrap-multiselect/dist/angular-bootstrap-multiselect.min.js"></script>
-        <script src="/bower_components/angular-bootstrap-multiselect/dist/angular-bootstrap-multiselect-templates.js"></script>
+    <script src="/bower_components/angular-bootstrap-multiselect/dist/angular-bootstrap-multiselect.min.js"></script>
+    <script src="/bower_components/angular-bootstrap-multiselect/dist/angular-bootstrap-multiselect-templates.js"></script>
 
-        <script src="/bower_components/bootstrap-growl/bootstrap-growl.js"></script>
-        <script src="/bower_components/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="/bower_components/bootstrap-growl/bootstrap-growl.js"></script>
+    <script src="/bower_components/bootstrap-growl/bootstrap-growl.min.js"></script>
 
-        <script src="/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-        <script src="/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script src="/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
 
-        <script src="/bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="/bower_components/angular-ui-select/dist/select.js"></script>
 
-        <script src="/bower_components/angular-google-chart/ng-google-chart.js"></script>
-        <script src="/bower_components/angular-sha256-master/sha256.js"></script>
+    <script src="/bower_components/angular-google-chart/ng-google-chart.js"></script>
+    <script src="/bower_components/angular-sha256-master/sha256.js"></script>
 
-        <script src="/bower_components/angular-ui-calendar/src/calendar.js"></script>
-        <script src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-
-
-        <!-- AngularJS Application Scripts -->
-        <script src="/js/core/app.module.js"></script>
-        <script src="/js/core/controllers.module.js"></script>
-        <script src="/js/core/directives.module.js"></script>
-        <script src="/js/core/services.module.js"></script>
-
-        <script src="/js/modules/auth/auth.module.js"></script>
-        <script src="/js/modules/layout/layout.module.js"></script>
-        <script src="/js/modules/estadistico/est.module.js"></script>
-        <script src="/js/modules/config/config.module.js"></script>
-        <script src="/js/modules/users/users.module.js"></script>
-        <script src="/js/modules/bitacoras/bitacoras.module.js"></script>
+    <script src="/bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="/bower_components/fullcalendar/dist/gcal.js"></script>
 
 
+    <!-- AngularJS Application Scripts -->
+    <script src="/js/core/app.module.js"></script>
+    <script src="/js/core/controllers.module.js"></script>
+    <script src="/js/core/directives.module.js"></script>
+    <script src="/js/core/services.module.js"></script>
 
-    </body>
+    <script src="/js/modules/auth/auth.module.js"></script>
+    <script src="/js/modules/layout/layout.module.js"></script>
+    <script src="/js/modules/estadistico/est.module.js"></script>
+    <script src="/js/modules/config/config.module.js"></script>
+    <script src="/js/modules/users/users.module.js"></script>
+    <script src="/js/modules/bitacoras/bitacoras.module.js"></script>
+
+  
+
+</body>
 </html>

@@ -8,7 +8,7 @@ package com.mkyong.web.services;
 import com.mkyong.web.model.Bitacoras;
 import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
+
 import com.mkyong.web.model.Users;
 import com.sun.javafx.image.impl.IntArgb;
 import java.math.BigInteger;

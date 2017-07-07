@@ -6,8 +6,6 @@
 package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
 import com.mkyong.web.model.Txn;
 import java.util.Date;
 import java.util.Iterator;

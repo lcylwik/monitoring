@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 27/06/2017 05:46:13 PM by Hibernate Tools 4.3.1
+// Generated Jul 7, 2017 5:00:18 PM by Hibernate Tools 4.3.1
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;

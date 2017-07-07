@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28/06/2017 12:38:55 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jul 7, 2017 5:00:28 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.mkyong.web.model.Txn" table="txn" catalog="monitoreo" optimistic-lock="version">
+    <class name="com.mkyong.web.model.Txn" table="txn" catalog="monitoreo">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <property name="prtFilename" type="string">
             <column name="prtFilename" length="16" not-null="true" />

@@ -7,8 +7,6 @@ package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Clave;
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
 import com.mkyong.web.model.Txn;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -118,7 +116,7 @@ public class TransDaoImpl implements TransDao {
     public List<String> getCodigo() {
         String sql = "SELECT codigo_respuesta  FROM `transacciones`.`prsa_rejected_txn` group by (codigo_respuesta);";
         String sql1 = "SELECT CODIGO_RESPUESTA_AUT  FROM `transacciones`.`prsa_txn_aceptadas` group by (CODIGO_RESPUESTA_AUT);";
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil1.getSession();
 
         session.beginTransaction();
         List<String> codes = session.createSQLQuery(sql).list();

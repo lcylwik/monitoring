@@ -51,6 +51,7 @@
                             }
                         },
                         item: function ($stateParams, Auth) {
+                            
                             if (!$stateParams.item && $stateParams.id) {
                                 return Auth.getUserById($stateParams.id).then(function (data) {
                                     $stateParams.item = data.data;

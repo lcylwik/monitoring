@@ -17,16 +17,43 @@
             </div>
             <div class="panel-body" ng-if="showFilters">
                 <form role="form" ng-submit="ctrl.filter()">
-                    <div id="calendar" ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
+
+                    <div class="col-md-12">
+                        <div class="">
+                            <div class="col-md-4">
+
+                                <div class="btn-group calTools">
+                                    <button type="button" class="btn btn-primary" ng-click="addEvent()">
+                                        Add Event
+                                    </button>
+                                </div>
 
 
-                    <div class="col-md-12 col-xs-4 col-lg-3 pull-right filter-buttons">
-                        <div class="form-group">
+                                <div ng-repeat="e in events">
+                                    <div class="alert alert-info">
+                                        <a class="close" ng-click="remove($index)"><i class="glyphicon-remove"></i></a>
+                                        <b><input type="text" ng-model="e.title"><input ng-model="e.value"></b>
+                                        {[{e.start| date:"MMM dd"}]} - {[{e.end| date:"MMM dd"}]}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-8">
+
+                                <div class="btn-toolbar">
+                                    <div class="btn-group">
+                                        <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+                                        <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+                                        <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+                                    </div>
+                                </div>
+                                <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
+
+                            </div>
                         </div>
                     </div>
-
-            </div>
-
+            </div> 
         </div> 
-    </div> 
-</div>
+    </div>

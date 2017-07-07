@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated 28/06/2017 12:38:49 PM by Hibernate Tools 4.3.1
+// Generated Jul 7, 2017 5:00:18 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;

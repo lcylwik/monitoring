@@ -5,14 +5,15 @@
  */
 package com.mkyong.web.controller;
 
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
+import com.mkyong.web.model.Eventos;
 import com.mkyong.web.model.Txn;
+import com.mkyong.web.services.EventoService;
 import com.mkyong.web.services.TransService;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,4 +46,4 @@ public class TransControler {
         List<Object> estadistico = transservice.getEstadistico();
         return estadistico;
     }
-}
+    }
