@@ -63,7 +63,7 @@ public class EventosImpl implements EventosDao {
 
     @Override
     public Integer addEventos(Eventos evento) {
-       
+        System.out.println("llego al ");
         Session session = SessionUtil1.getSession();
         Transaction tx = null;
         Integer idEvento = 0;
