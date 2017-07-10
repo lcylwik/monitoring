@@ -5,6 +5,8 @@ package com.mkyong.web.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,11 +38,15 @@ public class Eventos  implements java.io.Serializable {
        this.end = end;
        this.value = value;
     }
+     public Eventos( String title, Date start, Date end, int value) {
+       this.title = title;
+       this.start = start;
+       this.end = end;
+       this.value = value;
+    }
    
-     @Id 
-
-    
-    @Column(name="id", unique=true, nullable=false)
+     @Id @Column(name="id", unique=true, nullable=false)
+     @GeneratedValue(strategy=IDENTITY)
     public int getId() {
         return this.id;
     }
@@ -60,7 +66,7 @@ public class Eventos  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="start", nullable=false, length=10)
+    @Column(name="start", nullable=true, length=10)
     public Date getStart() {
         return this.start;
     }
@@ -70,7 +76,7 @@ public class Eventos  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="end", nullable=false, length=10)
+    @Column(name="end", nullable=true, length=10)
     public Date getEnd() {
         return this.end;
     }

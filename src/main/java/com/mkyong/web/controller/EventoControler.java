@@ -25,7 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/resources")
 public class EventoControler {
 
     @Autowired
@@ -44,12 +44,12 @@ public class EventoControler {
     }
 
     @RequestMapping(value = "eventos", method = RequestMethod.POST)
-    public void addEvento(@RequestBody Eventos evento, UriComponentsBuilder builder) {
+    public void addEvento(@RequestBody Eventos evento) {
         Integer userID = eventoservice.addEventos(evento);
 
     }
 
-    @RequestMapping(value = "eventos", method = RequestMethod.PUT)
+    @RequestMapping(value = "eventos/{id}", method = RequestMethod.PUT)
     public void updateUser(@RequestBody Eventos evento) {
         eventoservice.updateEventos(evento);
     }

@@ -1,0 +1,82 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "components-jqueryui",
+        "scope": null,
+        "escapedName": "components-jqueryui",
+        "name": "components-jqueryui",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "E:\\Trabajo\\GitProject\\Monitoreo\\src\\main\\webapp\\resources\\project"
+    ]
+  ],
+  "_from": "components-jqueryui@latest",
+  "_id": "components-jqueryui@1.12.1",
+  "_inCache": true,
+  "_location": "/components-jqueryui",
+  "_nodeVersion": "7.10.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/components-jqueryui-1.12.1.tgz_1494974716952_0.03425468783825636"
+  },
+  "_npmUser": {
+    "name": "redcatjs",
+    "email": "jo@surikat.pro"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "components-jqueryui",
+    "scope": null,
+    "escapedName": "components-jqueryui",
+    "name": "components-jqueryui",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/components-jqueryui/-/components-jqueryui-1.12.1.tgz",
+  "_shasum": "617076f128f3be4c265f3e2db50471ef96cd9cee",
+  "_shrinkwrap": null,
+  "_spec": "components-jqueryui",
+  "_where": "E:\\Trabajo\\GitProject\\Monitoreo\\src\\main\\webapp\\resources\\project",
+  "author": {
+    "name": "jQuery Foundation and other contributors",
+    "url": "https://github.com/jquery/jquery-ui/blob/master/AUTHORS.txt"
+  },
+  "bugs": {
+    "url": "https://github.com/components/jqueryui/issues"
+  },
+  "dependencies": {},
+  "description": "A curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "617076f128f3be4c265f3e2db50471ef96cd9cee",
+    "tarball": "https://registry.npmjs.org/components-jqueryui/-/components-jqueryui-1.12.1.tgz"
+  },
+  "gitHead": "44ecf3794cc56b65954cc19737234a3119d036cc",
+  "homepage": "http://jqueryui.com",
+  "license": "MIT",
+  "main": "jquery-ui.js",
+  "maintainers": [
+    {
+      "name": "redcatjs",
+      "email": "jo@surikat.pro"
+    }
+  ],
+  "name": "components-jqueryui",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/components/jqueryui.git"
+  },
+  "scripts": {},
+  "version": "1.12.1"
+}

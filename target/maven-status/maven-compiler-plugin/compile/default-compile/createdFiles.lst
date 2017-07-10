@@ -31,9 +31,9 @@ com\mkyong\web\model\Eventos.class
 com\mkyong\web\model\Users.class
 com\mkyong\web\model\userLogin.class
 com\mkyong\web\dao\EventosImpl.class
+.netbeans_automatic_build
 com\mkyong\web\dao\RolesDaoImpl.class
 com\mkyong\web\services\RolServiceImpl.class
-com\mkyong\web\dao\SessionUtil.class
 com\mkyong\web\dao\PermissionsDaoImpl.class
 com\mkyong\web\dao\PermissionsDao.class
 com\mkyong\web\services\EventoServiceImpl.class
