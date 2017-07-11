@@ -23,7 +23,6 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author Lianet
  */
-
 @RestController
 @RequestMapping("api/resources")
 public class EventoControler {
@@ -44,9 +43,9 @@ public class EventoControler {
     }
 
     @RequestMapping(value = "eventos", method = RequestMethod.POST)
-    public void addEvento(@RequestBody Eventos evento) {
+    public int addEvento(@RequestBody Eventos evento) {
         Integer userID = eventoservice.addEventos(evento);
-
+        return userID;
     }
 
     @RequestMapping(value = "eventos/{id}", method = RequestMethod.PUT)
