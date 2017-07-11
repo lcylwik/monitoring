@@ -125,12 +125,19 @@
                         droppableElementsClass: '@',
                         fullCallendarOptions: '=',
                         add: '=',
-                        update: '='
+                        update: '=',
+                        getAll: '='
                     },
                     link: function (scope, element, attrs) {
+
                         function makeDraggables() {
                             setTimeout(function () {
                                 $('#external-events .' + scope.droppableElementsClass).each(function () {
+                                    $(this).data('event', {
+                                        title: $.trim($(this).text()), // use the element's text as the event title
+                                        stick: true // maintain when user navigates (see docs on the renderEvent method)
+                                    });
+
                                     $(this).draggable({
                                         zIndex: 999,
                                         revert: true, // will cause the event to go back to its
@@ -158,8 +165,7 @@
                             },
 
                             events: scope.events,
-                            drop: function (date) {
-                                console.log('drop', date.format());
+                            drop: function (date, jsEvent, ui, resourceId) {
                                 // is the "remove after drop" checkbox checked?
                                 if ($('#drop-remove').is(':checked')) {
                                     // if so, remove the element from the "Draggable Events" list
@@ -173,7 +179,10 @@
                                     start: moment(event.start).add(1, "days"),
                                     end: event.end
                                 }
+                                console.log(scope.events);
+                                console.log(objEvent);
                                 scope.update(objEvent);
+
                             },
                             eventDrop: function (event) { // called when an event (already on the calendar) is moved
                                 var objEvent = {
@@ -182,20 +191,24 @@
                                     start: moment(event.start).add(1, "days"),
                                     end: event.end
                                 }
+
                                 scope.update(objEvent);
                             }
                         };
 
                         var cal = $('#' + scope.calendarId).fullCalendar(defaultCalendarOptions);
 
+
                         scope.onConfirmEvent = function () {
                             scope.adding = false;
                             scope.new.start = "0000-00-00";
                             scope.new.end = "0000-00-00";
 
-                            scope.events.push(Object.assign({}, scope.new));
-                            makeDraggables();
-                            scope.add(scope.new);
+                            scope.add(scope.new).then(function (data) {
+                                scope.new.id = data.data;
+                                scope.events.push(Object.assign({}, scope.new));
+                                makeDraggables();
+                            });
 
                         }
                         scope.onCancelEvent = function () {

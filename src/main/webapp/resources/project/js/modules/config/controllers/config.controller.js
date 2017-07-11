@@ -18,25 +18,30 @@
                 /* event source that contains custom events on the scope */
                 $scope.events = [];
 
-                if ($state.current.name === 'home.config') {
-                    $scope.getEvents = Crud.getAll('/eventos').then(function (event) {
+
+                ctrl.getAllEvent = function () {
+                    Crud.getAll('/eventos').then(function (event) {
                         angular.forEach(event.data, function (element) {
                             $scope.events.push(element);
                         });
                     });
-                }
+                    return $scope.events;
+                    console.log($scope.events);
+                };
 
                 ctrl.AddDB = function (evento) {
-                    Crud.create('/eventos',evento);
+                    return Crud.create('/eventos', evento);
                 }
-                
-                ctrl.updateDB= function (evento) {
-                    Crud.update('/eventos',evento).then(function () {
-                        console.log(evento);
-                        console.log("update");
+
+                ctrl.updateDB = function (evento) {
+                    Crud.update('/eventos', evento).then(function () {
+                        console.log("updateEvent",evento);
                     });
                 }
 
+                if ($state.current.name === 'home.config') {
+                    ctrl.getAllEvent();
+                }
 
 
 

@@ -50,52 +50,59 @@
                                     </div>
                                 </div>
                                 <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
-                                
+
                             </div>
                         </div>
                     </div>
                 </form>
-                
-                <div calendar-events calendar-id="fullCalendarEvents" droppable-elements-class="fc-event" events="events" add='ctrl.AddDB' update='ctrl.updateDB'></div>
+
+                <div calendar-events calendar-id="fullCalendarEvents" droppable-elements-class="fc-event" events="events" add='ctrl.AddDB' update='ctrl.updateDB' getAll='ctrl.getAllEvent'></div>
                 <div id='fullCalendarEvents'></div>
             </div> 
         </div> 
     </div>
+    <script>
+        $(document).ready(function () {
+          
+
+        });
+
+    </script>
     <style>
-    #external-events {
-		float: left;
-		width: 15%;
-                margin-right: 10px;
-		padding: 0 10px;
-		border: 1px solid #ccc;
-		background: #eee;
-		text-align: left;
-	}
-		
-	#external-events h4 {
-		font-size: 16px;
-		margin-top: 0;
-		padding-top: 1em;
-	}
-		
-	#external-events .fc-event {
-		margin: 10px 0;
-		cursor: pointer;
-	}
-		
-	#external-events p {
-		margin: 1.5em 0;
-		font-size: 11px;
-		color: #666;
-	}
-		
-	#external-events p input {
-		margin: 0;
-		vertical-align: middle;
-	}
-	#fullCalendarEvents {
-		float: right;
-		width: calc(85% - 15px);
-	}
-        
-</style>
+        #external-events {
+            float: left;
+            width: 15%;
+            margin-right: 10px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+        }
+
+        #external-events h4 {
+            font-size: 16px;
+            margin-top: 0;
+            padding-top: 1em;
+        }
+
+        #external-events .fc-event {
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #external-events p {
+            margin: 1.5em 0;
+            font-size: 11px;
+            color: #666;
+        }
+
+        #external-events p input {
+            margin: 0;
+            vertical-align: middle;
+        }
+        #fullCalendarEvents {
+            float: right;
+            width: calc(85% - 15px);
+        }
+
+    </style>
