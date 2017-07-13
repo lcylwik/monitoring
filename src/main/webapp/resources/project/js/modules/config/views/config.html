@@ -16,93 +16,79 @@
 
             </div>
             <div class="panel-body" ng-if="showFilters">
-                <form role="form" ng-submit="ctrl.filter()" ng-if="false">
-
-                    <div class="col-md-12">
-                        <div class="">
-                            <div class="col-md-4">
-
-                                <div class="btn-group calTools">
-                                    <button type="button" class="btn btn-primary" ng-click="addEvent()">
-                                        Add Event
-                                    </button>
-                                </div>
-
-
-                                <div ng-repeat="e in events">
-                                    <div class="alert alert-info">
-                                        <a class="close" ng-click="remove($index)"><i class="glyphicon-remove"></i></a>
-                                        <b><input type="text" ng-model="e.title"><input ng-model="e.value"></b>
-                                        {[{e.start| date:"MMM dd"}]} - {[{e.end| date:"MMM dd"}]}
-                                    </div>
-                                </div>
-
-
+                <div class=col-md-1 id='external-events' style="margin-left:1.5%">
+                    <h4>Variables</h4>
+                    <div class='fc-event' data-event={[{event}]} ng-repeat='event in eventsDB track by $index' >
+                        {[{event.title}]} <a ng-click="ctrl.removeEvent(event)"><i class="fa fa-trash pull-right"></i></a>
+                    </div>
+                    <form class="" role="form" ng-submit="ctrl.AddDB()">
+                        <div class='new-element' ng-if='adding'>
+                            <div class='form-group'>
+                                <label>Titulo</label>
+                                <input type='text' required class='form-control' ng-model='itemEvent.title'/>
                             </div>
-
-                            <div class="col-md-8">
-
-                                <div class="btn-toolbar">
-                                    <div class="btn-group">
-                                        <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
-                                        <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
-                                        <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
-                                    </div>
-                                </div>
-                                <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
-
+                            <div class='form-group'>
+                                <label>Valor</label>
+                                <input type="number" required  class='form-control' ng-model='itemEvent.value'/>
                             </div>
                         </div>
-                    </div>
-                </form>
+                        <div class='form-group pull-right'>
+                            <button class='btn btn-primary form-control' ng-hide='adding'ng-click='ctrl.onAddEvent()'>Nueva Variable</button>
+                            <button type="submit" class='btn btn-success form-control' ng-if='adding' >Confirmar</button>
+                            <button ng-click='ctrl.onCancelEvent()' class='btn btn-default form-control' ng-if='adding'>Cancelar</button>
+                        </div>
+                    </form>
+                </div>
 
-                <div calendar-events calendar-id="fullCalendarEvents" droppable-elements-class="fc-event" events="events" add='ctrl.AddDB' update='ctrl.updateDB' getAll='ctrl.getAllEvent'></div>
-                <div id='fullCalendarEvents'></div>
-            </div> 
+                <div class="col-md-8">
+                    <div style="clear:both"></div>
+                    <div class="calendar" 
+                         ng-model="eventSources" 
+                         calendar="myCalendar1" 
+                         ui-calendar="uiConfig.calendar"
+                         data-drop="true" 
+                         ></div>
+                </div> 
+            </div>
         </div> 
-    </div>
-    <script>
-        $(document).ready(function () {
-          
+    </div> 
+</div>
 
-        });
+<style>
+    #external-events {
+        float: left;
+        width: 160px;
+        margin-right: 10px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        background: #eee;
+        text-align: left;
+    }
 
-    </script>
-    <style>
-        #external-events {
-            float: left;
-            width: 15%;
-            margin-right: 10px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            background: #eee;
-            text-align: left;
-        }
+    #external-events h4 {
+        font-size: 16px;
+        margin-top: 0;
+        padding-top: 1em;
+    }
 
-        #external-events h4 {
-            font-size: 16px;
-            margin-top: 0;
-            padding-top: 1em;
-        }
+    #external-events .fc-event {
+        margin: 10px 0;
+        cursor: pointer;
+    }
 
-        #external-events .fc-event {
-            margin: 10px 0;
-            cursor: pointer;
-        }
+    #external-events p {
+        margin: 1.5em 0;
+        font-size: 11px;
+        color: #666;
+    }
 
-        #external-events p {
-            margin: 1.5em 0;
-            font-size: 11px;
-            color: #666;
-        }
+    #external-events p input {
+        margin: 0;
+        vertical-align: middle;
+    }
+    #fullCalendarEvents {
+        float: right;
+        width: calc(85% - 15px);
+    }
 
-        #external-events p input {
-            margin: 0;
-            vertical-align: middle;
-        }
-        #fullCalendarEvents {
-            float: right;
-            width: calc(85% - 15px);
-        }
-
-    </style>
+</style>
