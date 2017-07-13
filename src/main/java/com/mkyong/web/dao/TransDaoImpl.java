@@ -7,6 +7,7 @@ package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Clave;
 import com.mkyong.web.model.Estadistico;
+import com.mkyong.web.model.FilterTxn;
 import com.mkyong.web.model.Txn;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -40,13 +41,13 @@ public class TransDaoImpl implements TransDao {
 
     // Metodos Rest para obtener y adicionar las estadisticas
     @Override
-    public List<Object> getEstadistico() {
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters) {
         Session session = SessionUtil1.getSession();
-        // List<Object> list1 = SessionUtil1.getSession().createQuery("from Clave as cl join fetch cl.estadisticos as est").list();
-
-        List<Object> list1 = SessionUtil1.getSession().createSQLQuery("Select cl.type,cl.elemento,est.media,est.desviacion,est.fecha from estadistico as est inner join clave as cl where est.idClave=cl.idC").list();
-
-        return list1;
+        session.getTransaction().begin();
+        Object est = SessionUtil1.getSession().createSQLQuery("").list();
+        session.getTransaction().commit();
+        session.close();
+        return est;
     }
 
     @Override

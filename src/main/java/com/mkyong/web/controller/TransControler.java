@@ -6,9 +6,11 @@
 package com.mkyong.web.controller;
 
 import com.mkyong.web.model.Eventos;
+import com.mkyong.web.model.FilterTxn;
 import com.mkyong.web.model.Txn;
 import com.mkyong.web.services.EventoService;
 import com.mkyong.web.services.TransService;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +43,9 @@ public class TransControler {
         return txns;
     }
 
-    @RequestMapping(value = "/rest/estadistico", method = RequestMethod.GET)
-    public List<Object> findAllEstadistico() {
-        List<Object> estadistico = transservice.getEstadistico();
+    @RequestMapping(value = "/rest/est/{ejeY}/{ejeX}", method = RequestMethod.GET)
+    public Object findAllEstadistico(@PathVariable("ejeY") String ejeY,@PathVariable("ejeX") String ejeX,@RequestBody FilterTxn filters) {
+        Object estadistico = transservice.getEstadistico(ejeY,ejeX,filters);
         return estadistico;
     }
     }

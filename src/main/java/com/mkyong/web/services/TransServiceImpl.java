@@ -7,6 +7,7 @@ package com.mkyong.web.services;
 
 import com.mkyong.web.dao.TransDao;
 import com.mkyong.web.model.Estadistico;
+import com.mkyong.web.model.FilterTxn;
 import com.mkyong.web.model.Txn;
 
 import java.util.Date;
@@ -32,8 +33,8 @@ public class TransServiceImpl implements TransService {
     }
 
     @Override
-    public List<Object> getEstadistico() {
-        return trasdao.getEstadistico();
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters) {
+        return trasdao.getEstadistico(ejeY, ejeX, filters);
     }
 
     @Override

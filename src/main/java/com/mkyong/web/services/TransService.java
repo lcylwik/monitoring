@@ -6,6 +6,7 @@
 package com.mkyong.web.services;
 
 import com.mkyong.web.model.Estadistico;
+import com.mkyong.web.model.FilterTxn;
 import com.mkyong.web.model.Txn;
 import java.util.Date;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ public interface TransService {
 
     public List<Txn> getTransacciones();
 
-    public List<Object> getEstadistico();
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters);
 
     public Integer addEstadistico(Estadistico estadistico);
 

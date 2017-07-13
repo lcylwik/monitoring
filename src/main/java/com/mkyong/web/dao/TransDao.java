@@ -6,6 +6,7 @@
 package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Estadistico;
+import com.mkyong.web.model.FilterTxn;
 import com.mkyong.web.model.Txn;
 import java.util.Date;
 import java.util.Iterator;
@@ -18,7 +19,7 @@ import java.util.List;
 public interface TransDao {
 
     public List<Txn> getTransacciones();
-    public List<Object> getEstadistico();
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters);
 
     public Integer addEstadistico(Estadistico estadistico);
     
