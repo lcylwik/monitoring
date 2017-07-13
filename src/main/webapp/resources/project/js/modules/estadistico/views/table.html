@@ -19,7 +19,7 @@
                             <td align="center">
                                 {[{ y.ejeY}]}
                             </td>
-                            <td align="center" ng-repeat="x in y.ejeX" >
+                            <td align="center" ng-repeat="x in y.ejeX" ng-class="x.field != 'Total' ? ctrl.getClass(x.cantidad, y.ejeY, x.field) : ''">
                                 {[{x.cantidad}]}
                             </td>
                         </tr>

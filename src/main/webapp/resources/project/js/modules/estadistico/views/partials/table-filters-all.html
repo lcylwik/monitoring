@@ -1,7 +1,7 @@
 <div class="col-md-12 form-group filtersAll">
-    <div class="col-md-4 form-group" ng-if="!(catalogo.prtFilename.length == 1 && catalogo.prtFilename[0] == '') && catalogo.prtFilename.length > 0">
-        <label>Nombre de Archivo</label>
-        <multiselect class="multi pointer fc-alt" ng-model="filters.all.prtFilename" options="catalogo.prtFilename" show-search="true">
+    <div class="col-md-4 form-group" ng-if="!(catalogo.prtProcDte.length == 1 && catalogo.prtProcDte[0] == '') && catalogo.prtProcDte.length > 0">
+        <label>Fecha</label>
+        <multiselect class="multi pointer fc-alt" ng-model="filters.all.prtProcDte" options="catalogo.prtProcDte" show-search="true">
         </multiselect>
     </div>
     <div class="col-md-4 form-group" ng-if="!(catalogo.redLogicaAdq.length == 1 && catalogo.redLogicaAdq[0] == '') && catalogo.redLogicaAdq.length > 0">

@@ -3,7 +3,6 @@
     angular.module('EST.controllers')
             .controller('ESTController', function ($scope, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
                 var ctrl = this;
-
                 ctrl.visibleNames = {
                     id: "Identificador",
                     prtFilename: "Archivo",
@@ -34,19 +33,15 @@
                     lastDate: moment().toDate()
                 };
                 $scope.filters = {};
-
                 $scope.$watch('filtersDate', function () {
                     ctrl.getTXN();
                     ctrl.initCatalogo();
                     ctrl.generateData();
                 }, true);
-
                 $scope.$watch('filters', function () {
                     ctrl.generateData();
                     ctrl.generateChart();
                 }, true);
-
-
                 //obtener las transacciones
                 ctrl.getTXN = function () {
                     $scope.datos = TXN.getService($scope.filtersDate.firstDate, $scope.filtersDate.lastDate).then(function (trans) {
@@ -60,17 +55,17 @@
                     });
                 }
 
-                // ctrl.estadisticos = TXN.getServiceEstadistico().then(function (data) {
-                //     ctrl.estadisticos = data.data;
-
-                //  });
 
                 //generar datos dinámicos
                 ctrl.generateData = function () {
                     var data = [];
+                    var rtn = false;
                     $scope.arrayTotal = {};
                     if ($scope.catalogo && $scope.filters.field1) {
-                        angular.forEach($scope.catalogo[$scope.filters.field1.name], function (field) {
+
+                        $scope.arrayFilas = $scope.catalogo[$scope.filters.field1.name].filter(ctrl.filtrarFilas);
+
+                        angular.forEach($scope.arrayFilas, function (field) {
                             var obj = {
                                 ejeY: field,
                                 ejeX: ctrl.getColumnas(field)
@@ -81,18 +76,42 @@
                     }
                 }
 
+                ctrl.filtrarFilas = function (el) {
+                    var rtn = true;
+                    angular.forEach($scope.filters.all, function (value, key) {
+                        if ($scope.filters.field1.name == key) {
+                            if (value.indexOf(el) == -1 && value != 0) {
+                                rtn = false;
+                            }
+                        }
+                    });
+                    return rtn;
+                }
+
+                ctrl.filtrarColumnas = function (el) {
+                    var rtn = true;
+                    angular.forEach($scope.filters.all, function (value, key) {
+                        if ($scope.filters.field2.name == key) {
+                            if (value.indexOf(el) == -1 && value != 0) {
+                                rtn = false;
+                            }
+                        }
+                    });
+                    return rtn;
+                }
+
+
                 //Columnas de la tabla
                 ctrl.getColumnas = function (valorX) {
-
                     var columnas = [], totalValorX = 0, total = "TotalDeTotal";
                     var data = $scope.datos.filter(ctrl.filterFunction);
                     if ($scope.filters.field2) {
-                        angular.forEach($scope.catalogo[$scope.filters.field2.name], function (valorY) {
+                        $scope.arrayColumnas = $scope.catalogo[$scope.filters.field2.name].filter(ctrl.filtrarColumnas);
+                        angular.forEach($scope.arrayColumnas, function (valorY) {
                             var cant = ctrl.getCantTransacciones($scope.filters.field1.name, valorX, valorY, $scope.filters.field2.name, data);
                             $scope.arrayTotal[valorY] = $scope.arrayTotal[valorY] != undefined ? $scope.arrayTotal[valorY] + cant : cant;
                             $scope.arrayTotal[total] = $scope.arrayTotal[total] != undefined ? $scope.arrayTotal[total] + cant : cant;
                             totalValorX += cant;
-
                             var obj = {
                                 title: valorY,
                                 field: valorY,
@@ -107,7 +126,6 @@
                         field: 'Total',
                         cantidad: totalValorX,
                     });
-
                     $scope.columnas = columnas;
                     return columnas;
                 }
@@ -149,6 +167,30 @@
                     return codigos;
                 }
 
+                ctrl.filterFunctionTabla = function (el) {
+                    var rtn = true;
+                    if (!$scope.filters.all) {
+                        return rtn;
+                    }
+                    Object.getOwnPropertyNames($scope.filters.all).forEach(function (val, idx, array) {
+
+                        if ($scope.filters.all[val] && $scope.filters.all[val] != "" && $scope.filters.all[val] instanceof Array) {
+                            var temp = false;
+                            angular.forEach($scope.filters.all[val], function (value) {
+                                if (el[val] == value) {
+                                    temp = true;
+                                }
+                            });
+                            rtn = rtn && temp;
+                        } else if ($scope.filters.all[val] && $scope.filters.all[val] != "" && typeof $scope.filters.all[val] === "string") {
+                            if (el[val].indexOf($scope.filters.all[val]) === -1) {
+                                rtn = false;
+                            }
+                        }
+                    });
+                    return rtn;
+                }
+
                 ctrl.filterFunction = function (el) {
                     var rtn = true;
                     if (!$scope.filters.all) {
@@ -170,7 +212,6 @@
                             }
                         }
                     });
-
                     return rtn;
                 }
                 //Metodos de la Grafica
@@ -192,15 +233,62 @@
                     }
                     return 0;
                 }
+               
+                //calculando las estadisticas
+                ctrl.estadisticos=function (ejeY,ejeX){
+                   
+                    $scope.arrayEst ="";
+                };
+
+                //pintando las celdas de la tabla
+                ctrl.getClass = function (cantidad, ejeY, ejeX) {
+                    var alfa = 2.575;
+                    
+
+                    var estadistico = [];
+
+                    
+
+                    /* angular.forEach(ctrl.estadisticos(ejeY,ejeX), function (value) {
+                     console.log(moment(fecha, 'd-MM-YY').subtract(1, 'months').format('YYYY-MM'));
+                     if (moment(value[4]).format('YYYY-MM') == moment(fecha, 'd-MM-YY').subtract(1, 'months').format('YYYY-MM') && element == value[1])
+                     {
+                     estadistico.push(value);
+                     }
+                     });
+                     
+                     
+                     //$rootScope.cant = $rootScope.cant ? $rootScope.cant + 1 : 1;
+                     console.log(estadistico[0]);
+                     if (cantidad > (estadistico[0] + estadistico[3] * alfa)) {
+                     //$rootScope.messages.push({
+                     //    img: "",
+                     //    type: "Sobrepasado",
+                     //    text: "El dï¿½a '" + fecha + "' se realizaron mï¿½s transacciones"
+                     //});
+                     console.log("rojooooo");
+                     return 'color-danger';
+                     } else if (cantidad < (estadistico[2] - estadistico[3] * alfa)) {
+                     //$rootScope.messages.push({
+                     //    img: "",
+                     //    type: "Por Debajo",
+                     //    text: "El dï¿½a '" + fecha + "' se realizaron menos transacciones"
+                     //});
+                     console.log("azul");
+                     
+                     return 'color-primary';
+                     } else {
+                     return 'red';
+                     }*/
+                }
+
 
                 // GrÃ¡fica Line Chart
 
                 ctrl.generateChart = function () {
                     $scope.myChartObject = {};
-
                     $scope.myChartObject.type = "LineChart";
                     $scope.myChartObject.data = {cols: [], rows: []};
-
                     if ($scope.catalogo && $scope.filters.field1) {
                         $scope.myChartObject.data.cols.push({
                             "id": "x",
@@ -208,8 +296,6 @@
                             "type": "string",
                             "p": {}
                         });
-
-
                         if ($scope.catalogo) {
                             angular.forEach($scope.catalogo[$scope.filters.field1.name], function (value) {
                                 $scope.myChartObject.data.cols.push({
@@ -218,7 +304,6 @@
                                     "type": "number",
                                     "p": {}
                                 });
-
                             });
                         }
                         angular.forEach($scope.columnas, function (object) {
