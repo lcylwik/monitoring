@@ -3,6 +3,10 @@
     angular.module('EST.controllers')
             .controller('ESTController', function ($scope, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
                 var ctrl = this;
+                $scope.media = [];
+                $scope.desv = [];
+
+
                 ctrl.visibleNames = {
                     id: "Identificador",
                     prtFilename: "Archivo",
@@ -33,21 +37,26 @@
                     lastDate: moment().toDate()
                 };
                 $scope.filters = {};
+
                 $scope.$watch('filtersDate', function () {
                     ctrl.getTXN();
                     ctrl.initCatalogo();
+                    ctrl.getTxnOld();
+                    ctrl.estadistico();
                     ctrl.generateData();
                 }, true);
+
                 $scope.$watch('filters', function () {
                     ctrl.generateData();
                     ctrl.generateChart();
+                    ctrl.estadistico();
                 }, true);
                 //obtener las transacciones
                 ctrl.getTXN = function () {
                     $scope.datos = TXN.getService($scope.filtersDate.firstDate, $scope.filtersDate.lastDate).then(function (trans) {
                         $scope.datos = trans.data;
                         angular.forEach($scope.datos, function (field) {
-                            field.prtProcDte = moment(field.prtProcDte, "x").format("DD/MM/YYYY");
+                            field.prtProcDte = moment(field.prtProcDte, "x").format("D");
                         })
                         ctrl.initCatalogo();
                         ctrl.generateData();
@@ -107,6 +116,7 @@
                     var data = $scope.datos.filter(ctrl.filterFunction);
                     if ($scope.filters.field2) {
                         $scope.arrayColumnas = $scope.catalogo[$scope.filters.field2.name].filter(ctrl.filtrarColumnas);
+
                         angular.forEach($scope.arrayColumnas, function (valorY) {
                             var cant = ctrl.getCantTransacciones($scope.filters.field1.name, valorX, valorY, $scope.filters.field2.name, data);
                             $scope.arrayTotal[valorY] = $scope.arrayTotal[valorY] != undefined ? $scope.arrayTotal[valorY] + cant : cant;
@@ -131,10 +141,10 @@
                 }
 
                 //determinar la catidad de transacciones de field1 y field2
-                ctrl.getCantTransacciones = function (field1, valorX, valorY, field2, data) {
+                ctrl.getCantTransacciones = function (field1, valorY, valorX, field2, data) {
                     var cant = 0;
                     angular.forEach(data, function (value) {
-                        if (value[field1] == valorX && value[field2] == valorY) {
+                        if (value[field1] == valorY && value[field2] == valorX) {
                             cant++;
                         }
                     });
@@ -233,54 +243,57 @@
                     }
                     return 0;
                 }
-               
+
                 //calculando las estadisticas
-                ctrl.estadisticos=function (ejeY,ejeX){
-                   
-                    $scope.arrayEst ="";
+                ctrl.getTxnOld = function () {
+
+                    var difMonth = ($scope.filtersDate.lastDate).getMonth() - ($scope.filtersDate.firstDate).getMonth();
+                    var to = moment($scope.filtersDate.firstDate).subtract(1, "days").toDate();
+                    var from = moment($scope.filtersDate.firstDate).subtract(91, "days").toDate();
+
+                    if (difMonth > 3) {
+                        to = moment($scope.filtersDate.firstDate).subtract(1, "days").toDate();
+                        from = moment($scope.filtersDate.firstDate).subtract(difMonth, "month").toDate();
+                    }
+
+                    ctrl.oldData = TXN.getService(from, to).then(function (trans) {
+                        $scope.oldDatas = trans.data.filter(ctrl.filterFunction);
+                    });
+                };
+
+                ctrl.estadistico = function () {
+                    $scope.arrayCantOld = [];
+                    angular.forEach($scope.arrayColumnas, function (valorX) {
+                        angular.forEach($scope.arrayFilas, function (valorY) {
+                            var cant = ctrl.getCantTransacciones($scope.filters.field1.name, valorY, valorX, $scope.filters.field2.name, $scope.oldDatas);
+                            $scope.arrayCantOld.push(cant);
+                        })
+                    })
+                    $scope.media = $scope.arrayCantOld.mediam();
+                    $scope.desv = $scope.arrayCantOld.stanDeviate();
+                }
+
+                ctrl.getAllEvents = function () {
+                    Crud.getAll('/eventos').then(function (event) {
+                        angular.forEach(event.data, function (element) {
+                            $scope.eventsDB.push(element);
+                        });
+                    });
+                    console.log('getAll', $scope.eventsDB);
+                    return $scope.eventsDB;
                 };
 
                 //pintando las celdas de la tabla
-                ctrl.getClass = function (cantidad, ejeY, ejeX) {
+                ctrl.getClass = function (cantidad) {
                     var alfa = 2.575;
-                    
-
-                    var estadistico = [];
-
-                    
-
-                    /* angular.forEach(ctrl.estadisticos(ejeY,ejeX), function (value) {
-                     console.log(moment(fecha, 'd-MM-YY').subtract(1, 'months').format('YYYY-MM'));
-                     if (moment(value[4]).format('YYYY-MM') == moment(fecha, 'd-MM-YY').subtract(1, 'months').format('YYYY-MM') && element == value[1])
-                     {
-                     estadistico.push(value);
-                     }
-                     });
-                     
-                     
-                     //$rootScope.cant = $rootScope.cant ? $rootScope.cant + 1 : 1;
-                     console.log(estadistico[0]);
-                     if (cantidad > (estadistico[0] + estadistico[3] * alfa)) {
-                     //$rootScope.messages.push({
-                     //    img: "",
-                     //    type: "Sobrepasado",
-                     //    text: "El d�a '" + fecha + "' se realizaron m�s transacciones"
-                     //});
-                     console.log("rojooooo");
-                     return 'color-danger';
-                     } else if (cantidad < (estadistico[2] - estadistico[3] * alfa)) {
-                     //$rootScope.messages.push({
-                     //    img: "",
-                     //    type: "Por Debajo",
-                     //    text: "El d�a '" + fecha + "' se realizaron menos transacciones"
-                     //});
-                     console.log("azul");
-                     
-                     return 'color-primary';
-                     } else {
-                     return 'red';
-                     }*/
-                }
+                    if (cantidad > ($scope.media + $scope.desv * alfa)) {
+                        return 'color-danger';
+                    } else if (cantidad < ($scope.media - $scope.desv * alfa)) {
+                        return 'color-primary';
+                    } else {
+                        return 'red';
+                    }
+                };
 
 
                 // Gráfica Line Chart

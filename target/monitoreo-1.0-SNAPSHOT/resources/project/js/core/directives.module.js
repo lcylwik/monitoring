@@ -101,8 +101,8 @@
                 return {
                     restrict: 'A',
                     replace: true,
-                    template: `<div id='external-events'>
-                                <div class='{[{droppableElementsClass}]}' data-event={[{event}]} ng-repeat='event in events track by $index' >{[{event.title}]}</div>
+                    template: `<div class=col-md-4 id='external-events'>
+                                <div class='{[{droppableElementsClass}]}' data-event={[{event}]} ng-repeat='event in events track by $index' >{[{event.title}]} <a ng-click="removeE(event)"><i class="fa fa-trash pull-right"></i></a></div>
                                 <div class='new-element' ng-if='adding'>
                                     <div class='form-group'>
                                         <label>Titulo</label>
@@ -118,16 +118,20 @@
                                     <button class='btn btn-success form-control' ng-if='adding' ng-click='onConfirmEvent()'>Confirm</button>
                                     <button class='btn btn-default form-control' ng-if='adding' ng-click='onCancelEvent()'>Cancel</button>
                                 </div>
-           </div>`,
+                            </div>`,
                     scope: {
                         calendarId: '@',
                         events: '=',
+                        eventsOut: '@',
                         droppableElementsClass: '@',
                         fullCallendarOptions: '=',
                         add: '=',
-                        update: '='
+                        update: '=',
+                        getAll: '=',
+                        delete: '='
                     },
                     link: function (scope, element, attrs) {
+
                         function makeDraggables() {
                             setTimeout(function () {
                                 $('#external-events .' + scope.droppableElementsClass).each(function () {
@@ -143,8 +147,6 @@
 
                         makeDraggables();
 
-
-
                         //var calendarElement = angular.element(document.getElementById(scope.calendarId));
                         var defaultCalendarOptions = {
                             editable: true, // enable draggable events
@@ -158,8 +160,7 @@
                             },
 
                             events: scope.events,
-                            drop: function (date) {
-                                console.log('drop', date.format());
+                            drop: function (date, jsEvent, ui, resourceId) {
                                 // is the "remove after drop" checkbox checked?
                                 if ($('#drop-remove').is(':checked')) {
                                     // if so, remove the element from the "Draggable Events" list
@@ -171,21 +172,26 @@
                                     id: event.id,
                                     title: event.title,
                                     start: moment(event.start).add(1, "days"),
-                                    end: event.end
+                                    end: event.end,
+
                                 }
+                                console.log(event);
                                 scope.update(objEvent);
+
                             },
                             eventDrop: function (event) { // called when an event (already on the calendar) is moved
                                 var objEvent = {
                                     id: event.id,
                                     title: event.title,
                                     start: moment(event.start).add(1, "days"),
-                                    end: event.end
+                                    end: event.end,
+
                                 }
+
                                 scope.update(objEvent);
                             }
                         };
-
+                       
                         var cal = $('#' + scope.calendarId).fullCalendar(defaultCalendarOptions);
 
                         scope.onConfirmEvent = function () {
@@ -193,9 +199,11 @@
                             scope.new.start = "0000-00-00";
                             scope.new.end = "0000-00-00";
 
-                            scope.events.push(Object.assign({}, scope.new));
-                            makeDraggables();
-                            scope.add(scope.new);
+                            scope.add(scope.new).then(function (data) {
+                                scope.new.id = data.data;
+                                scope.events.push(Object.assign({}, scope.new));
+                                makeDraggables();
+                            });
 
                         }
                         scope.onCancelEvent = function () {
@@ -206,6 +214,10 @@
                             scope.new = {};
                             scope.adding = true;
                         }
+                        scope.removeE = function (event) {
+                            scope.delete(event);
+                        }
+
                     }
                 }
             })

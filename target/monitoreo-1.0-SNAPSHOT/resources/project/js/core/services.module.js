@@ -84,41 +84,40 @@
                     delete: function (url, item) {
                         return $http.delete(API + '/resources' + url + '/' + item.id);
                     },
-                    isRepeat: function (url, name){
-                        return $http.get(API + '/' + url + '/' +name);
+                    isRepeat: function (url, name) {
+                        return $http.get(API + '/' + url + '/' + name);
                     }
-                            
+
                 }
             })
             // =========================================================================
-            // Transacciones y estadistico
+            // Transacciones
             // =========================================================================
             .service('TXN', function (API, $http) {
                 return {
-                    getService: function (from,to) {
+                    getService: function (from, to) {
                         return $http.get(API + '/rest/txnByDate/' + from + '/' + to);
                     },
                 }
             })
-            
-             // =========================================================================
+            // =========================================================================
             //  add and get Config
             // =========================================================================
             .service('Config', function (API, $http) {
                 return {
-                    updateOrCreate: function (data,id) {
-                        return $http.put(API + '/rest/config/'+ id,data);
+                    updateOrCreate: function (data, id) {
+                        return $http.put(API + '/rest/config/' + id, data);
                     },
                     getConfigID: function (id) {
-                        return $http.get(API +'/rest/config/'+ id);
-                        
+                        return $http.get(API + '/rest/config/' + id);
+
                     },
                     getConfig: function () {
-                        return $http.get(API +'/rest/config/');
+                        return $http.get(API + '/rest/config/');
                     }
                 }
             })
-            
+
             .factory('Util', function (ngTableParams) {
                 return {
                     generateTableParams: function (data, $scope) {

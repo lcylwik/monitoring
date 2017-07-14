@@ -22,6 +22,7 @@ com\mkyong\web\controller\RolController.class
 com\mkyong\web\dao\SessionUtil1.class
 com\mkyong\web\model\Estadistico.class
 com\mkyong\web\services\UserServiceImpl.class
+com\mkyong\web\model\FilterTxn.class
 com\mkyong\web\services\PermissionsService.class
 com\mkyong\web\dao\UserDao.class
 com\mkyong\web\security\JwtFilter.class
@@ -31,7 +32,6 @@ com\mkyong\web\model\Eventos.class
 com\mkyong\web\model\Users.class
 com\mkyong\web\model\userLogin.class
 com\mkyong\web\dao\EventosImpl.class
-.netbeans_automatic_build
 com\mkyong\web\dao\RolesDaoImpl.class
 com\mkyong\web\services\RolServiceImpl.class
 com\mkyong\web\dao\PermissionsDaoImpl.class
