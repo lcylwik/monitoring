@@ -1,7 +1,7 @@
 
 (function () {
     angular.module('EST.controllers')
-            .controller('ESTController', function ($scope, Crud, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
+            .controller('ESTService', function ($scope, Crud, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
                 var ctrl = this;
                 $scope.media = [];
                 $scope.desv = [];

@@ -1,7 +1,7 @@
 
 (function () {
     angular.module('EST.controllers')
-            .controller('ConfigController', function ($scope, $state, Crud) {
+            .controller('ConfigController', function ($scope, $state, Crud, SweetAlert) {
                 var ctrl = this;
 
                 $scope.eventsDB = [];
@@ -27,8 +27,6 @@
                             $scope.eventsDB.push(element);
                         });
                     });
-                    console.log('getAll', $scope.eventsDB);
-
                     return $scope.eventsDB;
                 };
 
@@ -71,7 +69,18 @@
                         editable: true,
                         droppable: true,
                         drop: function (date, allDay, jsEvent, ui) {
-                            console.log('Here ,but where is the object?');
+                            $(this).remove();
+                        },
+                        eventClick: function (calEvent, jsEvent, view) {
+                          
+                            $('#modalBody').html("El evento "+calEvent.title+" tiene como valor "+calEvent.value);
+                            $('#eventDelete').click(function() {
+                                ctrl.removeEvent(calEvent); 
+                                
+                            });
+                            $('#fullCalModal').modal();
+                            console.log(calEvent)
+                           
                         },
                         eventReceive: function (event) { // called when a proper external event is dropped
                             var objEvent = {
@@ -80,7 +89,6 @@
                                 start: moment(event.start).add(1, "days"),
                                 end: event.end,
                             }
-                            console.log('update', objEvent);
                             ctrl.updateDB(objEvent);
                         },
                         eventDrop: function (event) { // called when an event (already on the calendar) is moved

@@ -1,75 +1,78 @@
 {
-  "inicio": {
-    "id": 1,
-    "nombre": "Mi Dashboard",
-    "icono": "menu__icon--mainIcon icon-home ",
-    "link": null,
-    "permiso": "bitacoras.my"
-  },
-  "busqueda": {
-    "id": 2,
-    "nombre": "Monitoreo",
-    "icono": "menu__icon--mainIcon fa fa-search ",
-    "link": null,
-    "permiso": [
-      "prosa.monitoring"
-     ],
-    "submenu": {
-      "est.search": {
-        "nombre": "Estadisticas",
-        "icono": null,
-        "link": "home.search",
-        "permiso": "prosa.monitoring"
-      },
-      "est.config": {
-        "nombre": "Configuracion",
-        "icono": null,
-        "link": "home.config",
-        "permiso": "prosa.monitoring"
-      }
+    "inicio": {
+        "id": 1,
+        "nombre": "Mi Dashboard",
+        "icono": "menu__icon--mainIcon icon-home ",
+        "link": null,
+        "permiso": "bitacoras.my"
+    },
+    "busqueda": {
+        "id": 2,
+        "nombre": "Monitoreo",
+        "icono": "menu__icon--mainIcon fa fa-line-chart ",
+        "link": null,
+        "permiso": [
+            "prosa.monitoring"
+        ],
+        "submenu": {
+            "est.search": {
+                "nombre": "Estadisticas",
+                "icono": null,
+                "link": "home.search",
+                "permiso": "prosa.monitoring"
+            },
+            "est.config": {
+                "nombre": "Configuracion",
+                "icono": null,
+                "link": "home.config",
+                "permiso": "prosa.monitoring"
+            }
+        }
+    },
+    "Servicios": {
+        "id": 38,
+        "nombre": "Servicios",
+        "icono": "menu__icon--mainIcon fa fa-credit-card ",
+        "link": null,
+        "permiso": [
+            "prosa.service"
+        ],
+        "submenu": {
+            "est.service": {
+                "nombre": "Servicios de Bancos",
+                "icono": null,
+                "link": "home.service",
+                "permiso": "prosa.service"
+            }
+        }
+    },
+    "seguridad": {
+        "id": 200,
+        "nombre": "Seguridad",
+        "icono": "menu__icon--mainIcon fa fa-lock ",
+        "link": null,
+        "permiso": "users.manage",
+        "submenu": {
+            "users": {
+                "nombre": "Usuarios",
+                "icono": null,
+                "link": "home.users"
+            },
+            "roles": {
+                "nombre": "Roles",
+                "icono": null,
+                "link": "home.roles"
+            },
+            "permisos": {
+                "nombre": "Permisos",
+                "icono": null,
+                "link": "home.permissions"
+            },
+            "admin": {
+                "nombre": "Administrar",
+                "icono": null,
+                "link": "home.admin"
+            }
+        }
     }
-  },
-  "seguridad": {
-    "id": 200,
-    "nombre": "Seguridad",
-    "icono": "menu__icon--mainIcon fa fa-lock ",
-    "link": null,
-    "permiso": "users.manage",
-    "submenu": {
-      "users": {
-        "nombre": "Usuarios",
-        "icono": null,
-        "link": "home.users"
-      },
-      "roles": {
-        "nombre": "Roles",
-        "icono": null,
-        "link": "home.roles"
-      },
-      "permisos": {
-        "nombre": "Permisos",
-        "icono": null,
-        "link": "home.permissions"
-      },
-      "admin": {
-        "nombre": "Administrar",
-        "icono": null,
-        "link": "home.admin"
-      }
-    }
-  },
-  "reportes": {
-    "id": 200,
-    "nombre": "Reportes",
-    "icono": "menu__icon--mainIcon fa fa-th",
-    "link": null,
-    "permiso": "bitacoras.admin",
-    "submenu": {
-      "users": {
-        "nombre": "Bitácoras",
-        "icono": null,
-        "link": "home.adminBitacoras"
-      }
-    }
-  }
 }
