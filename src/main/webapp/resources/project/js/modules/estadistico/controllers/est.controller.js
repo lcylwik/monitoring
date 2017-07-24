@@ -1,10 +1,12 @@
 
 (function () {
     angular.module('EST.controllers')
-            .controller('ESTController', function ($scope, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
+            .controller('ESTController', function ($scope, Crud, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
                 var ctrl = this;
                 $scope.media = [];
                 $scope.desv = [];
+                $scope.events = [];
+                $scope.alfa = 2.575;
 
 
                 ctrl.visibleNames = {
@@ -44,6 +46,7 @@
                     ctrl.getTxnOld();
                     ctrl.estadistico();
                     ctrl.generateData();
+
                 }, true);
 
                 $scope.$watch('filters', function () {
@@ -51,12 +54,13 @@
                     ctrl.generateChart();
                     ctrl.estadistico();
                 }, true);
+
                 //obtener las transacciones
                 ctrl.getTXN = function () {
                     $scope.datos = TXN.getService($scope.filtersDate.firstDate, $scope.filtersDate.lastDate).then(function (trans) {
                         $scope.datos = trans.data;
                         angular.forEach($scope.datos, function (field) {
-                            field.prtProcDte = moment(field.prtProcDte, "x").format("D");
+                            field.prtProcDte = moment(field.prtProcDte, "x").format("D/M/YY");
                         })
                         ctrl.initCatalogo();
                         ctrl.generateData();
@@ -64,6 +68,27 @@
                     });
                 }
 
+                //obtener los eventos
+                ctrl.getAllEvents = function () {
+                    Crud.getAll('/eventos').then(function (event) {
+                        angular.forEach(event.data, function (element) {
+                            element.start = moment(element.start).format("D/M/YY")
+                            $scope.events.push(element);
+                        });
+                    });
+                };
+
+                //change alfa
+                ctrl.changeAlfa = function (fecha) {
+                    angular.forEach($scope.events, function (event) {
+                        if (event.start == fecha) {
+                            $scope.alfa = $scope.alfa + event.value / 10;
+                            console.log( $scope.alfa);
+                        } else {
+                            $scope.alfa = 2.575;
+                        }
+                    })
+                }
 
                 //generar datos dinámicos
                 ctrl.generateData = function () {
@@ -71,9 +96,7 @@
                     var rtn = false;
                     $scope.arrayTotal = {};
                     if ($scope.catalogo && $scope.filters.field1) {
-
                         $scope.arrayFilas = $scope.catalogo[$scope.filters.field1.name].filter(ctrl.filtrarFilas);
-
                         angular.forEach($scope.arrayFilas, function (field) {
                             var obj = {
                                 ejeY: field,
@@ -125,7 +148,7 @@
                             var obj = {
                                 title: valorY,
                                 field: valorY,
-                                cantidad: cant //TODO: aki se cambian los literales de las columnas
+                                cantidad: cant
                             }
                             columnas.push(obj);
                         })
@@ -269,26 +292,26 @@
                             $scope.arrayCantOld.push(cant);
                         })
                     })
-                    $scope.media = $scope.arrayCantOld.mediam();
-                    $scope.desv = $scope.arrayCantOld.stanDeviate();
+                    if ($scope.arrayCantOld.length != 0) {
+                        $scope.media = $scope.arrayCantOld.mediam();
+                        $scope.desv = $scope.arrayCantOld.stanDeviate();
+                    }
                 }
 
-                ctrl.getAllEvents = function () {
-                    Crud.getAll('/eventos').then(function (event) {
-                        angular.forEach(event.data, function (element) {
-                            $scope.eventsDB.push(element);
-                        });
-                    });
-                    console.log('getAll', $scope.eventsDB);
-                    return $scope.eventsDB;
-                };
 
                 //pintando las celdas de la tabla
-                ctrl.getClass = function (cantidad) {
-                    var alfa = 2.575;
-                    if (cantidad > ($scope.media + $scope.desv * alfa)) {
+                ctrl.getClass = function (cantidad, fieldY, fieldX) {
+                    console.log("y", fieldY);
+                    console.log("X", fieldX);
+                    if ($scope.filters.field1.name == "prtProcDte") {
+                        ctrl.changeAlfa(fieldY);
+                    } else if ($scope.filters.field2.name == "prtProcDte") {
+                        ctrl.changeAlfa(fieldX);
+                    }
+                   
+                    if (cantidad > ($scope.media + $scope.desv * $scope.alfa)) {
                         return 'color-danger';
-                    } else if (cantidad < ($scope.media - $scope.desv * alfa)) {
+                    } else if (cantidad < ($scope.media - $scope.desv * $scope.alfa)) {
                         return 'color-primary';
                     } else {
                         return 'red';
@@ -350,6 +373,12 @@
                             }
                         }
                     }
+                }
+
+
+                //si la vista es el estadistico
+                if ($state.current.name === 'home.search.table') {
+                    ctrl.getAllEvents();
                 }
 
             });
