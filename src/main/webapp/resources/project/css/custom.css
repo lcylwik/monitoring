@@ -1829,3 +1829,12 @@ be a descendant of the grid when it is being dragged.
     border: 1px solid #f0f0f0;
 
 }
+
+.fc-event a{
+    color: #2b2b2c;
+}
+
+.fa{
+     margin-top: 3px;
+      margin-right: 3px;
+}
