@@ -11,7 +11,7 @@
 
         <div class="panel" ng-if="filters.field1 && filters.field2 && catalogo.prtFilename.length > 0">
             <ul class="nav nav-tabs">
-                <li ui-sref-active="active"><a ui-sref="home.search.table">Tabla</a></li>
+                <li ui-sref-active="active" class="active"><a ui-sref="home.search.table">Tabla</a></li>
                 <li ui-sref-active="active"><a ui-sref="home.search.grafica">Grafica</a></li>
                 <li ui-sref-active="active"><a ui-sref="home.search.porcentX">% {[{ctrl.visibleNames[filters.field1.name]}]} </a></li>
                 <li ui-sref-active="active"><a ui-sref="home.search.porcentY">% {[{ctrl.visibleNames[filters.field2.name]}]} </a></li>
