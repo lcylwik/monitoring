@@ -18,12 +18,8 @@
                                         files: [
                                             'js/modules/config/controllers/config.controller.js'
                                         ]
-                                    }), $ocLazyLoad.load({
-                                        name: 'EST.directives',
-                                        files: [
-                                            'js/modules/config/filters/config.filters.js'
-                                        ]
-                                    });
+                                    })
+                                    
                                 }
                             }
                         })
