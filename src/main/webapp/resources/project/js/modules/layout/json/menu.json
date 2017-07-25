@@ -39,7 +39,7 @@
         ],
         "submenu": {
             "est.service": {
-                "nombre": "Servicios de Bancos",
+                "nombre": "Servicios Online",
                 "icono": null,
                 "link": "home.service",
                 "permiso": "prosa.service"
