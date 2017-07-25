@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated Jul 7, 2017 5:00:18 PM by Hibernate Tools 4.3.1
+// Generated Jul 25, 2017 12:48:18 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -31,22 +31,22 @@ public class Eventos  implements java.io.Serializable {
     public Eventos() {
     }
 
-    public Eventos(int id, String title, Date start, Date end, int value) {
-       this.id = id;
-       this.title = title;
-       this.start = start;
-       this.end = end;
-       this.value = value;
+	
+    public Eventos(String title, int value) {
+        this.title = title;
+        this.value = value;
     }
-     public Eventos( String title, Date start, Date end, int value) {
+    public Eventos(String title, Date start, Date end, int value) {
        this.title = title;
        this.start = start;
        this.end = end;
        this.value = value;
     }
    
-     @Id @Column(name="id", unique=true, nullable=false)
-     @GeneratedValue(strategy=IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
+    @Column(name="id", nullable=false)
     public int getId() {
         return this.id;
     }
@@ -66,7 +66,7 @@ public class Eventos  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="start", nullable=true, length=10)
+    @Column(name="start", length=10)
     public Date getStart() {
         return this.start;
     }
@@ -76,7 +76,7 @@ public class Eventos  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="end", nullable=true, length=10)
+    @Column(name="end", length=10)
     public Date getEnd() {
         return this.end;
     }

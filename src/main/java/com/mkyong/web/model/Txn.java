@@ -1,5 +1,5 @@
 package com.mkyong.web.model;
-// Generated Jul 7, 2017 5:00:18 PM by Hibernate Tools 4.3.1
+// Generated Jul 25, 2017 12:48:18 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -69,7 +69,7 @@ public class Txn  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="id", unique=true, nullable=false)
+    @Column(name="id", nullable=false)
     public Integer getId() {
         return this.id;
     }

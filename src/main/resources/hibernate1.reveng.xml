@@ -41,5 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="monitoreo"/>
-  <table-filter match-name="eventos"/>
+  <table-filter match-name="prefijos_servicios"/>
+  <table-filter match-name="bancos"/>
+  <table-filter match-name="prefijos"/>
+  <table-filter match-name="bancos_tipotarjeta"/>
+  <table-filter match-name="tipotarjeta"/>
+  <table-filter match-name="servicio"/>
 </hibernate-reverse-engineering>

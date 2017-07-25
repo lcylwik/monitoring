@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2017 12:48:22 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mkyong.web.model.Tipotarjeta" table="tipotarjeta" catalog="monitoreo" optimistic-lock="version">
+        <id name="idttarjeta" type="java.lang.Integer">
+            <column name="idttarjeta" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="10" not-null="true" />
+        </property>
+        <set name="bancoses" table="bancos_tipotarjeta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idttarjeta" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.mkyong.web.model.Bancos">
+                <column name="idbanco" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="prefijoses" table="prefijos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idttarjeta" not-null="true" />
+            </key>
+            <one-to-many class="com.mkyong.web.model.Prefijos" />
+        </set>
+    </class>
+</hibernate-mapping>
