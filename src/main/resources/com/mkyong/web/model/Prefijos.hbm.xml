@@ -14,7 +14,7 @@
         <property name="name" type="string">
             <column name="name" length="25" />
         </property>
-        <set name="servicios" table="prefijos_servicios" inverse="false" lazy="true" fetch="select">
+        <set name="servicios" table="prefijos_servicios" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="idprefijo" not-null="true" />
             </key>

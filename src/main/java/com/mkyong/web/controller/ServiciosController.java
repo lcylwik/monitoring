@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author USER
+ * @author lianet
  */
 @RestController
-@RequestMapping("api/resources")
+@RequestMapping("api/resources/")
 public class ServiciosController {
 
     @Autowired

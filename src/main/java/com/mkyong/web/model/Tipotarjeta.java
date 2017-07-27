@@ -67,7 +67,7 @@ public class Tipotarjeta  implements java.io.Serializable {
         this.name = name;
     }
 
-    @ManyToMany(fetch=FetchType.EAGER, mappedBy="tipotarjetas")
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="bancos_tipotarjeta", catalog="monitoreo", joinColumns = { 
         @JoinColumn(name="idttarjeta", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="idbanco", nullable=false, updatable=false) })

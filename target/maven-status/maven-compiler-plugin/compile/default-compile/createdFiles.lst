@@ -1,6 +1,9 @@
+com\mkyong\web\services\ServicesService.class
 com\mkyong\web\services\EventoService.class
 com\mkyong\web\controller\EventoControler.class
+com\mkyong\web\services\ServicesServiceImpl.class
 com\mkyong\web\controller\HelloController.class
+com\mkyong\web\model\Servicio.class
 com\mkyong\web\dao\RolesDao.class
 com\mkyong\web\controller\UserController.class
 com\mkyong\web\dao\TransDaoImpl.class
@@ -10,6 +13,7 @@ com\mkyong\web\model\Roles.class
 com\mkyong\web\services\ScheduledTasksImpl.class
 com\mkyong\web\controller\HelloController$LoginResponse.class
 com\mkyong\web\model\Clave.class
+com\mkyong\web\model\Prefijos.class
 com\mkyong\web\dao\EventosDao.class
 com\mkyong\web\services\RolService.class
 com\mkyong\web\services\TransService.class
@@ -17,15 +21,19 @@ com\mkyong\web\model\Bitacoras.class
 com\mkyong\web\dao\UserDaoImpl.class
 com\mkyong\web\model\Configuracion.class
 com\mkyong\web\model\Permissions.class
+com\mkyong\web\model\Tipotarjeta.class
 com\mkyong\web\services\PermissionsServiceImpl.class
+com\mkyong\web\model\Bancos.class
 com\mkyong\web\controller\RolController.class
 com\mkyong\web\dao\SessionUtil1.class
 com\mkyong\web\model\Estadistico.class
 com\mkyong\web\services\UserServiceImpl.class
+com\mkyong\web\dao\ServiciosDao.class
 com\mkyong\web\model\FilterTxn.class
 com\mkyong\web\services\PermissionsService.class
 com\mkyong\web\dao\UserDao.class
 com\mkyong\web\security\JwtFilter.class
+com\mkyong\web\controller\ServiciosController.class
 com\mkyong\web\services\TransServiceImpl.class
 com\mkyong\web\dao\TransDao.class
 com\mkyong\web\model\Eventos.class
@@ -42,3 +50,4 @@ com\mkyong\web\controller\PermissionsController.class
 com\mkyong\web\controller\TransControler.class
 com\mkyong\web\services\CalculoEstadistico.class
 com\mkyong\web\services\ScheduledTasks.class
+com\mkyong\web\dao\ServiciosDaoImpl.class

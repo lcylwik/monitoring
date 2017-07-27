@@ -1,10 +1,70 @@
 <div class="col-md-12 col-xs-12 col-lg-12">
     <div class="row">
 
-        <!--  <ng-include src="'js/modules/estadistico/views/filters.html'"></ng-include>-->
+        <div class="panel">
+            <div class="panel-heading pointer"  ng-init="showFilters = true" ng-click="showFilters = !showFilters">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <p style="margin-bottom:0;">
+                        <strong>Servicios de los Bancos</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="panel-body" ng-if="showFilters">
+                <form role="form" ng-submit="ctrl.filter()">
+                    
+                        <nav id="menu_gral">
+                            <ul>
+                                <li><a href="">Bancos</a>
+                                    <ul>
+                                        <li ng-repeat="b in bancos"><a href="">{[{b.name}]}</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Productos</a>
+
+                                    <div class="panel" ><a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                        <a href="">ATM</a>
+                                    </div>
 
 
-        <h5>Service</h5>
-
-       
-        </div>
+                                </li>
+                                <li><a href="#">Bines</a>
+                                    <ul>
+                                        <li ng-repeat="p in prefijo"><a href="#">{[{p.name}]}</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Tipo de Cuenta</a>
+                                    <ul>
+                                        <li ng-repeat="tt in tipotarjeta"><a href="#">{[{tt.name}]}</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Sevicios</a>
+                                    <ul>
+                                        <li ng-repeat="s in service"><a href="#">{[{s.name}]}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    
+                    <div style="float: left">
+                        <h5>hfbveruvrebritbutiobunoirhnbirbnrkobmytnyhoj</h5>
+                    </div>
+                    
+                </form >
+            </div>
+        </div> 
+    </div>
+</div> 

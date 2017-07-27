@@ -1829,3 +1829,116 @@ be a descendant of the grid when it is being dragged.
     border: 1px solid #f0f0f0;
 
 }
+
+.fc-event a{
+    color: #2b2b2c;
+}
+
+.fa{
+     margin-top: 3px;
+      margin-right: 3px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: o none;
+    position: relative;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  background: #eee;
+}
+#menu_gral ul{
+    font-family: verdana, sans sherif;
+    width: 10vw;
+    margin: 0 1rem;
+}
+#menu_gral ul {
+    box-shadow: 0 0 3px rgba(0,0,0,.4);
+    list-style-type: none; 
+    text-align: center;
+}
+#menu_gral > ul li {
+    background: #FFf;
+}
+#menu_gral li a {
+    display: block;
+    text-decoration: none;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    color: #444;
+}
+#menu_gral li:hover a, #menu_gral li a:focus {
+    background: #5b0206;
+    color: #fff;
+}
+#menu_gral li:hover div a, #menu_gral li div a:focus {
+    background: #fff;
+    color: #000;
+}
+
+#menu_gral li ul {
+    position: absolute;
+    width: 0;
+    left: 100%;
+    top: 0;
+    overflow: hidden;
+}
+#menu_gral li div {
+    position: absolute;
+    width: 0;
+    left: 100%;
+    top: 0;
+    overflow: hidden;
+}
+#menu_gral li:hover ul, #menu_gral li:focus ul {
+    width: 100%;
+   /* background:  #bbb;*/
+    z-index: 5;
+}
+#menu_gral li:hover div, #menu_gral li:focus div {
+    width: 100%;
+   /* background:  #bbb;*/
+    z-index: 5;
+}
+#menu_gral li li {
+    display: block;
+    width: 100%;
+}
+
+
+#menu_gral li:hover li a, #menu_gral li:focus li a {
+    font-family: monospace;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    border-top: 1px solid #e5e5e5;
+    background: #6d6e71;
+    
+}
+#menu_gral li:hover div a, #menu_gral li:focus div a {
+    font-family: monospace;
+    font-size: 1.5rem;
+    border-top: 1px solid #e5e5e5;
+    float: left;
+    margin-left: 20px;
+  
+}
+#menu_gral li li a:hover, #menu_gral li li a:focus {
+   /* background: #5b0206; */
+}
+
+li .panel{
+     box-shadow: 0 0 0 !important;
+}
+
+#menu_gral li:hover .panel{
+    box-shadow: 0 0 3px !important;
+   
+}
+
+#menu_gral li:hover div{
+      width: 500px !important;}

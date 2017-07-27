@@ -45,7 +45,6 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/monitoreo?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    
     <property name="show_sql">true</property>
     <mapping resource="com/mkyong/web/model/Bitacoras.hbm.xml"/>
     <mapping resource="com/mkyong/web/model/Configuracion.hbm.xml"/>
@@ -56,5 +55,9 @@ Contributor(s):
     <mapping resource="com/mkyong/web/model/Txn.hbm.xml"/>
     <mapping resource="com/mkyong/web/model/Eventos.hbm.xml"/>
     <mapping resource="com/mkyong/web/model/Estadistico.hbm.xml"/>
+    <mapping resource="com/mkyong/web/model/Bancos.hbm.xml"/>
+    <mapping resource="com/mkyong/web/model/Prefijos.hbm.xml"/>
+    <mapping resource="com/mkyong/web/model/Tipotarjeta.hbm.xml"/>
+    <mapping resource="com/mkyong/web/model/Servicio.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

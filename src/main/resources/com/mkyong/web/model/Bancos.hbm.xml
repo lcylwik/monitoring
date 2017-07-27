@@ -14,7 +14,7 @@
         <property name="fiid" type="string">
             <column name="fiid" length="25" not-null="true" />
         </property>
-        <set name="tipotarjetas" table="bancos_tipotarjeta" inverse="false" lazy="true" fetch="select">
+        <set name="tipotarjetas" table="bancos_tipotarjeta" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="idbanco" not-null="true" />
             </key>

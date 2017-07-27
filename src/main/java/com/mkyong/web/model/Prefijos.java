@@ -2,6 +2,7 @@ package com.mkyong.web.model;
 // Generated Jul 25, 2017 12:48:18 PM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -58,6 +59,7 @@ public class Prefijos  implements java.io.Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="idttarjeta", nullable=false)
+    @JsonIgnore
     public Tipotarjeta getTipotarjeta() {
         return this.tipotarjeta;
     }
