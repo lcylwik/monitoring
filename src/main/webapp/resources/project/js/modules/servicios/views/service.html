@@ -10,60 +10,59 @@
                 </div>
             </div>
             <div class="panel-body" ng-if="showFilters">
-                <form role="form" ng-submit="ctrl.filter()">
-                    
-                        <nav id="menu_gral">
-                            <ul>
-                                <li><a href="">Bancos</a>
-                                    <ul>
-                                        <li ng-repeat="b in bancos"><a href="">{[{b.name}]}</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="">Productos</a>
+                <div class="col-md-2" id="menu_gral">
+                    <ul>
+                        <li><a href="">Bancos</a>
+                            <div class="panel">
+                                <a ng-repeat="b in bancos" ng-click="ctrl.Banco(b)">{[{b.name}]}</a>
+                            </div>
+                        </li>
+                        <li><a href="">Productos</a>
+                            <div class="panel" ><a ng-repeat="s in service" ng-click="ctrl.Producto(s.producto)" href="">{[{s.producto}]}</a>
+                            </div>
 
-                                    <div class="panel" ><a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                        <a href="">ATM</a>
-                                    </div>
+                        </li>
+                        <li><a href="">Bines</a>
+                            <div class="panel">
+                                <a ng-repeat="p in prefijo" ng-click="ctrl.Bins(p)" href="">{[{p.name}]}</a>
+                            </div>
+                        </li>
+                        <li><a href="">Tipo de Cuenta</a>
+                            <div class="panel" >
+                                <a ng-repeat="tt in tipotarjeta" ng-click="ctrl.TTarjeta(tt)" href="">{[{tt.name}]}</a>
+                            </div>
+                        </li>
+                        <li><a href="">Sevicios</a>
+                            <div class="panel" > 
+                                <a ng-repeat="s in service" ng-click="ctrl.Servicio(s)" href="">{[{s.name}]}</a>
+                            </div>
+                        </li>
+                    </ul>
 
-
-                                </li>
-                                <li><a href="#">Bines</a>
-                                    <ul>
-                                        <li ng-repeat="p in prefijo"><a href="#">{[{p.name}]}</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Tipo de Cuenta</a>
-                                    <ul>
-                                        <li ng-repeat="tt in tipotarjeta"><a href="#">{[{tt.name}]}</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Sevicios</a>
-                                    <ul>
-                                        <li ng-repeat="s in service"><a href="#">{[{s.name}]}</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    
-                    <div style="float: left">
-                        <h5>hfbveruvrebritbutiobunoirhnbirbnrkobmytnyhoj</h5>
+                </div>
+                <div class="col-md-10">
+                    <div class="panel caja col-md-3 caja" >
+                        <h4>Bancos</h4>
+                        <p ng-repeat="banco in bancoCaja track by $index">{[{banco.name}]}</p>
                     </div>
-                    
-                </form >
+                    <div class="panel caja col-md-3 caja" >
+                        <h4>Bines</h4> 
+                        <p ng-repeat="bin in binsCaja track by $index"> {[{bin.name}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" > 
+                        <h4>Tipo de Cuenta</h4>
+                        <p ng-repeat="t in tarjetaCaja track by $index">  {[{t.name}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" > 
+                        <h4>Producto</h4> 
+                        <p ng-repeat="s in serviciosCaja track by $index">  {[{s.producto}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" > 
+                        <h4>Servicios</h4> 
+                        <p ng-repeat="s in serviciosCaja track by $index">  {[{s.name}]}</p>
+                    </div>
+                </div>
+
             </div>
         </div> 
     </div>
