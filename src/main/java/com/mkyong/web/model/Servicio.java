@@ -77,7 +77,7 @@ public class Servicio  implements java.io.Serializable {
         this.producto = producto;
     }
 
-@ManyToMany(fetch=FetchType.LAZY, mappedBy="servicios")
+@ManyToMany(fetch=FetchType.EAGER, mappedBy="servicios")
  @JoinTable(name="prefijos_servicios", catalog="monitoreo", joinColumns = { 
         @JoinColumn(name="idservicio", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="idprefijo", nullable=false, updatable=false) })

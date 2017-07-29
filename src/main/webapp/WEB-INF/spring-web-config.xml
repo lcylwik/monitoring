@@ -13,17 +13,17 @@
 http://www.springframework.org/schema/task 
 http://www.springframework.org/schema/task/spring-task-4.0.xsd">
 
-     <!--Paquete donde se buescan las clases que implentan las interfaces -->
+    <!--Paquete donde se buescan las clases que implentan las interfaces -->
     <context:component-scan base-package="com.mkyong.web" />
 
         
-     <!--Localizacion de los recursos -->
+    <!--Localizacion de los recursos -->
     <mvc:resources mapping="/**" location="/resources/project/"  cache-period="31556926"/>
 	
-      <!--Para que reconozca las anotaciones de spring (@Service, @Autowired, etc) -->
+    <!--Para que reconozca las anotaciones de spring (@Service, @Autowired, etc) -->
     <mvc:annotation-driven />
-        
+    
     <task:annotation-driven />
+   
 
-	
 </beans>

@@ -18,7 +18,9 @@
                             </div>
                         </li>
                         <li><a href="">Productos</a>
-                            <div class="panel" ><a ng-repeat="s in service" ng-click="ctrl.Producto(s.producto)" href="">{[{s.producto}]}</a>
+                            <div class="panel" ><a  ng-click="ctrl.Producto('ATM')" href="">ATM</a>
+                                <a  ng-click="ctrl.Producto('POS')" href="">POS</a>
+                                 <a  ng-click="ctrl.Producto('ALL')" href="">ALL</a>
                             </div>
 
                         </li>
@@ -43,23 +45,23 @@
                 <div class="col-md-10">
                     <div class="panel caja col-md-3 caja" >
                         <h4>Bancos</h4>
-                        <p ng-repeat="banco in bancoCaja track by $index">{[{banco.name}]}</p>
+                        <p ng-repeat="banco in bancoCaja track by $index" ng-click="ctrl.Banco(banco)">{[{banco.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" >
                         <h4>Bines</h4> 
-                        <p ng-repeat="bin in binsCaja track by $index"> {[{bin.name}]}</p>
+                        <p ng-repeat="bin in binsCaja track by $index" ng-click="ctrl.Bins(bin)"> {[{bin.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Tipo de Cuenta</h4>
-                        <p ng-repeat="t in tarjetaCaja track by $index">  {[{t.name}]}</p>
+                        <p ng-repeat="t in tarjetaCaja track by $index" ng-click="ctrl.TTarjeta(t)">  {[{t.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Producto</h4> 
-                        <p ng-repeat="s in serviciosCaja track by $index">  {[{s.producto}]}</p>
+                        <p ng-repeat="p in ProductoCaja track by $index" ng-click="ctrl.Producto(p.name)" >{[{p.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Servicios</h4> 
-                        <p ng-repeat="s in serviciosCaja track by $index">  {[{s.name}]}</p>
+                        <p ng-repeat="s in serviciosCaja track by $index" ng-click="ctrl.Servicio(s)">  {[{s.name}]}</p>
                     </div>
                 </div>
 

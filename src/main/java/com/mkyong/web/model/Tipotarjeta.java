@@ -3,6 +3,7 @@ package com.mkyong.web.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -24,6 +25,7 @@ import javax.persistence.Table;
 @Table(name="tipotarjeta"
     ,catalog="monitoreo"
 )
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Tipotarjeta  implements java.io.Serializable {
 
 
@@ -80,7 +82,7 @@ public class Tipotarjeta  implements java.io.Serializable {
         this.bancoses = bancoses;
     }
 
-@OneToMany(fetch=FetchType.EAGER, mappedBy="tipotarjeta")
+   @OneToMany(fetch=FetchType.EAGER, mappedBy="tipotarjeta")
     public Set<Prefijos> getPrefijoses() {
         return this.prefijoses;
     }

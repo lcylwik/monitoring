@@ -10,6 +10,7 @@ com\mkyong\web\dao\TransDaoImpl.class
 com\mkyong\web\model\Txn.class
 com\mkyong\web\services\UserService.class
 com\mkyong\web\model\Roles.class
+com\mkyong\web\services\HibernateAwareObjectMapper.class
 com\mkyong\web\services\ScheduledTasksImpl.class
 com\mkyong\web\controller\HelloController$LoginResponse.class
 com\mkyong\web\model\Clave.class

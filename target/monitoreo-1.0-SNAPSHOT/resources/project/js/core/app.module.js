@@ -155,6 +155,20 @@
             total += this[i];
         }
         return total / this.length;
+    };
+
+    Array.prototype.removeDuplicates = function (prop) {
+        var newArray = [];
+        var lookupObject = {};
+
+        for (var i in this) {
+            lookupObject[this[i][prop]] = this[i];
+        }
+
+        for (i in lookupObject) {
+            newArray.push(lookupObject[i]);
+        }
+        return newArray;
     }
 
 
