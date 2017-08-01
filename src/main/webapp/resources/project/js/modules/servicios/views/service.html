@@ -2,14 +2,19 @@
     <div class="row">
 
         <div class="panel">
-            <div class="panel-heading pointer"  ng-init="showFilters = true" ng-click="showFilters = !showFilters">
-                <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="panel-heading pointer" >
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <p style="margin-bottom:0;">
                         <strong>Servicios de los Bancos</strong>
                     </p>
                 </div>
+                <div class="col-md-9 col-sm-9 col-xs-9">
+                    <div style="float: right;" >
+                        <p style="float: left;" ng-repeat="t in traza track by $index"> {[{t.value}]}  <strong> >> </strong></p>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body" ng-if="showFilters">
+            <div class="panel-body">
                 <div class="col-md-2" id="menu_gral">
                     <ul>
                         <li><a href="">Bancos</a>
@@ -20,7 +25,7 @@
                         <li><a href="">Productos</a>
                             <div class="panel" ><a  ng-click="ctrl.Producto('ATM')" href="">ATM</a>
                                 <a  ng-click="ctrl.Producto('POS')" href="">POS</a>
-                                 <a  ng-click="ctrl.Producto('ALL')" href="">ALL</a>
+                                <a  ng-click="ctrl.Producto('ALL')" href="">ALL</a>
                             </div>
 
                         </li>
@@ -62,6 +67,13 @@
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Servicios</h4> 
                         <p ng-repeat="s in serviciosCaja track by $index" ng-click="ctrl.Servicio(s)">  {[{s.name}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-4 col-lg-3 pull-right filter-buttons">
+                    <div class="form-group">
+                        <button class="btn btn-default pull-right search" ng-click="ctrl.LimpiarFiltros()"
+                                type="button">Limpiar Filtros</button>
+                        
                     </div>
                 </div>
 
