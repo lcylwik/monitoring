@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-md-9 col-sm-9 col-xs-9">
                     <div style="float: right;" >
-                        <p style="float: left;" ng-repeat="t in traza track by $index"> {[{t.value}]}  <strong> >> </strong></p>
+                        <p style="float: left;" ng-repeat="t in ctrl.traza track by $index"> {[{t.value}]}  <strong> >> </strong></p>
                     </div>
                 </div>
             </div>
@@ -18,8 +18,8 @@
                 <div class="col-md-2" id="menu_gral">
                     <ul>
                         <li><a href="">Bancos</a>
-                            <div class="panel">
-                                <a ng-repeat="b in bancos" ng-click="ctrl.Banco(b,true)">{[{b.name}]}</a>
+                            <div class="panel" >
+                                <a ng-repeat="b in ctrl.bancos"ng-click="ctrl.Banco(b,true)">{[{b.name}]}</a>
                             </div>
                         </li>
                         <li><a href="">Productos</a>
@@ -31,17 +31,17 @@
                         </li>
                         <li><a href="">Bines</a>
                             <div class="panel">
-                                <a ng-repeat="p in prefijo" ng-click="ctrl.Bins(p,true)" href="">{[{p.name}]}</a>
+                                <a ng-repeat="p in ctrl.prefijo" ng-click="ctrl.Bins(p,true)" href="">{[{p.name}]}</a>
                             </div>
                         </li>
                         <li><a href="">Tipo de Cuenta</a>
                             <div class="panel" >
-                                <a ng-repeat="tt in tipotarjeta" ng-click="ctrl.TTarjeta(tt,true)" href="">{[{tt.name}]}</a>
+                                <a ng-repeat="tt in ctrl.tipotarjeta" ng-click="ctrl.TTarjeta(tt,true)" href="">{[{tt.name}]}</a>
                             </div>
                         </li>
                         <li><a href="">Sevicios</a>
                             <div class="panel" > 
-                                <a ng-repeat="s in service" ng-click="ctrl.Servicio(s,true)" href="">{[{s.name}]}</a>
+                                <a ng-repeat="s in ctrl.service" ng-click="ctrl.Servicio(s,true)" href="">{[{s.name}]}</a>
                             </div>
                         </li>
                     </ul>
@@ -50,23 +50,23 @@
                 <div class="col-md-10">
                     <div class="panel caja col-md-3 caja" >
                         <h4>Bancos</h4>
-                        <p ng-repeat="banco in bancoCaja track by $index" ng-click="ctrl.Banco(banco,false)">{[{banco.name}]}</p>
+                        <p ng-repeat="banco in ctrl.bancoCaja track by $index" ng-click="ctrl.Banco(banco,false)">{[{banco.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" >
                         <h4>Bines</h4> 
-                        <p ng-repeat="bin in binsCaja track by $index" ng-click="ctrl.Bins(bin,false)"> {[{bin.name}]}</p>
+                        <p ng-repeat="bin in ctrl.binsCaja track by $index" ng-click="ctrl.Bins(bin,false)"> {[{bin.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Tipo de Cuenta</h4>
-                        <p ng-repeat="t in tarjetaCaja track by $index" ng-click="ctrl.TTarjeta(t,false)">  {[{t.name}]}</p>
+                        <p ng-repeat="t in ctrl.tarjetaCaja track by $index" ng-click="ctrl.TTarjeta(t,false)">  {[{t.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Producto</h4> 
-                        <p ng-repeat="p in ProductoCaja track by $index" ng-click="ctrl.Producto(p,false)" >{[{p.name}]}</p>
+                        <p ng-repeat="p in ctrl.ProductoCaja track by $index" ng-click="ctrl.Producto(p,false)" >{[{p.name}]}</p>
                     </div>
                     <div class="panel caja col-md-3 caja" > 
                         <h4>Servicios</h4> 
-                        <p ng-repeat="s in serviciosCaja track by $index" ng-click="ctrl.Servicio(s,false)">  {[{s.name}]}</p>
+                        <p ng-repeat="s in ctrl.serviciosCaja track by $index" ng-click="ctrl.Servicio(s,false)">  {[{s.name}]}</p>
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-4 col-lg-3 pull-right filter-buttons">

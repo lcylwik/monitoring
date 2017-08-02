@@ -1,37 +1,34 @@
 
 (function () {
     angular.module('EST.controllers')
-            .controller('ESTService', function ($scope, Crud, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
+            .controller('ESTService', function ($scope, $timeout, Crud, EST, Util, TXN, SweetAlert, ngTableParams, $state, $filter, $sessionStorage) {
                 var ctrl = this;
-                $scope.bancos = [];
-                $scope.tipotarjeta = [];
-                $scope.prefijo = [];
-                $scope.service = [];
-                $scope.traza = [];
-                $scope.binsCaja = [];
-                $scope.serviciosCaja = [];
-                $scope.bancoCaja = [];
-                $scope.tarjetaCaja = [];
-                $scope.ProductoCaja = [];
-                $scope.bancosTemp=[];
+                ctrl.bancos = [];
+                ctrl.tipotarjeta = [];
+                ctrl.prefijo = [];
+                ctrl.service = [];
+                ctrl.traza = [];
+                ctrl.binsCaja = [];
+                ctrl.serviciosCaja = [];
+                ctrl.bancoCaja = [];
+                ctrl.tarjetaCaja = [];
+                ctrl.ProductoCaja = [];
+                ctrl.bancosTemp = [];
 
                 //obtener los bancos
                 ctrl.getBancos = function () {
                     Crud.getAll('/banco').then(function (event) {
                         angular.forEach(event.data, function (element) {
-                            $scope.bancos.push(element);
-                            $scope.bancosTemp.push(element);
+                            ctrl.bancos.push(element);
+                            ctrl.bancosTemp.push(element);
                         });
                     });
-                   
-                     console.log('$scope.bancos',$scope.bancos);
-                    console.log('$scope.bancosTemp',$scope.bancosTemp);
                 };
                 //obtener los tipoTarjeta
                 ctrl.getAllTipoTarjeta = function () {
                     Crud.getAll('/tipotarjeta').then(function (event) {
                         angular.forEach(event.data, function (element) {
-                            $scope.tipotarjeta.push(element);
+                            ctrl.tipotarjeta.push(element);
                         });
                     });
                 };
@@ -39,7 +36,7 @@
                 ctrl.getAllPrefijo = function () {
                     Crud.getAll('/prefijo').then(function (event) {
                         angular.forEach(event.data, function (element) {
-                            $scope.prefijo.push(element);
+                            ctrl.prefijo.push(element);
                         });
                     });
                 };
@@ -47,59 +44,59 @@
                 ctrl.getAllService = function () {
                     Crud.getAll('/service').then(function (event) {
                         angular.forEach(event.data, function (element) {
-                            $scope.service.push(element);
+                            ctrl.service.push(element);
                         });
                     });
                 };
-                
+
                 ctrl.limpiarArray = function () {
-                    $scope.binsCaja = $scope.binsCaja.removeDuplicates("name");
-                    $scope.serviciosCaja = $scope.serviciosCaja.removeDuplicates("name");
-                    $scope.bancoCaja = $scope.bancoCaja.removeDuplicates("name");
-                    $scope.ProductoCaja = $scope.ProductoCaja.removeDuplicates("name");
-                    $scope.tarjetaCaja = $scope.tarjetaCaja.removeDuplicates("name");
+                    ctrl.binsCaja = ctrl.binsCaja.removeDuplicates("name");
+                    ctrl.serviciosCaja = ctrl.serviciosCaja.removeDuplicates("name");
+                    ctrl.bancoCaja = ctrl.bancoCaja.removeDuplicates("name");
+                    ctrl.ProductoCaja = ctrl.ProductoCaja.removeDuplicates("name");
+                    ctrl.tarjetaCaja = ctrl.tarjetaCaja.removeDuplicates("name");
                 };
                 //Al dar click en el elemento de las cajas
 
 
                 //quita todos los filtros
                 ctrl.LimpiarFiltros = function () {
-                    $scope.traza = [];
-                    $scope.binsCaja = [];
-                    $scope.serviciosCaja = [];
-                    $scope.bancoCaja = [];
-                    $scope.ProductoCaja = [];
-                    $scope.tarjetaCaja = [];
+
+                    ctrl.binsCaja = [];
+                    ctrl.serviciosCaja = [];
+                    ctrl.bancoCaja = [];
+                    ctrl.ProductoCaja = [];
+                    ctrl.tarjetaCaja = [];
                 };
 
                 //Borrar del arreglo temporal
                 ctrl.BorrarBin = function (bin) {
-                    console.log('borrar',$scope.bancosTemp);
-                    angular.forEach($scope.bancosTemp, function (banco,posB) {
-                        angular.forEach(banco.tipotarjetas, function (tarjeta,posT) {
-                           $scope.bancosTemp[posB].tipotarjetas[posT].prefijoses=tarjeta.prefijoses
-                                   .filter(function (prefijo) {
-                                return prefijo.name === bin.name;
-                            });
+                    angular.forEach(ctrl.bancosTemp, function (banco, posB) {
+                        angular.forEach(banco.tipotarjetas, function (tarjeta, posT) {
+                            ctrl.bancosTemp[posB].tipotarjetas[posT].prefijoses = tarjeta.prefijoses
+                                    .filter(function (prefijo) {
+                                        return prefijo.name === bin.name;
+                                    });
                         });
                     });
-                    
+               
                 };
 
                 ctrl.BorrarCuenta = function (cuenta) {
-                    angular.forEach($scope.bancosTemp, function (banco,posB) {
-                        $scope.bancosTemp[posB].tipotarjetas = banco.tipotarjetas.filter(function (tarjeta) {
+                 
+                    angular.forEach(ctrl.bancosTemp, function (banco, posB) {
+                        ctrl.bancosTemp[posB].tipotarjetas = banco.tipotarjetas.filter(function (tarjeta) {
                             return tarjeta.name === cuenta.name;
                         });
                     });
-                    console.log('$scope.bancosTemp',$scope.bancosTemp)
+                
                 };
 
                 ctrl.BorrarServicio = function (servicio) {
-                    angular.forEach($scope.bancosTemp, function (banco, bancoPos) {
+                    angular.forEach(ctrl.bancosTemp, function (banco, bancoPos) {
                         angular.forEach(banco.tipotarjetas, function (tarjeta, tarjetaPos) {
                             angular.forEach(tarjeta.prefijoses, function (bin, binPos) {
-                                $scope.bancosTemp[bancoPos]
+                                ctrl.bancosTemp[bancoPos]
                                         .tipotarjetas[tarjetaPos]
                                         .prefijoses[binPos]
                                         .servicios = bin.servicios.filter(function (service) {
@@ -108,95 +105,101 @@
                             });
                         });
                     });
-
-
-
                 };
 
                 ctrl.BorrarBanco = function (banco) {
-                    $scope.bancosTemp = $scope.bancosTemp.filter(function (ban, pos) {
+                    ctrl.bancosTemp = ctrl.bancosTemp.filter(function (ban, pos) {
                         return ban.name === banco.name;
                     });
-
+                 
                 };
+
                 ctrl.BorrarProducto = function (producto) {
-                    angular.forEach($scope.bancosTemp, function (banco) {
-                        angular.forEach(banco.tipotarjetas, function (tarjeta) {
-                            angular.forEach(tarjeta.prefijoses, function (bin) {
-                                bin.servicios = bin.servicios.filter(function (service) {
-                                    return service.producto === producto.name;
-                                });
+                    angular.forEach(ctrl.bancosTemp, function (banco, posB) {
+                        angular.forEach(banco.tipotarjetas, function (tarjeta, posT) {
+                            angular.forEach(tarjeta.prefijoses, function (bin, posP) {
+                                ctrl.bancosTemp[posB].tipotarjetas[posT].prefijoses[posP].servicios = bin.servicios.
+                                        filter(function (service) {
+                                            return service.producto === producto.name;
+                                        });
                             });
                         });
                     });
                 };
 
+              
+             
                 //metodos para asignarle valores a las cajas
                 ctrl.Banco = function (value, isMenu) {
-                    ctrl.BorrarBanco(value);
-                    
                     var arrayElement = [];
                     if (isMenu) {
-                        arrayElement = $scope.bancos;
+                        ctrl.LimpiarFiltros();
+                        arrayElement = ctrl.bancos;
+                        ctrl.bancosTemp = ctrl.bancos.clone();
+                        ctrl.BorrarBanco(value);
+
+                        ctrl.traza = [];
+                        ctrl.traza.push({id: value.idbanco, value: value.name});
                     } else {
-                        arrayElement = $scope.bancosTemp;
-                        console.log("esteeeeeeeee", arrayElement);
-                        console.log("esteeeeeeeee", $scope.bancos);
+                        ctrl.BorrarBanco(value);
+                        arrayElement = ctrl.bancosTemp.clone();
+                        ctrl.traza.push({id: value.idbanco, value: value.name});
+                        ctrl.traza.removeDuplicates("value");
                     }
 
-                    ctrl.LimpiarFiltros();
-                    $scope.traza.push({id: value.idbanco, value: value.name});
                     angular.forEach(arrayElement, function (banco) {
-
                         if (banco.name == value.name) {
-                            $scope.bancoCaja.push(banco);
-                            $scope.tarjetaCaja = banco.tipotarjetas;
-                            
+                            ctrl.bancoCaja.push(banco);
                             angular.forEach(banco.tipotarjetas, function (tarjeta) {
+                                ctrl.tarjetaCaja.push(tarjeta);
                                 angular.forEach(tarjeta.prefijoses, function (bin) {
-                                    $scope.binsCaja.push(bin);
+                                    ctrl.binsCaja.push(bin);
                                     angular.forEach(bin.servicios, function (service) {
-                                        $scope.serviciosCaja.push(service);
-                                        $scope.ProductoCaja.push({name: service.producto});
-                                    })
-                                })
+                                        ctrl.serviciosCaja.push(service);
+                                        ctrl.ProductoCaja.push({name: service.producto});
+                                    });
+                                });
                             });
-
                         }
                     });
+                   
                     ctrl.limpiarArray();
                 };
 
                 ctrl.Bins = function (bin, isMenu) {
-
-                   // ctrl.BorrarBin(bin);
                     var arrayElement = [];
                     if (isMenu) {
-                        arrayElement = $scope.bancos;
+                        arrayElement = ctrl.bancos.clone();
+                        ctrl.bancosTemp = ctrl.bancos.clone();
+                        ctrl.BorrarBin(bin);
+
+                        ctrl.traza = [];
+                        ctrl.traza.push({id: bin.id, value: bin.name});
                     } else {
-                        console.log("no es menu",$scope.bancosTemp)
-                        arrayElement = $scope.bancosTemp;
+                        ctrl.BorrarBin(bin);
+                        arrayElement = ctrl.bancosTemp.clone();
+                        ctrl.traza.push({id: bin.id, value: bin.name});
+                        ctrl.traza.removeDuplicates("value");
                     }
 
                     ctrl.LimpiarFiltros();
-                    console.log('ctrl.Bins',arrayElement);
-                    $scope.traza.push({id: bin.id, value: bin.name});
-                    $scope.binsCaja.push(bin);
-                    $scope.serviciosCaja = bin.servicios;
+
+                    ctrl.binsCaja.push(bin);
+                    ctrl.serviciosCaja = bin.servicios;
                     angular.forEach(bin.servicios, function (servicio) {
                         if (servicio.producto == 'ALL') {
-                            $scope.ProductoCaja.push({name: 'POS'});
-                            $scope.ProductoCaja.push({name: 'ATM'});
+                            ctrl.ProductoCaja.push({name: 'POS'});
+                            ctrl.ProductoCaja.push({name: 'ATM'});
                         } else {
-                            $scope.ProductoCaja.push({name: servicio.producto});
+                            ctrl.ProductoCaja.push({name: servicio.producto});
                         }
                     });
                     angular.forEach(arrayElement, function (banco) {
                         angular.forEach(banco.tipotarjetas, function (tarjeta) {
                             angular.forEach(tarjeta.prefijoses, function (prefijo) {
                                 if (prefijo.name == bin.name) {
-                                    $scope.tarjetaCaja.push(tarjeta);
-                                    $scope.bancoCaja.push(banco);
+                                    ctrl.tarjetaCaja.push(tarjeta);
+                                    ctrl.bancoCaja.push(banco);
                                 }
                             });
                         });
@@ -205,70 +208,85 @@
                 };
 
                 ctrl.TTarjeta = function (cuenta, isMenu) {
-                    ctrl.BorrarCuenta(cuenta);
+                    
                     var arrayElement = [];
                     if (isMenu) {
-                        arrayElement = $scope.bancos;
+                        arrayElement = ctrl.bancos.clone();
+                        ctrl.bancosTemp = ctrl.bancos.clone();
+                        ctrl.BorrarCuenta(cuenta);
+
+                        ctrl.traza = [];
+                        ctrl.traza.push({id: cuenta.id, value: cuenta.name});
                     } else {
-                        arrayElement = $scope.bancosTemp;
+                        ctrl.BorrarCuenta(cuenta);
+                        arrayElement = ctrl.bancosTemp.clone();
+                        ctrl.traza.push({id: cuenta.id, value: cuenta.name});
+                        ctrl.traza.removeDuplicates("value");
                     }
 
-                    console.log(cuenta);
+                   
                     ctrl.LimpiarFiltros();
-                    $scope.traza.push({id: cuenta.id, value: cuenta.name});
-                    $scope.tarjetaCaja.push(cuenta);
-                    $scope.binsCaja = cuenta.prefijoses;
+
+                    ctrl.tarjetaCaja.push(cuenta);
+                    ctrl.binsCaja = cuenta.prefijoses;
                     angular.forEach(arrayElement, function (banco) {
                         angular.forEach(banco.tipotarjetas, function (tarjeta) {
                             if (tarjeta.name == cuenta.name) {
-                                $scope.bancoCaja.push(banco);
+                                ctrl.bancoCaja.push(banco);
                             }
                         });
                     });
-                    angular.forEach($scope.binsCaja, function (prefijo) {
+                    angular.forEach(ctrl.binsCaja, function (prefijo) {
                         angular.forEach(prefijo.servicios, function (service) {
-                            $scope.serviciosCaja.push(service);
+                            ctrl.serviciosCaja.push(service);
                             if (service.producto == 'ALL') {
-                                $scope.ProductoCaja.push({name: 'POS'});
-                                $scope.ProductoCaja.push({name: 'ATM'});
+                                ctrl.ProductoCaja.push({name: 'POS'});
+                                ctrl.ProductoCaja.push({name: 'ATM'});
                             } else {
-                                $scope.ProductoCaja.push({name: service.producto});
+                                ctrl.ProductoCaja.push({name: service.producto});
                             }
 
                         });
                     });
-                    $scope.bancosTemp = arrayElement;
+                    ctrl.bancosTemp = arrayElement;
                     ctrl.limpiarArray();
                 };
+
                 ctrl.Servicio = function (service, isMenu) {
-                    ctrl.BorrarServicio(service);
+
                     var arrayElement = [];
                     if (isMenu) {
-                        arrayElement = $scope.bancos;
-                    } else {
-                        arrayElement = $scope.bancosTemp;
-                    }
-                    console.log(service);
+                        arrayElement = ctrl.bancos.clone();
+                        ctrl.bancosTemp = ctrl.bancos.clone();
+                        ctrl.BorrarServicio(service);
 
+                        ctrl.traza = [];
+                        ctrl.traza.push({value: service.name});
+                    } else {
+                       
+                        ctrl.BorrarServicio(service);
+                        arrayElement = ctrl.bancosTemp.clone();
+                        ctrl.traza.push({value: service.name});
+                        ctrl.traza.removeDuplicates("value");
+                    }
+                  
                     ctrl.LimpiarFiltros();
-
-                    $scope.traza.push({id: service.id, value: service.name});
-                    $scope.serviciosCaja.push(service);
+                    ctrl.serviciosCaja.push(service);
                     if (service.producto == 'ALL') {
-                        $scope.ProductoCaja.push({name: 'POS'});
-                        $scope.ProductoCaja.push({name: 'ATM'});
+                        ctrl.ProductoCaja.push({name: 'POS'});
+                        ctrl.ProductoCaja.push({name: 'ATM'});
                     } else {
-                        $scope.ProductoCaja.push({name: service.producto});
+                        ctrl.ProductoCaja.push({name: service.producto});
                     }
-                    $scope.ProductoCaja.push(service.producto);
+                    ctrl.ProductoCaja.push(service.producto);
                     angular.forEach(arrayElement, function (banco) {
                         angular.forEach(banco.tipotarjetas, function (tarjeta) {
                             angular.forEach(tarjeta.prefijoses, function (prefijo) {
                                 angular.forEach(prefijo.servicios, function (servicios) {
                                     if (servicios.name == service.name) {
-                                        $scope.tarjetaCaja.push(tarjeta);
-                                        $scope.bancoCaja.push(banco);
-                                        $scope.binsCaja.push(prefijo);
+                                        ctrl.tarjetaCaja.push(tarjeta);
+                                        ctrl.bancoCaja.push(banco);
+                                        ctrl.binsCaja.push(prefijo);
                                     }
                                 });
                             });
@@ -278,24 +296,28 @@
                 };
 
                 ctrl.Producto = function (producto, isMenu) {
-                    console.log(producto);
-                    
-                    ctrl.BorrarProducto(producto);
                     var arrayElement = [];
                     if (isMenu) {
-                        arrayElement = $scope.bancos;
+                        arrayElement = ctrl.bancos.clone();
+                        ctrl.bancosTemp = ctrl.bancosTemp.clone();
+                        ctrl.BorrarProducto(producto);
+
+                        ctrl.traza = [];
+                        ctrl.traza.push({id: "idProducto", value: producto.name});
                     } else {
-                        arrayElement = $scope.bancosTemp;
+                        arrayElement = ctrl.bancosTemp.clone();
+                        ctrl.BorrarProducto(producto);
+                        ctrl.traza.push({id: "idProducto", value: producto.name});
+                        ctrl.traza.removeDuplicates("value");
                     }
-                   
+
                     ctrl.LimpiarFiltros();
 
-                    $scope.traza.push({id: "idProducto", value: producto.name});
                     if (producto.name == 'ALL') {
-                        $scope.ProductoCaja.push({name: 'POS'});
-                        $scope.ProductoCaja.push({name: 'ATM'});
+                        ctrl.ProductoCaja.push({name: 'POS'});
+                        ctrl.ProductoCaja.push({name: 'ATM'});
                     } else {
-                        $scope.ProductoCaja.push({name: producto.name});
+                        ctrl.ProductoCaja.push({name: producto.name});
                     }
 
                     angular.forEach(arrayElement, function (banco) {
@@ -303,11 +325,10 @@
                             angular.forEach(tarjeta.prefijoses, function (prefijo) {
                                 angular.forEach(prefijo.servicios, function (servicios) {
                                     if (servicios.producto == producto.name || producto.name == "ALL") {
-                                        console.log(servicios.producto)
-                                        $scope.serviciosCaja.push(servicios);
-                                        $scope.tarjetaCaja.push(tarjeta);
-                                        $scope.bancoCaja.push(banco);
-                                        $scope.binsCaja.push(prefijo);
+                                        ctrl.serviciosCaja.push(servicios);
+                                        ctrl.tarjetaCaja.push(tarjeta);
+                                        ctrl.bancoCaja.push(banco);
+                                        ctrl.binsCaja.push(prefijo);
                                     }
                                 })
                             })
@@ -319,14 +340,16 @@
                 };
 
 
+
+
+
+
                 if ($state.current.name === 'home.service') {
-                    $scope.traza = [];
+                    ctrl.traza = [];
                     ctrl.getBancos();
                     ctrl.getAllTipoTarjeta();
                     ctrl.getAllPrefijo();
-                    ctrl.getAllService();;
-
-
+                    ctrl.getAllService();
                 }
 
 
