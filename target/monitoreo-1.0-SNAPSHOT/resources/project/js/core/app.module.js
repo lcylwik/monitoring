@@ -172,14 +172,8 @@
     }
 
     Array.prototype.clone = function () {
-        var newArray = [];
-        
-       /* for (var i = 0; i < this.length; i++) {
-             newArray.push(Object.assign({},this[i]));
-        }
-       
-        return newArray;*/
-        return this.slice();
+
+        return JSON.parse(JSON.stringify(this));
     }
 
 
