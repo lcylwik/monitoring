@@ -13,6 +13,6 @@
                 Auth.logout();
             }
             
-             growlService.growl('Bienvenido Monitoreo Online!', 'inverse')
+             growlService.growl('Bienvenido Monitoreo Online!', 'inverse');
         });
 })();

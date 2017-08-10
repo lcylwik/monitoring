@@ -157,6 +157,15 @@
         return total / this.length;
     };
 
+    Array.prototype.indexOfObject = function (element) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i].elemento === element) {
+                return i;
+            }
+        }
+        return -1;
+    };
+
     Array.prototype.removeDuplicates = function (prop) {
         var newArray = [];
         var lookupObject = {};

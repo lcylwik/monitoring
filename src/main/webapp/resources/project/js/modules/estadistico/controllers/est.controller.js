@@ -187,7 +187,9 @@
                             }
                             $scope.catalogoName.push(obj1);
                         });
+                          console.log($scope.catalogoName);
                     }
+                  
                 }
 
                 ctrl.getElementsFromArray = function (array, columnaAcomparar) {

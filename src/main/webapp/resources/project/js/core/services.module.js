@@ -101,7 +101,7 @@
                 }
             })
             // =========================================================================
-            //  add and get Config
+            //  add and get Configuraciones de contraseña
             // =========================================================================
             .service('Config', function (API, $http) {
                 return {
@@ -181,7 +181,7 @@
                     }
                 }
             })
-
+           
 
             /*Boostrap-growl Notificaciones */
 

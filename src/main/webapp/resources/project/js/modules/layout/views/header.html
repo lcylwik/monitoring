@@ -29,17 +29,18 @@
                 <!-- Authentication Links -->
                 <li uib-dropdown>
                     <a uib-dropdown-toggle class="pointer">
+                        <i class="fa fa-user"/>
                         {[{ user.name }]} <span class="caret"></span>
                     </a>
 
                     <ul uib-dropdown-menu>
                         <li>
                             <a ui-sref="home.usersEdit({id: user.id, action: 'edit'})">
-                                Mi Perfil
+                                <i class="fa fa-user"/> Mi Perfil
                             </a>
                         </li><li>
                             <a href="javascript:void(0);" ng-click="ctrl.logout()">
-                                Logout
+                               <i class="fa fa-sign-in"/> Logout
                             </a>
                         </li>
                     </ul>
