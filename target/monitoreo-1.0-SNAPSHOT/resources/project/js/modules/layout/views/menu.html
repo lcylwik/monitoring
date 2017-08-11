@@ -3,19 +3,19 @@
         <ul class="">
             <li data-ng-repeat="menu in mainMenu"
                 ng-if="(menu.permiso && hasPermission(menu.permiso)) || !menu.permiso" class="level"
-                ng-class="ctrl.stateInclude(menu.submenu) ? 'active':''">
+                ng-class="ctrl.stateInclude(menu.submenu) ? 'active' : ''">
                 <a href="#" urllink id="{[{menu.nombre}]}">
                     <i class="{[{menu.icono}]}"></i>
                     <span class="hidden-collapsed">
-                    {[{menu.nombre}]}
-            <i ng-if="menu.submenu" class="menu__icon--rotate fa fa-angle-right fa-lg pull-right"></i>
-          </span>
+                        {[{menu.nombre}]}
+                        <i ng-if="menu.submenu" class="menu__icon--rotate fa fa-angle-right fa-lg pull-right"></i>
+                    </span>
                 </a>
                 <ul data-ng-repeat="submenu in menu.submenu"
                     ng-if="(submenu.permiso && hasPermission(submenu.permiso)) || !submenu.permiso">
-                    <li class="sublevel" ng-class="ctrl.stateInclude(submenu, 'sub') ? 'active':''">
-                        <a href="#" urllink sublevel="true" data-ng-click="ctrl.link($event,submenu.link)" ui-sref-active="active">
-                            <span>{[{submenu.nombre}]}</span>
+                    <li class="sublevel" ng-class="ctrl.stateInclude(submenu, 'sub') ? 'active' : ''">
+                        <a href="#" urllink sublevel="true" data-ng-click="ctrl.link($event, submenu.link)" ui-sref-active="active">
+                           <i class="{[{submenu.icono}]}"></i> <span>{[{submenu.nombre}]}</span>
                         </a>
                     </li>
                 </ul>

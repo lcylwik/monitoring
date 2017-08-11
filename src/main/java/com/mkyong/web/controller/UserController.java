@@ -125,7 +125,7 @@ public class UserController {
 
     }
 
-    //add config
+    //add config al estadistico
     @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.PUT)
     public void addConfig(@RequestBody Configuracion config, @PathVariable("id") Integer id) {
         userservice.addConfiguration(config, id);

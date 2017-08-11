@@ -1843,7 +1843,7 @@ be a descendant of the grid when it is being dragged.
     margin: 0;
     padding: 0;
     border: o none;
-    position: relative;
+
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -1864,6 +1864,7 @@ html {
 }
 #menu_gral > ul li {
     background: #FFf;
+    position: relative;
 }
 #menu_gral li a {
     display: block;
@@ -1902,7 +1903,7 @@ html {
 }
 #menu_gral li:hover div, #menu_gral li:focus div {
     width: 100%;
-   /* background:  #bbb;*/
+    /* background:  #bbb;*/
     z-index: 5;
 }
 #menu_gral li li {
@@ -1928,7 +1929,7 @@ html {
 
 }
 #menu_gral li li a:hover, #menu_gral li li a:focus {
-   /* background: #5b0206; */
+    /* background: #5b0206; */
 }
 
 li .panel{
@@ -1941,7 +1942,7 @@ li .panel{
 }
 
 #menu_gral li:hover div{
-      width: 500px !important;}
+    width: 500px !important;}
 
 
 .caja p{

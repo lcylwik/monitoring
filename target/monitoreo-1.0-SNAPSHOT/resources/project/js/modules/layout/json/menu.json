@@ -17,13 +17,13 @@
         "submenu": {
             "est.search": {
                 "nombre": "Estadisticas",
-                "icono": null,
+                "icono": "fa fa-table",
                 "link": "home.search",
                 "permiso": "prosa.monitoring"
             },
             "est.config": {
-                "nombre": "Configuracion",
-                "icono": null,
+                "nombre": "Calendario",
+                "icono": "fa fa-calendar-o",
                 "link": "home.config",
                 "permiso": "prosa.monitoring"
             }
@@ -43,6 +43,23 @@
                 "icono": null,
                 "link": "home.service",
                 "permiso": "prosa.service"
+            }
+        }
+    },
+     "ConfigB24": {
+        "id": 39,
+        "nombre": "Configurar",
+        "icono": "menu__icon--mainIcon fa fa-cogs ",
+        "link": null,
+        "permiso": [
+            "prosa.configb24"
+        ],
+        "submenu": {
+            "est.service": {
+                "nombre": "Base 24",
+                "icono": null,
+                "link": "home.configb24",
+                "permiso": "prosa.configb24"
             }
         }
     },
