@@ -1,9 +1,7 @@
 package com.mkyong.web.model;
-// Generated 28-may-2017 16:03:22 by Hibernate Tools 4.3.1
+// Generated Jul 25, 2017 12:48:18 PM by Hibernate Tools 4.3.1
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,14 +29,14 @@ import javax.persistence.UniqueConstraint;
 )
 public class Roles implements java.io.Serializable {
 
-    private Integer id;
-    private String name;
-    private String displayName;
-    private String description;
-    private Date createdAt;
-    private Date updatedAt;
-    private Set<Permissions> permissionses = new HashSet<Permissions>(0);
-    private Set<Users> userses = new HashSet<Users>(0);
+     private Integer id;
+     private String name;
+     private String displayName;
+     private String description;
+     private Date createdAt;
+     private Date updatedAt;
+     private Set<Permissions> permissionses = new HashSet<Permissions>(0);
+     private Set<Users> userses = new HashSet<Users>(0);
 
     public Roles() {
     }
@@ -48,15 +46,16 @@ public class Roles implements java.io.Serializable {
         this.displayName = displayName;
     }
 
-    public Roles(String name, String displayName, String description, Date createdAt, Date updatedAt, Set<Permissions> permissionses) {
-        this.name = name;
-        this.displayName = displayName;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.permissionses = permissionses;
+    public Roles(String name, String displayName, String description, Date createdAt, Date updatedAt, Set<Permissions> permissionses, Set<Users> userses) {
+       this.name = name;
+       this.displayName = displayName;
+       this.description = description;
+       this.createdAt = createdAt;
+       this.updatedAt = updatedAt;
+       this.permissionses = permissionses;
+       this.userses = userses;
     }
-
+   
     @Id
     @GeneratedValue(strategy = IDENTITY)
 
@@ -64,7 +63,7 @@ public class Roles implements java.io.Serializable {
     public Integer getId() {
         return this.id;
     }
-
+    
     public void setId(Integer id) {
         this.id = id;
     }
@@ -73,7 +72,7 @@ public class Roles implements java.io.Serializable {
     public String getName() {
         return this.name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -82,7 +81,7 @@ public class Roles implements java.io.Serializable {
     public String getDisplayName() {
         return this.displayName;
     }
-
+    
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
@@ -91,7 +90,7 @@ public class Roles implements java.io.Serializable {
     public String getDescription() {
         return this.description;
     }
-
+    
     public void setDescription(String description) {
         this.description = description;
     }
@@ -101,7 +100,7 @@ public class Roles implements java.io.Serializable {
     public Date getCreatedAt() {
         return this.createdAt;
     }
-
+    
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
@@ -111,12 +110,12 @@ public class Roles implements java.io.Serializable {
     public Date getUpdatedAt() {
         return this.updatedAt;
     }
-
+    
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    @ManyToMany(fetch=FetchType.EAGER)
+@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "permission_role", catalog = "monitoreo", joinColumns = {
         @JoinColumn(name = "role_id", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "permission_id", nullable = false, updatable = false)})
@@ -125,12 +124,12 @@ public class Roles implements java.io.Serializable {
     public Set<Permissions> getPermissionses() {
         return this.permissionses;
     }
-
+    
     public void setPermissionses(Set<Permissions> permissionses) {
         this.permissionses = permissionses;
     }
 
-    @ManyToMany(fetch=FetchType.EAGER)
+@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "role_user", catalog = "monitoreo", joinColumns = {
         @JoinColumn(name = "role_id", nullable = false, updatable = false)}, inverseJoinColumns = {
         @JoinColumn(name = "user_id", nullable = false, updatable = false)})
@@ -139,7 +138,7 @@ public class Roles implements java.io.Serializable {
     public Set<Users> getUserses() {
         return this.userses;
     }
-
+    
     public void setUserses(Set<Users> userses) {
         this.userses = userses;
     }

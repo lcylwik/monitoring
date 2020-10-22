@@ -1,0 +1,23 @@
+<div class="col-md-12 col-xs-12 col-lg-12">
+    <div class="row">
+
+        <!--  <ng-include src="'js/modules/estadistico/views/filters.html'"></ng-include>-->
+
+
+        <ng-include src="'js/modules/estadistico/views/partials/table-filters.html'"></ng-include>
+        <button class="btn filtrar btn-link codR" ng-class="advanced ? 'open' : ''" title="Filtros avanzados" ng-click="advanced = !advanced"><i class="tm-icon zmdi zmdi-filter-list"></i></button>
+        <ng-include ng-if="advanced" src="'js/modules/estadistico/views/partials/table-filters-all.html'"></ng-include>
+
+
+        <div class="panel" ng-if="filters.field1 && filters.field2 && catalogo.prtFilename.length > 0">
+            <ul class="nav nav-tabs">
+                <li ui-sref-active="active" class="active"><a ui-sref="home.search.table">Tabla</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.search.grafica">Grafica</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.search.porcentX">% {[{ctrl.visibleNames[filters.field1.name]}]} </a></li>
+                <li ui-sref-active="active"><a ui-sref="home.search.porcentY">% {[{ctrl.visibleNames[filters.field2.name]}]} </a></li>
+            </ul>
+
+            <div ui-view></div>
+        </div>
+    </div>
+</div>

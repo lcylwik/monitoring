@@ -1,5 +1,5 @@
 (function () {
-    angular.module("MDM")
+    angular.module("EST")
             .config(function ($stateProvider) {
                 $stateProvider
                         .state('login', {
@@ -10,7 +10,7 @@
                             resolve: {
                                 loadMyFiles: function ($ocLazyLoad) {
                                     return $ocLazyLoad.load({
-                                        name: 'MDM.controllers',
+                                        name: 'EST.controllers',
                                         files: [
                                             'js/modules/auth/controllers/auth.controller.js'
                                         ]

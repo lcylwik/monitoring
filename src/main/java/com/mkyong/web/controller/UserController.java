@@ -5,6 +5,7 @@
  */
 package com.mkyong.web.controller;
 
+import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -92,6 +93,11 @@ public class UserController {
         userservice.deleteUsers(id);
     }
 
+    @RequestMapping(value = "/usersRepeat/{name}", method = RequestMethod.GET)
+    public boolean usersRepeat(@PathVariable("name") String name) {
+       return userservice.userExists(name);
+    }
+
     @RequestMapping(value = "user/updatePassword/{id}", method = RequestMethod.POST)
     public void updatePass(@PathVariable("id") int id, @RequestBody Paswords passwords) throws ServletException {
         if (passwords.password.equals(passwords.password_confirmation)) {
@@ -117,5 +123,23 @@ public class UserController {
             this.password_confirmation = password_confirmation;
         }
 
+    }
+
+    //add config al estadistico
+    @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.PUT)
+    public void addConfig(@RequestBody Configuracion config, @PathVariable("id") Integer id) {
+        userservice.addConfiguration(config, id);
+    }
+
+    @RequestMapping(value = "/rest/config/{id}", method = RequestMethod.GET)
+    public Configuracion findConfig(@PathVariable("id") Integer id) {
+        Configuracion config = userservice.getConfigurationByID(id);
+        return config;
+    }
+
+    @RequestMapping(value = "/rest/config", method = RequestMethod.GET)
+    public List<Configuracion> findAllConfig() {
+        List<Configuracion> config = userservice.getConfiguration();
+        return config;
     }
 }

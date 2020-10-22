@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2017 12:48:22 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mkyong.web.model.Eventos" table="eventos" catalog="monitoreo">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="20" not-null="true" />
+        </property>
+        <property name="start" type="date">
+            <column name="start" length="10" not-null="false" />
+        </property>
+        <property name="end" type="date">
+            <column name="end" length="10" not-null="false" />
+        </property>
+        <property name="value" type="int">
+            <column name="value" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

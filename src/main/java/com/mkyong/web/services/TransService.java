@@ -6,9 +6,8 @@
 package com.mkyong.web.services;
 
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
-import com.mkyong.web.model.txn_json;
+import com.mkyong.web.model.FilterTxn;
+import com.mkyong.web.model.Txn;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -19,22 +18,20 @@ import java.util.List;
  */
 public interface TransService {
 
-    public List<PrsaTxnAceptadas> getTransaccionesAceptadas();
+    public List<Txn> getTransacciones();
 
-    public List<PrsaRejectedTxn> getTransaccionesReject();
-
-    public List<Object> getEstadistico();
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters);
 
     public Integer addEstadistico(Estadistico estadistico);
-    
-    public Boolean checkMonthIsCalculated(Date date);
-    
-    public Date getFirstTransaction();
 
-    public List<txn_json> getAllTxn();
+    public Boolean checkMonthIsCalculated(Date date);
+
+    public Date getFirstTransaction();
 
     public List<String> getCodigo();
 
-    public Iterator getCantFechaByCode(String code,Date fromDate, Date toDate);
+    public Iterator getCantFechaByCode(String code, Date fromDate, Date toDate);
+
+    public List<Txn> getTxnByDate(Date from, Date to);
 
 }

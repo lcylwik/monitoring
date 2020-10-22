@@ -7,8 +7,8 @@ package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Clave;
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
+import com.mkyong.web.model.FilterTxn;
+import com.mkyong.web.model.Txn;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.hibernate.Criteria;
@@ -27,26 +27,27 @@ import org.springframework.stereotype.Repository;
 public class TransDaoImpl implements TransDao {
 
     @Override
-    public List<PrsaTxnAceptadas> getTransaccionesAceptadas() {
-        Criteria criteria = SessionUtil.getSession().createCriteria(PrsaTxnAceptadas.class);
-        return (List<PrsaTxnAceptadas>) criteria.list();
+    public List<Txn> getTransacciones() {
+        Criteria criteria = SessionUtil1.getSession().createCriteria(Txn.class);
+        return (List<Txn>) criteria.list();
     }
 
     @Override
-    public List<PrsaRejectedTxn> getTransaccionesReject() {
-        Criteria criteria = SessionUtil.getSession().createCriteria(PrsaRejectedTxn.class);
-        return (List<PrsaRejectedTxn>) criteria.list();
+    public List<Txn> getTxnByDate(Date from, Date to) {
+        Criteria criteria = SessionUtil1.getSession().createCriteria(Txn.class)
+                .add(Restrictions.between("prtProcDte", from, to));
+        return (List<Txn>) criteria.list();
     }
 
     // Metodos Rest para obtener y adicionar las estadisticas
     @Override
-    public List<Object> getEstadistico() {
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters) {
         Session session = SessionUtil1.getSession();
-       // List<Object> list1 = SessionUtil1.getSession().createQuery("from Clave as cl join fetch cl.estadisticos as est").list();
-       
-     List<Object> list1 = SessionUtil1.getSession().createSQLQuery("Select cl.type,cl.elemento,est.media,est.desviacion,est.fecha from estadistico as est inner join clave as cl where est.idClave=cl.idC").list();
-
-        return list1;
+        session.getTransaction().begin();
+        Object est = SessionUtil1.getSession().createSQLQuery("").list();
+        session.getTransaction().commit();
+        session.close();
+        return est;
     }
 
     @Override
@@ -84,8 +85,8 @@ public class TransDaoImpl implements TransDao {
 
     @Override
     public Date getFirstTransaction() {
-        String sql = "SELECT PRT_PROC_DTE as fecha FROM `prsa_rejected_txn` union all SELECT FECHA_PROCESO_TRANSAC as fecha FROM `prsa_txn_aceptadas` ORDER BY fecha ASC LIMIT 1";
-        Session session = SessionUtil.getSession();
+        String sql = "SELECT prtProcDte as fecha FROM `txn` ORDER BY fecha ASC LIMIT 1";
+        Session session = SessionUtil1.getSession();
 
         session.beginTransaction();
         Date firstTransacctionDate = (Date) session.createSQLQuery(sql).uniqueResult();
@@ -100,20 +101,15 @@ public class TransDaoImpl implements TransDao {
     @Override
     public Iterator getCantFechaByCode(String code, Date fromDate, Date toDate) {
 
-        String sql = "SELECT prt_proc_dte,count(prt_proc_dte) FROM `transacciones`.`prsa_rejected_txn` where codigo_respuesta='" + code + "' and prt_proc_dte between '" + new SimpleDateFormat("yyyy-MM-dd").format(fromDate) + "'and '" + new SimpleDateFormat("yyyy-MM-dd").format(toDate) + "'  group by substring(prt_proc_dte,1,10)";
-        String sql1 = "SELECT FECHA_PROCESO_TRANSAC,count(FECHA_PROCESO_TRANSAC) FROM `transacciones`.`prsa_txn_aceptadas` where CODIGO_RESPUESTA_AUT='" + code + "' and FECHA_PROCESO_TRANSAC between '" + new SimpleDateFormat("yyyy-MM-dd").format(fromDate) + "'and '" + new SimpleDateFormat("yyyy-MM-dd").format(toDate) + "' group by substring(FECHA_PROCESO_TRANSAC,1,10)";
+        String sql = "SELECT prtProcDte,count(prtProcDte) FROM `txn` where codigoRespuesta='" + code + "' and prtProcDte between '" + new SimpleDateFormat("yyyy-MM-dd").format(fromDate) + "'and '" + new SimpleDateFormat("yyyy-MM-dd").format(toDate) + "'  group by substring(prtProcDte,1,10)";
 
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil1.getSession();
 
         session.beginTransaction();
-        List listReject = session.createSQLQuery(sql).list();
-        List listAccept = session.createSQLQuery(sql1).list();
+        List listtxn = session.createSQLQuery(sql).list();
         session.getTransaction().commit();
         session.close();
-
-        listReject.addAll(listAccept);
-        Iterator dateAndCant = listReject.iterator();
-
+        Iterator dateAndCant = listtxn.iterator();
         return dateAndCant;
     }
 
@@ -121,7 +117,7 @@ public class TransDaoImpl implements TransDao {
     public List<String> getCodigo() {
         String sql = "SELECT codigo_respuesta  FROM `transacciones`.`prsa_rejected_txn` group by (codigo_respuesta);";
         String sql1 = "SELECT CODIGO_RESPUESTA_AUT  FROM `transacciones`.`prsa_txn_aceptadas` group by (CODIGO_RESPUESTA_AUT);";
-        Session session = SessionUtil.getSession();
+        Session session = SessionUtil1.getSession();
 
         session.beginTransaction();
         List<String> codes = session.createSQLQuery(sql).list();

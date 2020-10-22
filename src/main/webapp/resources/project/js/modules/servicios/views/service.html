@@ -1,0 +1,84 @@
+<div class="col-md-12 col-xs-12 col-lg-12 services">
+    <div class="row">
+
+        <div class="panel">
+            <div class="panel-heading pointer" >
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <p style="margin-bottom:0;">
+                        <strong>Servicios de los Bancos</strong>
+                    </p>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-9">
+                    <div style="float: right;" >
+                        <p style="float: left;" ng-repeat="tr in traza track by $index" ng-click="ctrl.ClickTraza(tr)"> {[{tr.elemento}]}  <strong> >> </strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-2" id="menu_gral">
+                    <ul>
+                        <li><a href="">Bancos</a>
+                            <div class="panel" >
+                                <a ng-repeat="b in ctrl.bancos track by $index" ng-click="ctrl.PintarCajas(b.name,'banco',true)">{[{b.name}]}</a>
+                            </div>
+                        </li>
+                        <li><a href="">Productos</a>
+                            <div class="panel" ><a  ng-click="ctrl.PintarCajas('ATM','producto',true)" href="">ATM</a>
+                                <a  ng-click="ctrl.PintarCajas('POS','producto',true)" href="">POS</a>
+                                <a  ng-click="ctrl.PintarCajas('ALL','producto',true)" href="">ALL</a>
+                            </div>
+
+                        </li>
+                        <li><a href="">Bines</a>
+                            <div class="panel">
+                                <a ng-repeat="p in ctrl.prefijo track by $index" ng-click="ctrl.PintarCajas(p.name,'bin',true)" href="">{[{p.name}]}</a>
+                            </div>
+                        </li>
+                        <li><a href="">Tipo de Cuenta</a>
+                            <div class="panel" >
+                                <a ng-repeat="tt in ctrl.tipotarjeta track by $index" ng-click="ctrl.PintarCajas(tt.name,'tarjeta',true)" href="">{[{tt.name}]}</a>
+                            </div>
+                        </li>
+                        <li><a href="">Sevicios</a>
+                            <div class="panel" > 
+                                <a ng-repeat="s in ctrl.service track by $index" ng-click="ctrl.PintarCajas(s.name,'servicio',true)" href="">{[{s.name}]}</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-md-10" ng-if="ctrl.showFilters">
+                    <div class="panel caja col-md-3 caja" >
+                        <h4>Bancos</h4>
+                        <p ng-repeat="ban in bancoCaja track by $index" ng-click="ctrl.PintarCajas(ban,'banco',false)">{[{ban}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" >
+                        <h4>Bines</h4> 
+                        <p ng-repeat="bin in binsCaja track by $index" ng-click="ctrl.PintarCajas(bin,'bin',false)"> {[{bin}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" > 
+                        <h4>Tipo de Cuenta</h4>
+                        <p ng-repeat="t in tarjetaCaja track by $index" ng-click="ctrl.PintarCajas(t,'tarjeta',false)">  {[{t}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" > 
+                        <h4>Producto</h4> 
+                        <p ng-repeat="p in ProductoCaja track by $index" ng-click="ctrl.PintarCajas(p,'producto',false)" >{[{p}]}</p>
+                    </div>
+                    <div class="panel caja col-md-3 caja" > 
+                        <h4>Servicios</h4> 
+                        <p ng-repeat="s in serviciosCaja track by $index" ng-click="ctrl.PintarCajas(s,'servicio',false)">  {[{s}]}</p>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-4 col-lg-3 pull-right filter-buttons" ng-if="ctrl.showFilters">
+                    <div class="form-group">
+                        <button class="btn btn-default pull-right search" ng-click="ctrl.LimpiarFiltros()"
+                                type="button">Limpiar Filtros</button>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+    </div>
+</div> 
+

@@ -5,6 +5,8 @@
  */
 package com.mkyong.web.services;
 
+import com.mkyong.web.model.Bitacoras;
+import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -39,6 +41,18 @@ public interface UserService {
 
     boolean userExists(String username);
 
-    void updatePassword(int iduser, String newPass,String oldPass);
+    void updatePassword(int iduser, String newPass, String oldPass);
 
+    Integer addBitacora(String username);
+
+    void addConfiguration(Configuracion config, int id);
+
+    Configuracion getConfigurationByID(int id);
+
+    int findStatusByName(String name);
+
+    Bitacoras findBitacorasByIDUserAndAction(int userID, String action);
+    
+    List<Configuracion> getConfiguration();
+    
 }

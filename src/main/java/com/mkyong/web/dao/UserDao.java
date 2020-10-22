@@ -5,6 +5,8 @@
  */
 package com.mkyong.web.dao;
 
+import com.mkyong.web.model.Bitacoras;
+import com.mkyong.web.model.Configuracion;
 import com.mkyong.web.model.Permissions;
 import com.mkyong.web.model.Roles;
 import com.mkyong.web.model.Users;
@@ -16,15 +18,14 @@ import javax.servlet.ServletException;
  * @author ProasEvolution
  */
 public interface UserDao {
-    
+
     List<Permissions> findPermissionByUserName(String name);
-    
+
     List<Roles> findRolByUserId(int id);
 
     List<Roles> findRoleByUserName(String name);
 
     Users findUserByPass(String name, String pass);
-    
 
     Users findByName(String name);
 
@@ -39,9 +40,20 @@ public interface UserDao {
     void deleteUsers(int pid);
 
     boolean userExists(String username);
-    
-    void updatePassword(int iduser, String newPass,String oldPass);
 
-    
+    void updatePassword(int iduser, String newPass, String oldPass);
 
+    Integer addBitacora(Bitacoras bit);
+
+    void addConfiguration(Configuracion config, int id);
+
+    Configuracion getConfigurationByID(int id);
+
+    int findStatusByName(String name);
+
+    Bitacoras findBitacorasByIDUserAndAction(int userID, String action);
+
+    List<Configuracion> getConfiguration();
+    
+ 
 }

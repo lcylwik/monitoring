@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module("MDM")
+    angular.module("EST")
         .config(function ($stateProvider) {
             $stateProvider
                 .state('home.users', {
@@ -27,7 +27,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/users/controllers/users.controller.js'
                                 ]
@@ -51,6 +51,7 @@
                             }
                         },
                         item: function ($stateParams, Auth) {
+                            
                             if (!$stateParams.item && $stateParams.id) {
                                 return Auth.getUserById($stateParams.id).then(function (data) {
                                     $stateParams.item = data.data;
@@ -60,7 +61,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/users/controllers/users.controller.js'
                                 ]
@@ -91,7 +92,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/roles/controllers/roles.controller.js'
                                 ]
@@ -124,7 +125,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/roles/controllers/roles.controller.js'
                                 ]
@@ -152,7 +153,7 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/permissions/controllers/permissions.controller.js'
                                 ]
@@ -184,9 +185,37 @@
                         },
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({
-                                name: 'MDM.controllers',
+                                name: 'EST.controllers',
                                 files: [
                                     'js/modules/users/permissions/controllers/permissions.controller.js'
+                                ]
+                            });
+                        }
+                    }
+                })
+                .state('home.admin', {
+                    url: 'admin',
+                    views: {
+                        'container@': {
+                            templateUrl: 'js/modules/users/admin/views/admin.html',
+                            controller: 'AdminController',
+                            controllerAs: 'ctrl'
+                        }
+                    },
+                    resolve: {
+                        authorize: function ($rootScope, $sessionStorage, $state, $stateParams, $q) {
+                            if (!$rootScope.hasPermission("users.manage")) {
+                                return $q.reject({
+                                    code: 403,
+                                    message: "No tiene permisos suficientes para acceder al recurso"
+                                });
+                            }
+                        },
+                        loadMyFiles: function ($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'EST.controllers',
+                                files: [
+                                    'js/modules/users/admin/controllers/admin.controller.js'
                                 ]
                             });
                         }

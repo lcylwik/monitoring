@@ -1,5 +1,6 @@
 package com.mkyong.web.controller;
 
+import com.mkyong.web.model.Bitacoras;
 import com.mkyong.web.model.Users;
 import com.mkyong.web.model.userLogin;
 import com.mkyong.web.services.RolService;
@@ -21,26 +22,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-//api rest lianet
-
+//api rest LastTest
 @RestController
 public class HelloController {
-    
+
     @Autowired
     private UserService userservice;
-    
+
     @Autowired
     private RolService rolservice;
-    
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getData() {
         System.out.println("entro al controlador");
         ModelAndView model = new ModelAndView("index.html");
-        
         return model;
-        
     }
-    
 
     /**
      *
@@ -57,26 +54,25 @@ public class HelloController {
             throw new ServletException("El usuario no esta en el BD");
         } else if (userservice.findUserByPass(user.getName(), user.getPassword()) == null) {
             throw new ServletException("Pass incorrecto");
+        } else if (userservice.findStatusByName(user.getName()) == 0) {
+            throw new ServletException("Usuario Desabilitado");
         }
-        System.out.println("Entro al controller loginnnnnnnnnnn");
+        userservice.addBitacora(user.getName());
         return new LoginResponse(Jwts.builder().setSubject(user.getName())
                 .claim("roles", userservice.findRoleByUserName(user.getName())).setIssuedAt(new Date())
                 .claim("user", userservice.findByName(user.getName()))
                 .claim("permissions", userservice.findPermissionByUserName(user.getName()))
                 .signWith(SignatureAlgorithm.HS256, "secretkey").compact());
     }
-    
+
     @SuppressWarnings("unused")
     private static class LoginResponse {
-        
+
         public String token;
-        
+
         public LoginResponse(final String token) {
             this.token = token;
         }
     }
-    
-   
-    
-}
 
+}

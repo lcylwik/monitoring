@@ -6,8 +6,8 @@
 package com.mkyong.web.dao;
 
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
+import com.mkyong.web.model.FilterTxn;
+import com.mkyong.web.model.Txn;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -18,11 +18,8 @@ import java.util.List;
  */
 public interface TransDao {
 
-    public List<PrsaTxnAceptadas> getTransaccionesAceptadas();
-
-    public List<PrsaRejectedTxn> getTransaccionesReject();
-
-    public List<Object> getEstadistico();
+    public List<Txn> getTransacciones();
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters);
 
     public Integer addEstadistico(Estadistico estadistico);
     
@@ -33,6 +30,8 @@ public interface TransDao {
     public List<String> getCodigo();
 
     public Iterator getCantFechaByCode(String code,Date fromDate, Date toDate);
+    
+     public List<Txn> getTxnByDate(Date from, Date to);
     
    
 }

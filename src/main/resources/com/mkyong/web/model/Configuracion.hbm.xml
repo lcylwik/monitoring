@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 25, 2017 12:48:22 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.mkyong.web.model.Configuracion" table="configuracion" catalog="monitoreo">
+        <id name="idC" type="java.lang.Integer">
+            <column name="idC" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="campo" type="string">
+            <column name="campo" length="20" not-null="true" />
+        </property>
+        <property name="valor" type="string">
+            <column name="valor" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

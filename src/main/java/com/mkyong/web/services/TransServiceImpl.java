@@ -7,9 +7,9 @@ package com.mkyong.web.services;
 
 import com.mkyong.web.dao.TransDao;
 import com.mkyong.web.model.Estadistico;
-import com.mkyong.web.model.PrsaRejectedTxn;
-import com.mkyong.web.model.PrsaTxnAceptadas;
-import com.mkyong.web.model.txn_json;
+import com.mkyong.web.model.FilterTxn;
+import com.mkyong.web.model.Txn;
+
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -28,50 +28,28 @@ public class TransServiceImpl implements TransService {
     private TransDao trasdao;
 
     @Override
-    public List<PrsaTxnAceptadas> getTransaccionesAceptadas() {
-        return trasdao.getTransaccionesAceptadas();
+    public List<Txn> getTransacciones() {
+        return trasdao.getTransacciones();
     }
 
     @Override
-    public List<PrsaRejectedTxn> getTransaccionesReject() {
-        return trasdao.getTransaccionesReject();
-    }
-
-    @Override
-    public List<Object> getEstadistico() {
-        return trasdao.getEstadistico();
+    public Object getEstadistico(String ejeY,String ejeX,FilterTxn filters) {
+        return trasdao.getEstadistico(ejeY, ejeX, filters);
     }
 
     @Override
     public Integer addEstadistico(Estadistico estadistico) {
         return trasdao.addEstadistico(estadistico);
     }
-    
+
     @Override
     public Boolean checkMonthIsCalculated(Date date) {
         return trasdao.checkMonthIsCalculated(date);
     }
-    
+
     @Override
-    public Date getFirstTransaction(){
+    public Date getFirstTransaction() {
         return trasdao.getFirstTransaction();
-    }
-
-    @Override
-    public List<txn_json> getAllTxn() {
-        List<txn_json> txns = new LinkedList<>();
-        List<PrsaTxnAceptadas> txnsAcc = getTransaccionesAceptadas();
-        List<PrsaRejectedTxn> txnsRej = getTransaccionesReject();
-
-        for (PrsaTxnAceptadas txn : txnsAcc) {
-            txns.add(new txn_json(txn.getNombreArchivo(), txn.getFechaProcesoTransac(), txn.getNumeroPrsaAdquiriente(), txn.getNumeroPrsaEmisor(), txn.getFiidAdquiriente(), txn.getFiidEmisor(), txn.getRedLogica(), txn.getCodigoRespuestaAut()));
-        }
-
-       for (PrsaRejectedTxn txn : txnsRej) {
-            txns.add(new txn_json(txn.getPrtFilename(), txn.getPrtProcDte(), txn.getNumeroPrsaAdquiriente(), txn.getNumeroPrsaEmisor(), txn.getFiidAdquiriente(), txn.getFiidEmisor(), txn.getRedLogica(), txn.getCodigoRespuesta()));
-        }
-
-        return txns;
     }
 
     @Override
@@ -82,5 +60,10 @@ public class TransServiceImpl implements TransService {
     @Override
     public Iterator getCantFechaByCode(String code, Date fromDate, Date toDate) {
         return trasdao.getCantFechaByCode(code, fromDate, toDate);
+    }
+
+    @Override
+    public List<Txn> getTxnByDate(Date from, Date to) {
+        return trasdao.getTxnByDate(from, to);
     }
 }

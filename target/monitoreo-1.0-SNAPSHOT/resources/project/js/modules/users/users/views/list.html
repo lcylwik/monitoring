@@ -1,0 +1,53 @@
+<div class="col-xs-12 col-sm-12 col-md-12">
+
+  <div class="row">
+    <div class="col-md-3 pull-right clearfix">
+      <a href="" ui-sref="home.usersEdit({action: 'new'})" class="btn btn-block btn-success new">Nuevo Usuario</a><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="panel-flow panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <p style="margin-bottom:0;">
+              <strong>Usuarios</strong>
+            </p>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="col-md-6 col-sm-12 col-xs-12 pull-right">
+              <div class="input-icon" style="margin-bottom: 0;">
+                <input type="text" placeholder="Filtrar" ng-model="cajaBusqueda" class="form-control"> <i
+                      class="fa fa-search"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive" style="overflow-y:auto;">
+          <table ng-table="usersTableParams" class="table table-striped table-hover table-centered">
+            <tr ng-repeat="item in $data | filter:cajaBusqueda">
+              <td data-title="'Id'">{[{item.id}]}</td>
+              <td data-title="'Nombre'">{[{item.name}]}</td>
+              <td data-title="'Email'">{[{item.email}]}</td>
+
+              <td data-title="'Editar'">
+                <a ui-sref="home.usersEdit({id: item.id, item: item, action: 'edit'})" class="pointer">
+                  <i class="fa fa-pencil-square-o text-success"> </i>
+                </a>
+              </td>
+              <td data-title="'Eliminar'">
+                <a ng-click="ctrl.remove(item);" class="pointer">
+                  <i class="fa fa-trash text-danger"> </i>
+                </a>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
